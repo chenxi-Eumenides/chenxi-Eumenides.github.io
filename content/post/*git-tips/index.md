@@ -1,11 +1,11 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
-auther: 
+title: "Git Tips"
+auther: chenxi
 
 description: 
 image: 
-date: {{ .Date }}
-lastmod: {{ .Date }}
+date: 2023-05-06T16:25:48+08:00
+lastmod: 2023-05-06T16:25:48+08:00
 
 categories:
     - Test
@@ -21,3 +21,5 @@ hidden: false
 
 draft: true
 ---
+
+## 

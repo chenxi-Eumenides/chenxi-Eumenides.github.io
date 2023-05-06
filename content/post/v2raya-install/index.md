@@ -1,12 +1,11 @@
 ---
 title: v2raya安装
+auther: chenxi
+
 description: "v2raya安装"
-date: 2023-01-29T04:55:52+08:00
 image: 
-math: 
-license: 
-hidden: false
-comments: false
+date: 2023-01-29T04:55:52+08:00
+
 categories:
     - 笔记
 tags:
@@ -16,6 +15,13 @@ tags:
     - v2raya
     - 梯子
     - 配置
+
+math: false
+comments: false
+license: 
+hidden: false
+
+draft: false
 ---
 
 # v2raya安装及配置

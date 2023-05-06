@@ -1,17 +1,27 @@
 ---
 title: "用ffmpeg在B站上直播"
+auther: chenxi
+
 description: 如题
-date: 2023-01-29T08:26:18+08:00
 image: 
-math: 
+date: 2023-01-29T08:26:18+08:00
+
+categories:
+    - ffmpeg
+    - 笔记
+tags:
+    - bilibili
+    - 直播
+    - B站
+    - ffmpeg
+    - rtmp
+
+math: false
+comments: false
 license: 
 hidden: false
-comments: false
-categories:
-    - 直播
-    - ffmpeg
-    - B站
-#draft: true
+
+draft: true
 ---
 
 # 用ffmpeg在B站上自动直播

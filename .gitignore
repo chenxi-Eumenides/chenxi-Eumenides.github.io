@@ -2,3 +2,8 @@ themes/
 run.sh
 public/
 assets/
+.gitignore
+blog.code-workspace
+.hugo_build.lock
+public/
+data/

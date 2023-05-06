@@ -1,9 +1,12 @@
 ---
 title: "Linux的一些tips"
+auther: chenxi
+
 description: 在Linux下遇到各种问题的解决方式与过程记录。
 image: 
-auther: chenxi
 date: 2023-05-06T00:34:45+08:00
+lastmod: 2023-05-06T00:34:45+08:00
+
 categories:
     - Tips
     - 笔记
@@ -11,10 +14,14 @@ tags:
     - linux
     - tips
     - 笔记
-math: 
+series:
+    - 笔记
+
+math: false
 comments: false
 license: 
 hidden: false
+
 draft: false
 ---
 

@@ -1,9 +1,11 @@
 ---
 title: "Ms Office 安装激活"
+auther: chenxi
+
 description: Microsoft Office 的安装与激活
 image: 
-auther: chenxi
 date: 2023-04-11T20:26:59+08:00
+
 categories:
     - 笔记
     - 软件
@@ -13,11 +15,13 @@ tags:
     - 激活
     - Microsoft
 series:
-    - test
-math: 
+    - 笔记
+
+math: false
 comments: false
 license: 
 hidden: false
+
 draft: false
 ---
 ## 所用的软件

@@ -1,11 +1,12 @@
 ---
 title: "Ranger配置及使用"
+auther: chenxi
+
 description: ranger的功能配置，及使用的一些方法
 image: 
-auther: chenxi
 date: 2023-05-06T01:35:00+08:00
+
 categories:
-    - Tips
     - 笔记
 tags:
     - 笔记
@@ -14,10 +15,12 @@ tags:
     - linux
 series:
     - 笔记
-math: 
+
+math: false
 comments: false
 license: 
 hidden: false
+
 draft: false
 ---
 

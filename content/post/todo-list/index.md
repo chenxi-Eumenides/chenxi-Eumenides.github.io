@@ -1,22 +1,36 @@
 ---
 title: "Todo List"
+auther: chenxi
+
 description: 待做事项
 image: 
-auther: chenxi
-weight: 10
 date: 2023-05-06T04:36:21+08:00
+weight: 10
+
+categories:
+    - Todo
 tags:
     - todo
-math: 
+    - 待做事项
+
+math: false
 comments: false
 license: 
 hidden: false
+
 draft: false
 ---
 
+## 笔记
+
+- [ ] python3安装
+- [ ] mc服务器
+- [ ] rtmp直播推流
+- [ ] 泰拉瑞亚服务器
+- [ ] git
+
 ## 编程
 
-- [ ] git笔记
 - [ ] rust学习
 
 ## 学习

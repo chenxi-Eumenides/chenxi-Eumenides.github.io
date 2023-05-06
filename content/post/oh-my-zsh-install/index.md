@@ -1,8 +1,11 @@
 ---
 title: "oh-my-zsh安装及配置"
-description: oh-my-zsh的安装过程与配置
 auther: chenxi
+
+description: oh-my-zsh的安装过程与配置
+image: 
 date: 2023-01-29T05:02:30+08:00
+
 categories:
     - 笔记
     - zsh
@@ -11,11 +14,12 @@ tags:
     - 安装
     - 配置
     - shell
-image: 
-math: 
+
+math: false
+comments: false
 license: 
 hidden: false
-comments: false
+
 draft: false
 ---
 
