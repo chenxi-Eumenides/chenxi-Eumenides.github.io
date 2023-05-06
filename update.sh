@@ -4,7 +4,7 @@ if [ -z "$1" ] ; then
     echo "无提交信息"
     exit
 fi
-echo "\"$@\""
+echo "1: $1:${@:2}"
 git add .
-git commit -m "test:test script 2"
+git commit -m "$1:${@:2}"
 hugo build
