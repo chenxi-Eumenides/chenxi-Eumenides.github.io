@@ -8,11 +8,10 @@ date: 2023-05-06T00:34:45+08:00
 lastmod: 2023-05-06T00:34:45+08:00
 
 categories:
-    - Tips
+    - linux
     - 笔记
 tags:
     - linux
-    - tips
     - 笔记
 series:
     - 笔记

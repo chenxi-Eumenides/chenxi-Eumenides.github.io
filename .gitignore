@@ -1,9 +1,13 @@
+# directory
 themes/
-run.sh
 public/
 assets/
+public/
+data/
+
+# file
+run.sh
+update.sh
 .gitignore
 blog.code-workspace
 .hugo_build.lock
-public/
-data/
