@@ -1,10 +1,10 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
+title: "Test"
 auther: 
 
 description: 
 image: 
-date: {{ .Date }}
+date: 2024-03-12T14:58:11+08:00
 
 categories:
     - Test
@@ -18,5 +18,8 @@ comments: false
 license: 
 hidden: false
 
-draft: true
+draft: false
 ---
+## nothing
+
+nothing

@@ -2,7 +2,7 @@
 title: "泰拉瑞亚Terraria开服"
 auther: chenxi
 
-description: 
+description: 在自己的linux服务器上附属一个泰拉瑞亚服务器
 image: 
 date: 2023-01-29T05:02:30+08:00
 
@@ -26,6 +26,6 @@ hidden: false
 draft: true
 ---
 
-# te
+## 需要的网址
 
-测试
+

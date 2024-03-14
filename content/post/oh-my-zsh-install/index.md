@@ -8,7 +8,7 @@ date: 2023-01-29T05:02:30+08:00
 
 categories:
     - 笔记
-    - zsh
+    - linux
 tags:
     - zsh
     - 安装
@@ -23,7 +23,7 @@ hidden: false
 draft: false
 ---
 
-# oh-my-zsh安装及配置
+## 前言
 
 本文基本来至[oh-my-zsh官网](https://ohmyz.sh/#install)
 

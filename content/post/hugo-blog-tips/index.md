@@ -5,10 +5,9 @@ auther: chenxi
 description: "hugo是一个轻量级的使用markdown语法的静态博客网站。本文记录了我安装，配置过程中的一些笔记，也包括hugo中可以使用的markdown语法。"
 image: 
 date: "2023-04-03T19:03:56+08:00"
-lastmod: "2023-05-06T16:33:56+08:00"
 
 categories:
-    - 博客
+    - 软件
     - 笔记
 tags:
     - hugo
@@ -16,6 +15,7 @@ tags:
     - 教程
     - 笔记
     - 配置
+    - markdown
 series:
     - 笔记
 
@@ -37,6 +37,29 @@ hugo是一个轻量级的使用markdown语法的静态博客网站。我因为�
 如果有其他语言的我有可能转去其他的，毕竟我完全不会go语言。python，rust都可以捏。
 
 目前用下来，我不用关心任何go语言相关的东西，所有的修改都是直接修改markdown，比较省心。
+
+### 官方介绍
+
+Written in Go, Hugo is an open source static site generator available under the [Apache Licence 2.0.](https://github.com/gohugoio/hugo/blob/master/LICENSE) Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
+
+Hugo makes use of a variety of open source projects including:
+
+* https://github.com/yuin/goldmark
+* https://github.com/alecthomas/chroma
+* https://github.com/muesli/smartcrop
+* https://github.com/spf13/cobra
+* https://github.com/spf13/viper
+
+Hugo is ideal for blogs, corporate websites, creative portfolios, online magazines, single page applications or even a website with 
+thousands of pages.
+
+Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and 
+databases.
+
+Websites built with Hugo are extremelly fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and 
+any other hosting provider.
+
+Learn more and contribute on [GitHub](https://github.com/gohugoio).
 
 ## 安装
 
@@ -215,6 +238,12 @@ math: 数学公式 # 好像没啥用
 hidden: false # 是否隐藏
 comments: false # 是否开启评论，这个配置文件里开了才有用。
 draft: false # 是否是草稿
+
+links: # 底部链接
+  - title: 标题
+    description: 描述
+    website: url # 链接地址
+    image: url # 图片地址
 ---
 ```
 
@@ -230,7 +259,7 @@ draft: false # 是否是草稿
 ### 标题
 
 ```markdown
-# H1 (太大了，可以跳过不用捏)
+# H1 (不显示在目录中，建议全文只用一个)
 ## H2
 ### H3
 #### H4
@@ -387,6 +416,10 @@ draft: false # 是否是草稿
 
 
 ### \*围栏代码块
+
+\`\`\`编程语言名  
+这段文字就是在围栏代码块中。  
+\`\`\`  
 
 ```md
 这段文字就是在围栏代码块中。

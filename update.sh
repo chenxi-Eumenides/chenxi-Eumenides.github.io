@@ -7,4 +7,4 @@ fi
 echo "1: $1:${@:2}"
 git add .
 git commit -m "$1:${@:2}"
-hugo build
+hugo

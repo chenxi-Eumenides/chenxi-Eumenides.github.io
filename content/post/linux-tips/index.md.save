@@ -5,6 +5,7 @@ auther: chenxi
 description: 在Linux下遇到各种问题的解决方式与过程记录。
 image: 
 date: 2023-05-06T00:34:45+08:00
+lastmod: 2023-05-06T00:34:45+08:00
 
 categories:
     - linux
@@ -34,6 +35,13 @@ timedatectl set-ntp true
 ```
 
 ## pdf编辑
+
+使用qpdf软件
+
+```bash
+# 我使用yay包管理器
+yay -S qpdf
+```
 
 ### pdf分割
 
@@ -96,6 +104,8 @@ pandoc input.md -f markdown -t html -s -o output.html
 # -o FILENAME -> 输出文件名字
 ```
 
+文件格式有：markdown,html,latex,doc
+
 ## 判断linux桌面环境是xorg还是wayland
 
 ```bash
@@ -108,15 +118,6 @@ echo $XDG_SESSION_TYPE
 nc -vz [ip/host] port
 ```
 端口无法连到会超时，被拒绝会显示refused
-
-## 修复桌面环境
-
-无法进入桌面(uos)
-
-```bash
-# 重新安装桌面环境
-apt install dde startdde
-```
 
 ## shell原生前后台运行
 
@@ -143,52 +144,4 @@ curl -s https://api.github.com/repos/<OWNER>/<REPO>/releases/latest | grep brows
 
 # 下载文件
 wget -O <SAVE_FILE_NAME> <URL>
-```
-
-## 磁盘管理
-
-### 磁盘分区
-
-gpt分区表用parted，mbr用parted或fdisk都行。
-
-```bash
-sudo parted /dev/sda # 分区不用加后面的数字，对整个磁盘操作
-print # 查看下当前的分区表，可以用 rm NUMBER 命令删除不要的分区
-mkpart NAME TYPE START END # 可以只输入mkpart，它问你一个，回答一个
-# NAME，一般为空
-# TYPE，可以是ext4,exfat,ntfs....
-# START，从头开始为0，其他的根据上面print的结果填写
-# END，结束的位置，不要大于整个磁盘的大小
-quit # 退出保存
-```
-
-```bash
-sudo fdisk /dev/sda -l # 查看当前分区表
-sudo fdisk /dev/sda # 分区不用加后面的数字，对整个磁盘操作
-d NUMBER # 删除不要的分区
-n # 新建
-Partition number (1-128, default 1): # 直接回车默认就行
-First sector (2048-XXX, default 2048): # 直接回车默认就行
-Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-XXX, default XXX): # 输入磁盘大小
-+10G # +表示在开始位置上加，10G表示10G大小，其他大小可以看提示里的符号
-```
-
-### 磁盘格式化
-
-格式化用mkfs即可，根据不同文件系统，选择不同参数
-
-```bash
-sudo mkfs /dev/sdaX -t TYPE # 磁盘填自己的位置，TYPE有ext2,ext4,exfat,ntfs,xfs等等文件系统，可以tab查看
-```
-
-### 磁盘重命名
-
-不同文件系统用不同的指令
-
-```bash
-sudo mlabel -i /dev/sdaX ::NEWNAME # fat32
-sudo ntfslabel /dev/sdaX NEWNAME # ntfs
-sudo e2label /dev/sdaX NEWNAME # ext2,ext3,ext4
-sudo exfatlabel /dev/sdaX NEWNAME # exfat
-sudo xfs_admin -L "NEWNAME" /dev/sdaX # xfs
 ```
