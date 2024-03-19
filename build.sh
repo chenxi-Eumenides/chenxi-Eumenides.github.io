@@ -3,34 +3,28 @@
 cd `dirname $0`
 path=`pwd`
 
-unsafe=("v2raya-install")
 
-build_safe() {
-    for file in "${unsafe[@]}" ; do
-        mv content/post/${file} temp/
-    done
-    unset file
-    build
-    for file in "${unsafe[@]}" ; do
-        mv temp/${file} content/post/
-    done
+build_draft() {
+    delete_old_public
+    hugo --buildDrafts
 }
 
 build() {
+    delete_old_public
     hugo
 }
 
-try() {
-    sh ./test.sh $*
+delete_old_public(){
+    rm -r ./public/
 }
 
 help() {
-    printf "args: build | safe | try .\n"
+    printf "args: build | draft .\n"
 }
 
 case $1 in
-  "safe")
-    build_safe
+  "draft")
+    build_draft
     ;;
   "build")
     build

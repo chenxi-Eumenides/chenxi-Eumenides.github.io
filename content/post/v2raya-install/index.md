@@ -2,7 +2,7 @@
 title: v2raya安装
 auther: chenxi
 
-description: "v2raya安装"
+description: "linux上安装v2raya"
 image: 
 date: 2023-01-29T04:55:52+08:00
 
@@ -20,7 +20,7 @@ tags:
 math: false
 comments: false
 license: 
-hidden: false
+hidden: true
 
 draft: false
 ---

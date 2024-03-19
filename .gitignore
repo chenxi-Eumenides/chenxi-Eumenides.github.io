@@ -1,12 +1,12 @@
 # directory
 themes/
 public/
-assets/
 data/
+.git/
 
 # file
 run.sh
-update.sh
 .gitignore
+.gitmodules
 blog.code-workspace
 .hugo_build.lock
