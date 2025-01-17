@@ -1,5 +1,5 @@
 ---
-title: v2raya安装
+title: "v2raya安装"
 auther: chenxi
 
 description: "linux上安装v2raya"
@@ -20,16 +20,16 @@ tags:
 math: false
 comments: false
 license: 
-hidden: true
+hidden: false
 
-draft: false
+draft: true
 ---
 
-# v2raya安装及配置
+## v2raya安装及配置
 
 本文内容大多来自官网：[v2rayA用户文档](https://v2raya.org/docs/prologue/quick-start/)，有问题请查询官网。
 
-## 安装
+### 安装
 
 我用的系统为manjaro，包管理器为pacman（yay）。\
 使用pacman直接安装v2ray与v2raya即可。\
@@ -39,7 +39,7 @@ v2raya官方库中没有，要用yay。
 yay -Sy v2ray v2raya
 ```
 
-## 启动
+### 启动
 
 通过systemctl启动服务，只需v2raya即可，v2ray不用启动
 
@@ -57,7 +57,7 @@ systemctl enable v2raya
 
 注册一个账号（自己记住即可）。
 
-## 导入
+### 导入
 
 我有订阅链接，所以选择导入即可。
 
@@ -65,11 +65,11 @@ systemctl enable v2raya
 
 在第三页中能看到导入的。
 
-## 设置
+### 设置
 
 设置页面在右上角，若页面宽度不够，会被隐藏在三个横杠里。
 
-### gfwlist
+#### gfwlist
 
 设置页面中，第一行是gfwlist,更新一次。
 
@@ -77,7 +77,7 @@ systemctl enable v2raya
 
 若无法更新，请完成整个设置，启动服务后再试一次（即挂梯子更新）。
 
-### 代理
+#### 代理
 
 以下为选项的内容
 
@@ -91,7 +91,7 @@ systemctl enable v2raya
 
 其他可以自行查看`?`显示的提示。
 
-### RoutingA
+#### RoutingA
 
 基础的规则见下
 
@@ -124,7 +124,7 @@ domain(geosite:category-ads-all)->block
 domain(geomain:test.com)->proxy
 ```
 
-## 运行
+### 运行
 
 点击节点的`选择`按钮，选择需要启用的节点。
 

@@ -17,9 +17,9 @@ tags:
 math: false
 comments: false
 license: 
-hidden: false
+hidden: true
 
-draft: true
+draft: false
 ---
 
 # python3安装
