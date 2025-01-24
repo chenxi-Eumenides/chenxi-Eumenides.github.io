@@ -1,12 +1,16 @@
 # directory
 themes/
 public/
+resources/
 data/
 .git/
 
+
 # file
-run.sh
+build.sh
 .gitignore
 .gitmodules
 blog.code-workspace
 .hugo_build.lock
+hugo_completion.sh
+hugo-test.yaml

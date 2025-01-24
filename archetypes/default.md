@@ -1,22 +1,11 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
-auther: 
-
 description: 
-image: 
 date: {{ .Date }}
-
-categories:
-    - Test
-tags:
-    - test
-series:
-    - test
-
-math: false
-comments: false
+image: 
+math: 
 license: 
 hidden: false
-
+comments: true
 draft: true
 ---

@@ -9,6 +9,12 @@ googleAnalytics:
 ignoreErrors:
   - "error-remote-getjson"
 
+# module
+module:
+    hugoVersion:
+        extended: true
+        min: "0.87.0"
+
 # theme
 theme: hugo-theme-stack
 disqusShortname: hugo-theme-stack
@@ -21,7 +27,7 @@ languages:
   zh-cn:
     languageName: 中文
     title: chenxi的个人博客
-    description: chenxi
+    #description: chenxi
     weight: 1
 
 # custom config
@@ -67,7 +73,7 @@ params:
 
   widgets:
     homepage:
-      - type: search
+      #- type: search
       - type: categories
         params:
           limit: 10
@@ -76,7 +82,7 @@ params:
           limit: 10
 
     page:
-      - type: search
+      #- type: search
       - type: toc
       - type: categories
         params:
@@ -89,7 +95,6 @@ params:
   opengraph:
     twitter:
       site: cx_Eumenides
-
       card: summary_large_image
 
   defaultImage:
@@ -104,31 +109,31 @@ params:
     content:
       enabled: true
 
-menu:
-  social:
-    - identifier: github
-      name: GitHub
-      url: https://github.com/chenxi-Eumenides
-      params:
-        icon: svg/brand-github
-
-    - identifier: qq
-      name: QQ
-      url: tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=174241477
-      params:
-        icon: svg/brand-qq
-
-    - identifier: bilibili
-      name: Bilibili
-      url: https://space.bilibili.com/34515347
-      params:
-        icon: svg/brand-bilibili
-
-    - identifier: steam
-      name: Steam
-      url: https://space.bilibili.com/34515347
-      params:
-        icon: svg/brand-steam
+#menu:
+#  social:
+#    - identifier: github
+#      name: GitHub
+#      url: https://github.com/chenxi-Eumenides
+#      params:
+#        icon: svg/brand-github
+#
+#    - identifier: qq
+#      name: QQ
+#      url: tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=174241477
+#      params:
+#        icon: svg/brand-qq
+#
+#    - identifier: bilibili
+#      name: Bilibili
+#      url: https://space.bilibili.com/34515347
+#      params:
+#        icon: svg/brand-bilibili
+#
+#    - identifier: steam
+#      name: Steam
+#      url: https://space.bilibili.com/34515347
+#      params:
+#        icon: svg/brand-steam
 
 related:
   includeNewer: true
@@ -137,7 +142,6 @@ related:
   indices:
     - name: tags
       weight: 100
-
     - name: categories
       weight: 200
 
@@ -159,5 +163,5 @@ markup:
     tabWidth: 4
 
 frontmatter:
-  lastmod: [":fileModTime", ":git", "lastmod", ":default"]
+  lastmod: [":git", ":fileModTime", "lastmod", ":default"]
   date: ["lastmod", "date", "publishDate"]
