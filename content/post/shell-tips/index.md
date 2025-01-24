@@ -374,11 +374,18 @@ command1 | command2
 
 ### 数值计算
 ```bash
+# 使用bash内置计算方式
 res=$[$num1 + $num2]
-# + - * /
+# 支持 + - * /
+# 只能整数计算，除法向下取整
 
-res=$(echo "scale=3;($num1 + $num2) * $num3 / $num4" | bc)
+# 使用expr计算
+res=$(expr $num1 \* $num2)
+# 支持 + - \* / % （请注意乘法需要加转义符\）
+# 只能整数计算，除法向下取整
+
 # 使用 bc 命令行工具计算
+res=$(echo "scale=3;($num1 + $num2) * $num3 / $num4" | bc)
 # scale=3 精度为小数点3位
 ```
 
