@@ -2,17 +2,17 @@
 
 setup() {
     name="blog"
-    desc="just for test, dont run this file."
+    desc="cheni-zqs的blog网站，用hugo搭建，主题为stack。"
 }
 
 build_draft() {
-    update_git draft
+    update_git $*
     delete_old_public
     hugo --buildDrafts
 }
 
 build() {
-    update_git
+    update_git $*
     delete_old_public
     hugo
 }
@@ -20,9 +20,9 @@ build() {
 update_git() {
     git add ./
     if [[ -z $1 ]] ; then
-        content="update:auto build by ./build.sh at $(date +%F_%T)"
+        content="update: Auto build by ./build.sh at $(date +%F_%T)"
     else
-        content="update:auto build by ./build.sh at $(date +%F_%T) with $*"
+        content="update: $*. Auto build by ./build.sh at $(date +%F_%T)"
     fi
     git commit -m "${content}"
 }
@@ -38,16 +38,17 @@ init() {
 }
 
 help() {
-    printf "desc: %s\n" ${desc}
-    printf "args: build | draft .\n"
+    echo "desc: ${desc}"
+    echo "args: build | draft ."
 }
 
+init
 case $1 in
   "draft")
-    build_draft
+    build_draft ${@:2}
     ;;
   "build")
-    build
+    build ${@:2}
     ;;
   *)
     help
