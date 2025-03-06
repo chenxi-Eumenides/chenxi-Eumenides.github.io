@@ -20,9 +20,9 @@ build() {
 update_git() {
     git add ./
     if [[ -z $1 ]] ; then
-        content="update: Auto build by ./build.sh at $(date +%F_%T)"
+        content="update: Auto build by runsh at $(date +%F_%T)"
     else
-        content="update: $*. Auto build by ./build.sh at $(date +%F_%T)"
+        content="$*"
     fi
     git commit -m "${content}"
 }
@@ -40,6 +40,8 @@ init() {
 help() {
     echo "desc: ${desc}"
     echo "args: build | draft ."
+    echo "commit: TYPE: content."
+    echo "   e.t. update: this is a simple update info."
 }
 
 init

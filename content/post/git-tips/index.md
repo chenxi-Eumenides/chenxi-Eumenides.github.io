@@ -24,31 +24,82 @@ draft: false
 
 ## 常用git命令
 
-### 仓库
+### 设置
 
 ```git
+git config --global user.name "<USERNAME>" # 设置用户名
+git config --global user.email "<EMAIL>" # 设置邮箱
+
+git config --global http.proxy "<PROXY>" # 设置代理
+git config --global https.proxy "<PROXY>" # 设置代理
+
+git config --global init.defaultBranch <default-branch> # 设置默认分支名，建议为 master
+```
+
+### 基本流程
+
+```git
+# 克隆远程仓库到本地
+git clone <URL> # 克隆远程仓库
+
+# 创建本地仓库
 git init # 初始化仓库
+git remote add <remote-name> <remote-url> # 添加远程仓库
+# 通常远程仓库名称可以叫 origin
 
 git status # 仓库状态
 
-git reset --hard <COMMIT_ID> # 回退到指定提交
+# 修改仓库
+git add <FILE> # 将文件的改动添加到暂存区
+git commit -m "TYPE: CONTENT" # 提交暂存区的所有改动
+
+# 重新获取远程仓库
+git fetch <remote-name> # 获取远程仓库的更新
+git fetch <remote-name> <remote-branch> # 获取远程仓库的某一个分支更新
+# 此时获取到的分支为 <remote-name>/<remote-branch>
+git merge <remote-name>/<remote-branch> # 将该分支合并到主分支中
+git rebase <remote-name>/<remote-branch> # 将该分支合并到主分支中
+
+# 获取、推送
+git pull <remote-name> <remote-branch>:<local-branch> # 将远程仓库的某个分支合并到本地分支中
+git push <remote-name> <local-branch>:<remote-branch> # 将本地分支推送到远程仓库的某个分支中
+```
+
+### 常用命令
+
+#### 仓库
+
+```git
+git init # 初始化仓库
+git init -b <branch-name> # 初始化仓库，并设置默认分支名
+git status # 仓库状态
+
+git reset --soft <COMMIT_ID> # 回退到指定提交
 # HEAD 当前提交；HEAD^ 上一个提交； HEAD^^ 上上个提交
 # HEAD~100 上100个提交
-# --hard 删除后续的提交
 # --soft 保留后续的提交
+# --hard 删除后续的提交
 
 git log # 仓库记录
 git reflog # git操作记录
 ```
 
-### 文件
+#### 远程
 
 ```git
-git add <FILE> # 将文件的改动添加到暂存区
+git remote add <remote-name> <remote-url> # 添加远程仓库
+git remote -v # 列出远程仓库
+git remote show <remote-name> # 查看远程仓库信息
+git remote rm <remote-name> # 删除远程库
 
-git diff <FILE> # 比对文件与提交的区别
+git push <remote-name> <local-name> # 将本地推送到远程
+git push -u <remote-name> <local-name> # 将本地推送到远程，并绑定本地
+```
 
-git commit -m "TYPE: CONTENT" # 提交暂存区的所有改动
+#### 文件
+
+```git
+git diff <FILE> # 比对文件与已提交的区别
 
 git checkout -- <FILE> # 将文件的改动从暂存区撤回
 git reset <COMMIT_ID> <FILE> # 将文件恢复至某次提交
@@ -56,7 +107,7 @@ git reset <COMMIT_ID> <FILE> # 将文件恢复至某次提交
 git rm <FILE> # 删除文件
 ```
 
-### 分支
+#### 分支
 
 ```git
 git branch <branch> # 创建分支
@@ -73,21 +124,6 @@ git branch -D <branch> # 强制删除分支
 git log --graph # 查看分支合并图
 ```
 
-### 远程
-
-```git
-git remote add origin git@github.com:<ACCOUNT>/<REPO_NAME>.git
-# 添加远程库
-
-git remote -v # 显示远程库信息
-
-git clone git@github.com:<ACCOUNT>/<REPO_NAME>.git # 克隆远程库
-
-git push -u origin master # 推送到远程库并绑定本地库
-git push origin master # 推送到远程库
-
-git remote rm origin # 删除远程库
-```
 
 ### 暂存
 

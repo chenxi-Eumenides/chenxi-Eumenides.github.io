@@ -23,9 +23,11 @@ hidden: false
 draft: false
 ---
 
-## pacman/yay
+## 常见自带软件/命令使用
 
-### 搜索/安装
+### pacman/yay
+
+#### 搜索/安装
 
 ```bash
 yay -Ss PKG_NAME
@@ -35,9 +37,9 @@ yay -S PKG_NAME
 yay -Sy PKG_NAME
 ```
 
-### 卸载
+#### 卸载
 
-卸载包及它依赖的包（往下递归）
+卸载包及它依赖的包（往下递归）(常用)
 ```bash
 yay -Rns PKG_NAME
 ```
@@ -49,14 +51,14 @@ yay -Rnc PKG_NAME
 
 -n 不保留配置文件
 
-### 清理
+#### 清理
 
 ```bash
 yay -Sc # 清理未安装的包缓存
 yay -Scc # 清理所有包缓存
 ```
 
-### 获取包信息
+#### 获取包信息
 
 ```bash
 yay -Qq # 列出所有本地安装的包
@@ -69,7 +71,21 @@ yay -Qqd # 列出所有依赖安装的包
 yay -Qqdt # 列出所有孤立的包
 ```
 
-## linux同步时间
+### 清除查看占用文件的进程
+
+查看文件被哪些进程占用
+```bash
+lsof <URL>
+```
+
+结束进程
+```bash
+kill <PID>
+```
+
+lsof报错`lsof: WARNING: can't stat()`，添加参数`-e <ERROR_URL>`。
+
+### linux同步时间
 
 系统时间信息
 ```bash
@@ -96,90 +112,7 @@ FallbackNTP=ntp.ntsc.ac.cn ntp.aliyun.com ntp.tencent.com
 systemctl restart systemd-timesyncd
 ```
 
-## pdf编辑
-
-### pdf分割
-
-pdf每页一个文件
-```bash
-qpdf input1.pdf --split-pages
-```
-
-每两页一个文件
-```bash
-qpdf input1.pdf --split-pages=2
-```
-
-### pdf合并
-
-保留其中一个文件的信息
-```bash
-qpdf input1.pdf --pages input2.pdf -- ouput.pdf
-```
-
-从新文件开始合并
-```bash
-qpdf --empty --pages input1.pdf input2.pdf -- output.pdf
-```
-
-### pdf选取某几页
-
-一个范围
-```bash
-qpdf --empty --pages input.pdf 3-5 -- output.pdf
-```
-
-某几页
-```bash
-qpdf --empty --pages input.pdf 1,3,5 -- output.pdf
-```
-
-倒数几页
-```bash
-qpdf --empty --pages input.pdf r3-r1 --output.pdf
-```
-
-逆序
-```bash
-qpdf --empty --pages input.pdf 5-3 -- output.pdf
-```
-
-奇偶页（需qpdf 9以上版本），该奇偶页为最终排序的奇偶页，非原始文件的奇偶页
-```bash
-qpdf --empty --pages input.pdf 1-5:even -- output.pdf
-```
-
-### 页面旋转
-
-逆时针90度
-```bash
-qpdf input.pdf --rotate=+90 -- output.pdf
-```
-
-顺时针90度
-```bash
-qpdf input.pdf --rotate=-90 -- output.pdf
-```
-
-### 重复使用主文件
-
-```bash
-qpdf input.pdf --pages input2.pdf . -- output.pdf
-```
-
-## 文件格式转换
-
-使用pandoc
-
-```bash
-pandoc input.md -f markdown -t html -s -o output.html
-```
--f markdown -> 输入文件格式 (可根据输入文件后缀猜测省略
--t html     -> 输出文件格式 (可根据输出文件后缀猜测省略
--s          -> 输出为单文件
--o FILENAME -> 输出文件名字
-
-## 文件格式化处理
+### 文件格式化处理
 
 使用awk
 ```bash
@@ -206,7 +139,7 @@ awk -f file.awk '' file
 awk -F, '' file
 ```
 
-### 匹配模式
+#### 匹配模式
 
 正则匹配
 ```bash
@@ -237,7 +170,7 @@ awk '$1>10 {commandss}'
 !  非
 ```
 
-### 内置变量
+#### 内置变量
 
 ```awk
 $0 整行内容
@@ -254,7 +187,7 @@ ARGC 命令行参数个数
 ARGV 命令行参数数组
 ```
 
-### 内置命令
+#### 内置命令
 
 表达式
 ```awk
@@ -293,7 +226,7 @@ do{}while()
 for(;;){}
 ```
 
-### 常用例子
+#### 常用例子
 
 打印每行第一项和第五项
 ```bash
@@ -337,29 +270,20 @@ awk 'BEGIN{while(i<100){i++;sum+=i;}} {print sum}'
 awk 'BEGIN{for(i=0;i<=100;i++){sum+=i;}} {print sum}'
 ```
 
-## 判断linux桌面环境是xorg还是wayland
+### 判断linux桌面环境是xorg还是wayland
 
 ```bash
 echo $XDG_SESSION_TYPE
 ```
 
-## 检查远程端口
+### 检查远程端口
 
 ```bash
 nc -vz [ip/host] port
 ```
 端口无法连到会超时，被拒绝会显示refused
 
-## 修复桌面环境
-
-无法进入桌面(uos)
-
-重新安装桌面环境
-```bash
-apt install dde startdde
-```
-
-## shell原生前后台运行
+### shell原生前后台运行
 
 暂停当前任务并放到后台
 ```bash
@@ -382,21 +306,16 @@ fg 不带作业号，默认是最后一个任务
 jobs
 ```
 
-## 终端下载github release文件
+### 获取文件夹大小
 
-获取release文件下载链接（替换链接中内容）
 ```bash
-curl -s https://api.github.com/repos/<OWNER>/<REPO>/releases/latest | grep browser_download_url | awk 'BEGIN{FS="\""} {print $4}'
+du -h --max-depth=1 ./ # 获取当前文件夹下的各文件的大小
+du -h --max-depth=1 ./ | sort -rh | head # 从大到小排序，并获取前10项
 ```
 
-下载文件
-```bash
-wget -O <SAVE_FILE_NAME> <URL>
-```
+### 磁盘管理
 
-## 磁盘管理
-
-### 磁盘分区
+#### 磁盘分区
 
 gpt分区表用parted，mbr用parted或fdisk都行。
 
@@ -428,7 +347,7 @@ Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-XXX, default XXX): # 输入�
 +10G # +表示在开始位置上加，10G表示10G大小，其他大小可以看提示里的符号
 ```
 
-### 磁盘格式化
+#### 磁盘格式化
 
 格式化用mkfs即可，根据不同文件系统，选择不同参数
 
@@ -437,7 +356,7 @@ sudo mkfs /dev/sdaX -t TYPE
 ```
 磁盘填自己的位置，TYPE有ext2,ext4,exfat,ntfs,xfs等等文件系统，可以tab查看
 
-### 磁盘重命名
+#### 磁盘重命名
 
 不同文件系统用不同的指令
 
@@ -449,75 +368,13 @@ sudo exfatlabel /dev/sdaX NEWNAME # exfat
 sudo xfs_admin -L "NEWNAME" /dev/sdaX # xfs
 ```
 
-## 键盘映射
-
-软件 evtest udevadm
-
-### 获取键盘信息及按键scanid
-
-```bash
-$ evtest
-# 输入键盘对应的数字
-Input device ID: bus 0x3 vendor 0x1a2c product 0x7f07 version 0x110
-Input device name: "SEMICO   USB Gaming Keyboard "
-# 记录信息
-
-# 按下按键
-Event: time 1715308057.759600, type 4 (EV_MSC), code 4 (MSC_SCAN), value 700e2
-Event: time 1715308057.759600, type 1 (EV_KEY), code 56 (KEY_LEFTALT), value 0
-# 记录value对应的值
-# usb键盘的scanid应当为5位16进制数字
-```
-
-### 修改按键
-
-```bash
-cd /etc/udev/hwdb.d/
-touch <num>-<word>.hwdb # 数字-名称
-# 编辑该文件
-```
-
-```hwdb
-evdev:input:b<bus_id>v<vendor_id>p<product_id>e<version_id>*
-# 每一个id都需要补足到4位，如bus 0x3，则补为b0003
-# 16进制的字母大写
-# 如：evdev:input:b0003v1A2Cp7F07e0100*
-# 也可以用通配符*代替某些字段，只要能匹配到键盘就行
-
- KEYBOARD_KEY_<scan_id>=<key_name>
-# 前面有空格
-# key_name可以从 https://hal.freedesktop.org/quirk/quirk-keymap-list.txt 中找
-# 如： KEYBOARD_KEY_70029=grave
-# 中间不能有注释、空行
-```
-
-### 生效
-
-```bash
-sudo udevadm hwdb --update
-sudo udevadm trigger
-```
-
-请注意，修改生效后，无法删除，只能重启电脑恢复。
-
-## 手动更改aur包
+### 手动更改aur包
 
 1. 下载的包通常位于`$HOME/.cache/yay/$PKGNAME`
 2. 修改`PKGBUILD`
 3. 执行`makepkg -si`(-s 自动下载makedepend -i 自动安装)
 
-## scrcpy
-
-常用参数
-
-```bash
--m    # 分辨率
--b    # 码率 
--Sw   # 黑屏启动
--V    # 通知等级 info warn error
-```
-
-## 比对两个文件
+### 比对两个文件
 
 ```bash
 diff file_old.txt file_new.txt
@@ -526,7 +383,7 @@ diff file_old.txt file_new.txt
 -u         # git形式显示比对
 ```
 
-## 自定义dns地址
+### 自定义dns地址
 
 修改`NetworkManager`配置
 ```bash
@@ -548,7 +405,207 @@ name_servers="114.114.114.114 8.8.8.8"
 sudo systemctl restart NetworkManager
 ```
 
-## 发送邮件
+### 获取时间
+
+```bash
+date
+# 格式化输出
+date +"%F"
+```
+
+#### 日期
+
+```bash
+%D # mm/dd/yy 格式
+%F # yyyy-mm-dd 格式
+
+%a # 日期名称，缩写为 Mon、Tue、Wed 等
+%A # 当天的全称，周一周二周三等
+%u # 星期几，其中星期一=1，星期二=2，星期三=3，依此类推。
+%w # 星期几，星期日=0，星期一=1，星期二=2，依此类推。
+%d # 月份中的第几天，带有前导零（01、02 … 09）。
+%e # 月份中的第几天，带有前导空格（‘1’、‘2’……‘9’）。
+%j # 一年中的第几天，最多有两个前导零。
+```
+
+#### 时间
+
+```bash
+%T # HH:MM:SS 格式，24小时制
+%R # HH:MM 格式，24小时制
+%r # 12 小时制
+%X # 24 小时制，根据语言环境
+```
+
+## 常用第三方软件/命令行
+
+### 终端下载github release文件
+
+获取release文件下载链接（替换链接中内容）
+```bash
+curl -s https://api.github.com/repos/<OWNER>/<REPO>/releases/latest | grep browser_download_url | awk 'BEGIN{FS="\""} {print $4}'
+```
+
+下载文件
+```bash
+wget -O <SAVE_FILE_NAME> <URL>
+```
+
+### pdf编辑
+
+#### pdf分割
+
+pdf每页一个文件
+```bash
+qpdf input1.pdf --split-pages
+```
+
+每两页一个文件
+```bash
+qpdf input1.pdf --split-pages=2
+```
+
+#### pdf合并
+
+保留其中一个文件的信息
+```bash
+qpdf input1.pdf --pages input2.pdf -- ouput.pdf
+```
+
+从新文件开始合并
+```bash
+qpdf --empty --pages input1.pdf input2.pdf -- output.pdf
+```
+
+#### pdf选取某几页
+
+一个范围
+```bash
+qpdf --empty --pages input.pdf 3-5 -- output.pdf
+```
+
+某几页
+```bash
+qpdf --empty --pages input.pdf 1,3,5 -- output.pdf
+```
+
+倒数几页
+```bash
+qpdf --empty --pages input.pdf r3-r1 --output.pdf
+```
+
+逆序
+```bash
+qpdf --empty --pages input.pdf 5-3 -- output.pdf
+```
+
+奇偶页（需qpdf 9以上版本），该奇偶页为最终排序的奇偶页，非原始文件的奇偶页
+```bash
+qpdf --empty --pages input.pdf 1-5:even -- output.pdf
+```
+
+#### 页面旋转
+
+逆时针90度
+```bash
+qpdf input.pdf --rotate=+90 -- output.pdf
+```
+
+顺时针90度
+```bash
+qpdf input.pdf --rotate=-90 -- output.pdf
+```
+
+#### 重复使用主文件
+
+```bash
+qpdf input.pdf --pages input2.pdf . -- output.pdf
+```
+
+### 文件格式转换
+
+使用pandoc
+
+```bash
+pandoc input.md -f markdown -t html -s -o output.html
+```
+-f markdown -> 输入文件格式 (可根据输入文件后缀猜测省略
+-t html     -> 输出文件格式 (可根据输出文件后缀猜测省略
+-s          -> 输出为单文件
+-o FILENAME -> 输出文件名字
+
+### 修复桌面环境
+
+无法进入桌面(uos)
+
+重新安装桌面环境
+```bash
+apt install dde startdde
+```
+
+### 键盘映射
+
+软件 evtest udevadm
+
+#### 获取键盘信息及按键scanid
+
+```bash
+$ evtest
+# 输入键盘对应的数字
+Input device ID: bus 0x3 vendor 0x1a2c product 0x7f07 version 0x110
+Input device name: "SEMICO   USB Gaming Keyboard "
+# 记录信息
+
+# 按下按键
+Event: time 1715308057.759600, type 4 (EV_MSC), code 4 (MSC_SCAN), value 700e2
+Event: time 1715308057.759600, type 1 (EV_KEY), code 56 (KEY_LEFTALT), value 0
+# 记录value对应的值
+# usb键盘的scanid应当为5位16进制数字
+```
+
+#### 修改按键
+
+```bash
+cd /etc/udev/hwdb.d/
+touch <num>-<word>.hwdb # 数字-名称
+# 编辑该文件
+```
+
+```hwdb
+evdev:input:b<bus_id>v<vendor_id>p<product_id>e<version_id>*
+# 每一个id都需要补足到4位，如bus 0x3，则补为b0003
+# 16进制的字母大写
+# 如：evdev:input:b0003v1A2Cp7F07e0100*
+# 也可以用通配符*代替某些字段，只要能匹配到键盘就行
+
+ KEYBOARD_KEY_<scan_id>=<key_name>
+# 前面有空格
+# key_name可以从 https://hal.freedesktop.org/quirk/quirk-keymap-list.txt 中找
+# 如： KEYBOARD_KEY_70029=grave
+# 中间不能有注释、空行
+```
+
+#### 生效
+
+```bash
+sudo udevadm hwdb --update
+sudo udevadm trigger
+```
+
+请注意，修改生效后，无法删除，只能重启电脑恢复。
+
+### scrcpy
+
+常用参数
+
+```bash
+-m    # 分辨率
+-b    # 码率 
+-Sw   # 黑屏启动
+-V    # 通知等级 info warn error
+```
+
+### 发送邮件
 
 使用`mailx`命令行，`msmtp`后端，确保都安装了。
 
@@ -582,39 +639,7 @@ unset save             # 发送失败时取消保存dead.letter
 echo "SEND_CONTENT" | mailx -s "TITLE" "TO_EMAIL_URL"
 ```
 
-## 获取时间
-
-```bash
-date
-# 格式化输出
-date +"%F"
-```
-
-### 日期
-
-```bash
-%D # mm/dd/yy 格式
-%F # yyyy-mm-dd 格式
-
-%a # 日期名称，缩写为 Mon、Tue、Wed 等
-%A # 当天的全称，周一周二周三等
-%u # 星期几，其中星期一=1，星期二=2，星期三=3，依此类推。
-%w # 星期几，星期日=0，星期一=1，星期二=2，依此类推。
-%d # 月份中的第几天，带有前导零（01、02 … 09）。
-%e # 月份中的第几天，带有前导空格（‘1’、‘2’……‘9’）。
-%j # 一年中的第几天，最多有两个前导零。
-```
-
-### 时间
-
-```bash
-%T # HH:MM:SS 格式，24小时制
-%R # HH:MM 格式，24小时制
-%r # 12 小时制
-%X # 24 小时制，根据语言环境
-```
-
-## 同步文件
+### 同步文件
 
 ```bash
 rsync src/ target/
@@ -634,7 +659,7 @@ rsync src/ target/
  - --include 包含路径
  - --include-from 从文件中获取包含的路径
 
-### 常用方式
+#### 常用方式
 
 ```bash
 # 更新同步
@@ -647,9 +672,9 @@ rsync --exclude-from="./exclude.txt" /src/ /target/
 rsync --include-from="./include.txt" --exclude="*.*" /src/ /target/
 ```
 
-## 修复nginx模块版本不正确
+### 修复nginx模块版本不正确
 
-### 获取必要信息
+#### 获取必要信息
 
 yay缓存的模块代码路径：`~/.cache/yay/<PKG_NAME>`，此处我的dav扩展模块的路径为：`/home/<USER>/.cache/yay/nginx-mainline-mod-dav-ext/src/nginx-dav-ext-module-3.0.0`
 
@@ -668,7 +693,7 @@ mv /usr/bin/nginx /usr/bin/nginx.old
 mv /usr/lib/nginx/modules/ngx_http_dav_ext_module.so /usr/lib/nginx/modules/ngx_http_dav_ext_module.so.old
 ```
 
-### 编译
+#### 编译
 
 root 或 sudo
 ```bash
@@ -681,7 +706,7 @@ make
 
 编译结果在`/usr/src/nginx/objs`
 
-### 启用
+#### 启用
 
 root 或 sudo
 ```bash
@@ -693,7 +718,7 @@ cp /usr/src/nginx/objs/ngx_http_dav_ext_module.so /usr/lib/nginx/modules/ngx_htt
 systemctl restart nginx
 ```
 
-## heic图片转换
+### heic图片转换
 
 安装libheif库
 ```bash
@@ -702,18 +727,10 @@ for file in *.heic ; then
 done
 ```
 
-## 清除查看占用文件的进程
+### 判断rsa私钥公钥是否一致
 
-查看文件被哪些进程占用
 ```bash
-lsof <URL>
+ssh-keygen -y -f <key> > temp.id_rsa.pub # 生成公钥临时文件
+md5sum temp.id_rsa.pub <pubkey> # 比对md5值
+rm temp.id_rsa.pub # 删除临时文件
 ```
-
-结束进程
-```bash
-kill <PID>
-```
-
-lsof报错`lsof: WARNING: can't stat()`，添加参数`-e <ERROR_URL>`。
-
-
