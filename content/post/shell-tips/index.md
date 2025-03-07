@@ -244,6 +244,10 @@ command1 || command2
 
 ```bash
 # 条件循环
+while [[ -z $key ]] ; do
+    #statements
+done
+
 for (( i = 0; i < 10; i++ )); do
     #statements
 done
