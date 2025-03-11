@@ -9,8 +9,8 @@ main() {
     [[ -z $1 ]] && read -p "input commit info: " input && { [ -z $input ] && echo "no input." && return 1; }
     [[ -z $input ]] && input=$*
     update_git $input
-    rm -r public/*
-    rm -r public-github/
+    [[ -d public ]] && rm -r public
+    [[ -d public-github ]] && rm -r public-github/
 }
 
 build_draft() {
