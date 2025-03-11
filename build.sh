@@ -11,19 +11,9 @@ main() {
     update_git $input
     [[ -d public ]] && rm -r public
     [[ -d public-github ]] && rm -r public-github/
-}
-
-build_draft() {
-    update_git $*
-    rm -r ./public-github
-    hugo --config hugo-github.yaml --buildDrafts
-}
-
-build() {
-    update_git $*
-    rm -r public
     hugo --config hugo-local.yaml
-    push_git
+    hugo --config hugo-github.yaml --buildDrafts
+#    push_git
 }
 
 update_git() {
@@ -37,7 +27,6 @@ update_git() {
 }
 
 push_git() {
-    cd public-github
     git push github
 }
 
