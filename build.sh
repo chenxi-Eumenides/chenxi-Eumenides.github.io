@@ -6,12 +6,44 @@ setup() {
 }
 
 main() {
+    case $1 in
+        "-l"|"--local")
+            build="local"
+            shift
+            ;;
+        "-g"|"--github")
+            build="github"
+            shift
+            ;;
+        "-a"|"--all")
+            build="all"
+            shift
+            ;;
+        *)
+            build="all"
+            ;;
+    esac
     [[ -z $1 ]] && read -p "input commit info: " input && { [ -z $input ] && echo "no input." && return 1; }
     [[ -z $input ]] && input=$*
     update_git $input
+    [[ $build == "local" ]] && build_local
+    [[ $build == "github" ]] && build_github
+    [[ $build == "all" ]] && build_all
+    return 0
+}
+
+build_all() {
+    build_local
+    build_github
+}
+
+build_github() {
     [[ -d public ]] && rm -r public
-    [[ -d docs ]] && rm -r docs
     hugo --config hugo-local.yaml
+}
+
+build_local() {
+    [[ -d docs ]] && rm -r docs
     hugo --config hugo-github.yaml --buildDrafts
     push_git
 }
@@ -27,7 +59,7 @@ update_git() {
 }
 
 push_git() {
-    git push github
+    git push github master:main
 }
 
 #delete
