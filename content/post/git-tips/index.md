@@ -52,6 +52,12 @@ git status # 仓库状态
 # 修改仓库
 git add <FILE> # 将文件的改动添加到暂存区
 git commit -m "TYPE: CONTENT" # 提交暂存区的所有改动
+# feat:   新功能
+# fix:    修复问题
+# docs:   文档更改
+# update: 更新文件
+# test:   测试修改
+
 
 # 重新获取远程仓库
 git fetch <remote-name> # 获取远程仓库的更新
