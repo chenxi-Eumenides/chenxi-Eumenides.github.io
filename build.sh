@@ -5,16 +5,15 @@ setup() {
     desc="cheni-zqs的blog网站，用hugo搭建，主题为stack。"
 }
 
-build_draft() {
-    update_git $*
-    delete_old_public
-    hugo --buildDrafts
-}
-
-build() {
-    update_git $*
-    delete_old_public
-    hugo
+main() {
+    [[ -z $1 ]] && read -p "input commit info: " input && { [ -z $input ] && echo "no input." && return 1; }
+    [[ -z $input ]] && input=$*
+    update_git $input
+    [[ -d public ]] && rm -r public
+    [[ -d public-github ]] && rm -r public-github/
+    hugo --config hugo-local.yaml
+    hugo --config hugo-github.yaml --buildDrafts
+#    push_git
 }
 
 update_git() {
@@ -22,14 +21,16 @@ update_git() {
     if [[ -z $1 ]] ; then
         content="update: Auto build by runsh at $(date +%F_%T)"
     else
-        content="$*"
+        content="$* at $(date +%F_%T)"
     fi
     git commit -m "${content}"
 }
 
-delete_old_public(){
-    rm -r ./public/
+push_git() {
+    git push github
 }
+
+#delete
 
 init() {
     cd $(dirname $0)
@@ -46,11 +47,8 @@ help() {
 
 init
 case $1 in
-  "draft")
-    build_draft ${@:2}
-    ;;
   "build")
-    build ${@:2}
+    main ${@:2}
     ;;
   *)
     help

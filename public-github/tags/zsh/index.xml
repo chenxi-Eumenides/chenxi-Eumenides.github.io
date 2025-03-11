@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Zsh on chenxi的个人博客</title>
+        <link>https://chenxi-Eumenides.github.io/tags/zsh/</link>
+        <description>Recent content in Zsh on chenxi的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Thu, 14 Mar 2024 15:06:00 +0800</lastBuildDate><atom:link href="https://chenxi-Eumenides.github.io/tags/zsh/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>oh-my-zsh安装及配置</title>
+        <link>https://chenxi-Eumenides.github.io/p/oh-my-zsh%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE/</link>
+        <pubDate>Sun, 29 Jan 2023 05:02:30 +0800</pubDate>
+        
+        <guid>https://chenxi-Eumenides.github.io/p/oh-my-zsh%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE/</guid>
+        <description>&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;本文基本来至&lt;a class=&#34;link&#34; href=&#34;https://ohmyz.sh/#install&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;oh-my-zsh官网&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;安装&#34;&gt;安装
+&lt;/h2&gt;&lt;h3 id=&#34;zsh&#34;&gt;zsh
+&lt;/h3&gt;&lt;p&gt;系统为manjaro,直接pacman安装zsh&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pacman -Sy zsh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在&lt;code&gt;/etc/passwd&lt;/code&gt;中修改root和用户的默认shell为&lt;code&gt;/bin/zsh&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;重启终端即可。&lt;/p&gt;
+&lt;h3 id=&#34;oh-my-zsh&#34;&gt;oh-my-zsh
+&lt;/h3&gt;&lt;p&gt;前往官网复制安装命令，一键安装。&lt;/p&gt;
+&lt;p&gt;以下二选一即可。&lt;/p&gt;
+&lt;p&gt;1.使用curl&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sh -c &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;2.使用wget&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sh -c &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;配置&#34;&gt;配置
+&lt;/h2&gt;&lt;p&gt;oh-my-zsh会自动替换.zshrc文件。&lt;/p&gt;
+&lt;h3 id=&#34;alias&#34;&gt;alias
+&lt;/h3&gt;&lt;p&gt;alias就是命令的简写方式&lt;/p&gt;
+&lt;p&gt;格式为&lt;code&gt;alias short_command=&#39;long_command&#39;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在.zshrc文件尾添加alias,也可以在.zshrc文件尾添加&lt;code&gt;source .zsh_alias&lt;/code&gt;，然后创建.zsh_alias文件，在这其中添加alias。&lt;/p&gt;
+&lt;h3 id=&#34;插件&#34;&gt;插件
+&lt;/h3&gt;&lt;p&gt;在&lt;a class=&#34;link&#34; href=&#34;https://github.com/zsh-users&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;github&lt;/a&gt;上可以看到多个插件，点进去，找到&lt;code&gt;INSTALL.md&lt;/code&gt;链接，找到oh-my-zsh的安装命令，在终端中运行。&lt;/p&gt;
+&lt;p&gt;在&lt;code&gt;.zshrc&lt;/code&gt;文件中的plugin一项中，添加刚下载的插件名称即可。&lt;/p&gt;
+&lt;h3 id=&#34;主题&#34;&gt;主题
+&lt;/h3&gt;&lt;p&gt;去&lt;a class=&#34;link&#34; href=&#34;https://github.com/ohmyzsh/ohmyzsh/wiki/Themes&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;官网&lt;/a&gt;可以找到所有的主题，在更改theme变量为所要的主题名。&lt;/p&gt;
+&lt;h2 id=&#34;更新配置&#34;&gt;更新配置
+&lt;/h2&gt;&lt;p&gt;刚写完的配置是不会启用的，手动启用一次，或者打开新的终端就能使用了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;source&lt;/span&gt; .zshrc
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        
+    </channel>
+</rss>
