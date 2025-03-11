@@ -10,10 +10,10 @@ main() {
     [[ -z $input ]] && input=$*
     update_git $input
     [[ -d public ]] && rm -r public
-    [[ -d public-github ]] && rm -r public-github/
+    [[ -d docs ]] && rm -r docs
     hugo --config hugo-local.yaml
     hugo --config hugo-github.yaml --buildDrafts
-#    push_git
+    push_git
 }
 
 update_git() {
