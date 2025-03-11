@@ -26,6 +26,7 @@ main() {
     [[ -z $1 ]] && read -p "input commit info: " input && { [ -z $input ] && echo "no input." && return 1; }
     [[ -z $input ]] && input=$*
     update_git $input
+    echo $build
     [[ $build == "local" ]] && build_local
     [[ $build == "github" ]] && build_github
     [[ $build == "all" ]] && build_all
@@ -37,12 +38,12 @@ build_all() {
     build_github
 }
 
-build_github() {
+build_local() {
     [[ -d public ]] && rm -r public
     hugo --config hugo-local.yaml
 }
 
-build_local() {
+build_github() {
     [[ -d docs ]] && rm -r docs
     hugo --config hugo-github.yaml --buildDrafts
     push_git
