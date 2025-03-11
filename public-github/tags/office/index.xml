@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Office on chenxi的个人博客</title>
+        <link>https://chenxi-Eumenides.github.io/tags/office/</link>
+        <description>Recent content in Office on chenxi的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Thu, 14 Mar 2024 15:06:00 +0800</lastBuildDate><atom:link href="https://chenxi-Eumenides.github.io/tags/office/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Ms Office 安装激活</title>
+        <link>https://chenxi-Eumenides.github.io/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/</link>
+        <pubDate>Tue, 11 Apr 2023 20:26:59 +0800</pubDate>
+        
+        <guid>https://chenxi-Eumenides.github.io/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/</guid>
+        <description>&lt;h1 id=&#34;所用的软件&#34;&gt;所用的软件
+&lt;/h1&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://otp.landian.vip/zh-cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Office Tool Plus&lt;/a&gt;选择框架版（有.NET6.0的可以使用无框架的版本）。&lt;/p&gt;
+&lt;h1 id=&#34;安装&#34;&gt;安装
+&lt;/h1&gt;&lt;h2 id=&#34;部署&#34;&gt;部署
+&lt;/h2&gt;&lt;p&gt;打开Office Tool Plus，进入&lt;code&gt;部署&lt;/code&gt;选项页。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://chenxi-Eumenides.github.io/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/install-page.jpg&#34;
+	width=&#34;1440&#34;
+	height=&#34;789&#34;
+	srcset=&#34;https://chenxi-Eumenides.github.io/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/install-page_hu_75d37354e2387fac.jpg 480w, https://chenxi-Eumenides.github.io/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/install-page_hu_e3b4e460830b2938.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;部署选项页&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;182&#34;
+		data-flex-basis=&#34;438px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;点击&lt;code&gt;添加产品&lt;/code&gt;，选择所需的软件版本，我选择了office365企业应用版（但我用的是我微软账户的2019家庭学生版，所以这项其实可以选2019家庭学生版）与visio专业版2021（这是我写论文所需）。&lt;/p&gt;
+&lt;p&gt;添加完成后，在下方选择需要的应用，不需要就关闭选项即可。&lt;/p&gt;
+&lt;p&gt;在部署Office中打开&lt;code&gt;下载后再部署开关&lt;/code&gt;，其他都不修改。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://chenxi-Eumenides.github.io/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/install-option.jpg&#34;
+	width=&#34;1440&#34;
+	height=&#34;789&#34;
+	srcset=&#34;https://chenxi-Eumenides.github.io/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/install-option_hu_b4ba0384ee0f4c0f.jpg 480w, https://chenxi-Eumenides.github.io/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/install-option_hu_beb142771def85ef.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;部署配置&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;182&#34;
+		data-flex-basis=&#34;438px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;点&lt;code&gt;开始部署&lt;/code&gt;，等待软件自己安装完成。&lt;/p&gt;
+&lt;h2 id=&#34;激活&#34;&gt;激活
+&lt;/h2&gt;&lt;p&gt;进入&lt;code&gt;激活&lt;/code&gt;选项页。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://chenxi-Eumenides.github.io/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/active-page.jpg&#34;
+	width=&#34;1440&#34;
+	height=&#34;789&#34;
+	srcset=&#34;https://chenxi-Eumenides.github.io/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/active-page_hu_1407735449c3f9a0.jpg 480w, https://chenxi-Eumenides.github.io/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/active-page_hu_9f307ea935bcdfbe.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;部署选项页&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;182&#34;
+		data-flex-basis=&#34;438px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;先清除已有的许可证。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://chenxi-Eumenides.github.io/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/remove-activation.jpg&#34;
+	width=&#34;529&#34;
+	height=&#34;336&#34;
+	srcset=&#34;https://chenxi-Eumenides.github.io/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/remove-activation_hu_d02941e6db151c75.jpg 480w, https://chenxi-Eumenides.github.io/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/remove-activation_hu_18c696c60cd5c30a.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;清楚已有许可证&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;157&#34;
+		data-flex-basis=&#34;377px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;我微软账户有office2019家庭学生，所以word四件套我直接登录账号即可。&lt;/p&gt;
+&lt;p&gt;点击&lt;code&gt;安装许可证&lt;/code&gt;，选择visio专业版2021（和上面安装的版本一致），等待其运行完成即可。&lt;/p&gt;
+&lt;h1 id=&#34;完成&#34;&gt;完成
+&lt;/h1&gt;&lt;p&gt;这个软件有新手帮助，出问题可以直接寻找。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

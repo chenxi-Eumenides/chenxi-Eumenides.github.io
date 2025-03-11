@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>泰拉瑞亚 on chenxi的个人博客</title>
+        <link>https://chenxi-Eumenides.github.io/tags/%E6%B3%B0%E6%8B%89%E7%91%9E%E4%BA%9A/</link>
+        <description>Recent content in 泰拉瑞亚 on chenxi的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Thu, 14 Mar 2024 15:06:00 +0800</lastBuildDate><atom:link href="https://chenxi-Eumenides.github.io/tags/%E6%B3%B0%E6%8B%89%E7%91%9E%E4%BA%9A/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>泰拉瑞亚 笔记</title>
+        <link>https://chenxi-Eumenides.github.io/p/%E6%B3%B0%E6%8B%89%E7%91%9E%E4%BA%9A-%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Wed, 20 Dec 2023 10:05:33 +0800</pubDate>
+        
+        <guid>https://chenxi-Eumenides.github.io/p/%E6%B3%B0%E6%8B%89%E7%91%9E%E4%BA%9A-%E7%AC%94%E8%AE%B0/</guid>
+        <description>&lt;h2 id=&#34;网页链接&#34;&gt;网页链接
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https:&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;wiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;攻略&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;npc&#34;&gt;NPC
+&lt;/h2&gt;&lt;h3 id=&#34;重要npc&#34;&gt;重要npc
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;npc&lt;/th&gt;
+          &lt;th&gt;用处&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;商人&lt;/td&gt;
+          &lt;td&gt;前期买猪猪、火把等，中后没用&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;护士&lt;/td&gt;
+          &lt;td&gt;治疗，放复活点边上&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;爆破专家&lt;/td&gt;
+          &lt;td&gt;炸弹，直通车&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;哥布林&lt;/td&gt;
+          &lt;td&gt;重铸，火箭靴，饰品&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;树妖&lt;/td&gt;
+          &lt;td&gt;种植、净化、植物、翅膀、南瓜子&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;巫妖&lt;/td&gt;
+          &lt;td&gt;魔法球&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;机械师、朋克人、机械侠&lt;/td&gt;
+          &lt;td&gt;电路相关&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;渔夫&lt;/td&gt;
+          &lt;td&gt;钓鱼任务&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;酒馆老板&lt;/td&gt;
+          &lt;td&gt;水晶，哨兵相关&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;城镇位置&#34;&gt;城镇位置
+&lt;/h3&gt;&lt;p&gt;每个地形最好间隔的均匀一些，方便赶路。&lt;/p&gt;
+&lt;p&gt;丛林沙漠可以地表或者地下，最好在直通车边。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;地形&lt;/th&gt;
+          &lt;th&gt;npc&lt;/th&gt;
+          &lt;th&gt;npc&lt;/th&gt;
+          &lt;th&gt;npc&lt;/th&gt;
+          &lt;th&gt;备注&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;森林&lt;/td&gt;
+          &lt;td&gt;商人&lt;/td&gt;
+          &lt;td&gt;护士&lt;/td&gt;
+          &lt;td&gt;军火商&lt;/td&gt;
+          &lt;td&gt;出生点，家&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;地下&lt;/td&gt;
+          &lt;td&gt;哥布林&lt;/td&gt;
+          &lt;td&gt;机械师&lt;/td&gt;
+          &lt;td&gt;染料商&lt;/td&gt;
+          &lt;td&gt;微光&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;丛林&lt;/td&gt;
+          &lt;td&gt;树妖&lt;/td&gt;
+          &lt;td&gt;巫妖&lt;/td&gt;
+          &lt;td&gt;油漆工&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;沙漠&lt;/td&gt;
+          &lt;td&gt;朋克人&lt;/td&gt;
+          &lt;td&gt;机器侠&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;雪原&lt;/td&gt;
+          &lt;td&gt;服装商&lt;/td&gt;
+          &lt;td&gt;税收官&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;海洋&lt;/td&gt;
+          &lt;td&gt;渔夫&lt;/td&gt;
+          &lt;td&gt;海盗&lt;/td&gt;
+          &lt;td&gt;发型师&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;神圣&lt;/td&gt;
+          &lt;td&gt;酒馆老板&lt;/td&gt;
+          &lt;td&gt;爆破专家&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;蘑菇&lt;/td&gt;
+          &lt;td&gt;松露人&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;需要的位置建人工环境&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;地狱&lt;/td&gt;
+          &lt;td&gt;向导&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;方便肉山&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;要点&#34;&gt;要点
+&lt;/h2&gt;&lt;h3 id=&#34;创造之手&#34;&gt;创造之手
+&lt;/h3&gt;&lt;p&gt;合成需要游商买的4种物品，以及沙漠地下箱子（或者钓鱼）开出的凿子。&lt;/p&gt;
+&lt;p&gt;建造必备物品。&lt;/p&gt;
+&lt;h3 id=&#34;钓鱼&#34;&gt;钓鱼
+&lt;/h3&gt;&lt;p&gt;钓鱼任务肉前就开始做，有条件就钓熔岩池。&lt;/p&gt;
+&lt;h3 id=&#34;微光&#34;&gt;微光
+&lt;/h3&gt;&lt;p&gt;肉前就要找微光，帮助极大。&lt;/p&gt;
+&lt;h3 id=&#34;刷怪场&#34;&gt;刷怪场
+&lt;/h3&gt;&lt;p&gt;肉前做场地，肉后使用较多。&lt;/p&gt;
+&lt;h3 id=&#34;钱&#34;&gt;钱
+&lt;/h3&gt;&lt;p&gt;前期无。&lt;/p&gt;
+&lt;p&gt;有刷怪场后，刷松露虫。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

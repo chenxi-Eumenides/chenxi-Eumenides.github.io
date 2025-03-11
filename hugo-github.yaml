@@ -32,7 +32,7 @@ languages:
     weight: 1
 
 # custom config
-paginate: 10
+pagination.pageSize: 10
 permalinks:
   post: /p/:slug/
   page: /:slug/

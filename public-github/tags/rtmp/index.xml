@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Rtmp on chenxi的个人博客</title>
+        <link>https://chenxi-Eumenides.github.io/tags/rtmp/</link>
+        <description>Recent content in Rtmp on chenxi的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Sat, 06 May 2023 17:17:00 +0800</lastBuildDate><atom:link href="https://chenxi-Eumenides.github.io/tags/rtmp/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>用ffmpeg在B站上直播</title>
+        <link>https://chenxi-Eumenides.github.io/p/%E7%94%A8ffmpeg%E5%9C%A8b%E7%AB%99%E4%B8%8A%E7%9B%B4%E6%92%AD/</link>
+        <pubDate>Sun, 29 Jan 2023 08:26:18 +0800</pubDate>
+        
+        <guid>https://chenxi-Eumenides.github.io/p/%E7%94%A8ffmpeg%E5%9C%A8b%E7%AB%99%E4%B8%8A%E7%9B%B4%E6%92%AD/</guid>
+        <description>&lt;h1 id=&#34;用ffmpeg在b站上自动直播&#34;&gt;用ffmpeg在B站上自动直播
+&lt;/h1&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1P14y1T7BY/?vd_source=a157f839796ac5c7e5e939434ac2f235&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;AK在B站上的视频教程&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/263037467&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;B站上的一篇文字基础教程&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://ccloli.com/201705/ffmpeg-push-stream/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;进阶的内容&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
