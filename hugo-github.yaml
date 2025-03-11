@@ -1,7 +1,7 @@
 # basic config
 baseurl: https://chenxi-Eumenides.github.io/
 title: chenxi的个人博客
-publishDir: public-github
+publishDir: docs
 
 enableEmoji: true
 enableGitInfo: true
