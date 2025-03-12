@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>玩机 on chenxi的个人博客</title>
+        <link>https://chenxi-Eumenides.github.io/categories/%E7%8E%A9%E6%9C%BA/</link>
+        <description>Recent content in 玩机 on chenxi的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Wed, 12 Mar 2025 10:53:56 +0800</lastBuildDate><atom:link href="https://chenxi-Eumenides.github.io/categories/%E7%8E%A9%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>小米9扩容刷机</title>
+        <link>https://chenxi-Eumenides.github.io/p/%E5%B0%8F%E7%B1%B39%E6%89%A9%E5%AE%B9%E5%88%B7%E6%9C%BA/</link>
+        <pubDate>Tue, 10 Oct 2023 22:25:15 +0800</pubDate>
+        
+        <guid>https://chenxi-Eumenides.github.io/p/%E5%B0%8F%E7%B1%B39%E6%89%A9%E5%AE%B9%E5%88%B7%E6%9C%BA/</guid>
+        <description>&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;其实是打算卖了米9，所以把扩容的flyeme10刷回来miui12.5。&lt;/p&gt;
+&lt;p&gt;但我这篇为扩容过程，刷回来自行反过来操作就行。&lt;/p&gt;
+&lt;p&gt;主要内容来自于&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/qq_66424312/article/details/131675279&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;酷安-忆昔以西&lt;/a&gt;（虽然是csdn的链接，但是是原作者嘛）&lt;/p&gt;
+&lt;h2 id=&#34;0-准备&#34;&gt;0 准备
+&lt;/h2&gt;&lt;h3 id=&#34;软件&#34;&gt;软件
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;parted软件，我使用的是3.2版本，其他版本有可能出错，以下文件名&lt;code&gt;parted&lt;/code&gt;，没有后缀名的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;flyme10的卡刷包（我的来自酷安-wwrrj，请自行搜索），卡刷包与线刷包的区别在最后一步中&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不用解压&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;miui12.5官方线刷包&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;请将压缩包解压&lt;/li&gt;
+&lt;li&gt;通常官方线刷包解压后会有很多bat与sh文件，还有一个image文件夹，里面是非常多文件&lt;/li&gt;
+&lt;li&gt;其他包大概率只有必要的几个包，如&lt;code&gt;vendor.img&lt;/code&gt;，&lt;code&gt;boot.img&lt;/code&gt;等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第三方rec，我是用的twrp和orangefox，两个都行反正&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;文件名为&lt;code&gt;recovery.img&lt;/code&gt;或者其他名字，请注意和线刷包里的rec文件区分，下面用&lt;code&gt;twrp.img&lt;/code&gt;指代此文件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;adb工具&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;硬件&#34;&gt;硬件
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;能正常使用的数据线&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;米9一部（注意需要解锁bl，不懂请百度）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;电脑（win系统，linux也可以，反正没有本质区别）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;命令格式说明&#34;&gt;命令格式说明
+&lt;/h3&gt;&lt;p&gt;看得懂的可跳过该部分&lt;/p&gt;
+&lt;p&gt;以下出现的命令，分为两种&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;adb&lt;/code&gt;或者&lt;code&gt;fastboot&lt;/code&gt;开头的，为电脑命令行中的命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#&lt;/code&gt;开头的，为shell命令，在输入&lt;code&gt;adb shell&lt;/code&gt;后输入该命令，退出该模式需要输入&lt;code&gt;exit&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;05-开始usb调试可跳过&#34;&gt;0.5 开始usb调试（可跳过）
+&lt;/h2&gt;&lt;p&gt;其实理论上，是不用这步的。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;手机连接电脑&lt;/li&gt;
+&lt;li&gt;打开手机设置-我的设备-全部参数&lt;/li&gt;
+&lt;li&gt;连点5下&lt;code&gt;miui版本&lt;/code&gt;，直到跳出处于开发者模式的横条&lt;/li&gt;
+&lt;li&gt;进入设置-更多设置-开发者选项&lt;/li&gt;
+&lt;li&gt;打开&lt;code&gt;usb调试&lt;/code&gt;和&lt;code&gt;usb安全设置&lt;/code&gt;（实际上安全设置没啥用，应该）&lt;/li&gt;
+&lt;li&gt;输入命令&lt;code&gt;adb devices&lt;/code&gt;，在&lt;code&gt;List of devices attached&lt;/code&gt;下方出现一个设备，左边为设备id，右边的单词是&lt;code&gt;unauthorized&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;此时手机上应该有个弹窗，点击、确定&lt;/li&gt;
+&lt;li&gt;此时输入命令&lt;code&gt;adb devices&lt;/code&gt;，在&lt;code&gt;List of devices attached&lt;/code&gt;下方出现一个设备，左边为设备id，右边的单词是&lt;code&gt;device&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;此时完成usb调试的打开。&lt;/p&gt;
+&lt;h2 id=&#34;1-刷rec&#34;&gt;1 刷rec
+&lt;/h2&gt;&lt;p&gt;扩容操作主要在第三方rec的shell中进行，所以需要刷rec。&lt;/p&gt;
+&lt;p&gt;从此步开始，你的原系统就没用了&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;手机关机（或重启，请注意下一步）&lt;/li&gt;
+&lt;li&gt;同时按住音量减和电源键开机，此时屏幕出现安卓机器人为正确步骤。&lt;/li&gt;
+&lt;li&gt;手机连接电脑&lt;/li&gt;
+&lt;li&gt;电脑命令行输入（之后就直接写命令了）&lt;code&gt;fastboot flash recovery &lt;/code&gt; ，从文件夹中拖入&lt;code&gt;twrp.img&lt;/code&gt;，回车运行&lt;/li&gt;
+&lt;li&gt;等待&lt;code&gt;Finished&lt;/code&gt;文字出现，出现其他文字请百度如何解决&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;刷入完成。&lt;/p&gt;
+&lt;h2 id=&#34;2-扩容&#34;&gt;2 扩容
+&lt;/h2&gt;&lt;p&gt;由于flyme10的system分区大于米9原生的system分区，所以需要对system分区扩容&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;请注意！！一定要注意拼写，我前面把&lt;code&gt;vendor&lt;/code&gt;打成&lt;code&gt;vender&lt;/code&gt;导致一连串的问题，所以一定要注意拼写。&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;关机或重启&lt;/li&gt;
+&lt;li&gt;同时按住音量加贺电源键开机
+&lt;ul&gt;
+&lt;li&gt;刷入twrp的为蓝色屏幕，刷入orangefox为橙色屏幕&lt;/li&gt;
+&lt;li&gt;虽然rec不同，但功能是一样的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;电脑上输入&lt;code&gt;adb push &lt;/code&gt;拖入&lt;code&gt;parted&lt;/code&gt;文件，再输入&lt;code&gt;/sbin/parted&lt;/code&gt;，回车
+&lt;ul&gt;
+&lt;li&gt;例如 &lt;code&gt;adb push D:\files\parted /sbin/parted&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;此时应当出现&lt;code&gt;xxxxx: 1 file pushed, 0 skipped.&lt;/code&gt;，此时为成功&lt;/li&gt;
+&lt;li&gt;输入&lt;code&gt;adb shell&lt;/code&gt;回车，此时命令行为&lt;code&gt;~ #&lt;/code&gt;开头&lt;/li&gt;
+&lt;li&gt;输入&lt;code&gt;parted /dev/block/sda&lt;/code&gt;，回车，行首变为&lt;code&gt;(parted)&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;注意，不同设备应该输入的不同，但同为小米9，输入的应当一致&lt;/li&gt;
+&lt;li&gt;有不懂请看最开始的链接&lt;/li&gt;
+&lt;li&gt;出现的字不对，行首仍为&lt;code&gt;~ #&lt;/code&gt;，说明步骤3出错，请重试，或百度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;输入&lt;code&gt;p&lt;/code&gt;回车，出现一大串字，最后两行：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;53      1007MB  2617MB  1611MB  ext4         vendor&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;54      2617MB  6375MB  3758MB  ext2         system&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;这是vendor和system分区，由于要扩容system分区，其后方没有空间可以给它了，所以要从前面vendor分区抢空间&lt;/li&gt;
+&lt;li&gt;接下来如果问你是或者否，或者其他选择，一律选第一项&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rm 53&lt;/code&gt;，这里的53就是前面vendor这一行最前面的序号&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rm 54&lt;/code&gt;，54为system分区的序号&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mkpart system ext4 1007 6375&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;不用创建vendor分区，因为没空间了，所以在userdata分区中分出去一部分当作vendor分区&lt;/li&gt;
+&lt;li&gt;此时输入&lt;code&gt;p&lt;/code&gt;，最后一行如下&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;53      1007MB  6375MB  5368MB ext4         system&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;system分区为5368MB，一般的刷机包足够了，若需要更多，请将system分区创建在下面的部分（下面的剩余空间足够大）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;11&#34;&gt;
+&lt;li&gt;&lt;code&gt;q&lt;/code&gt;退出parted，此时行首为&lt;code&gt;~ #&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;完成一半了&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;输入&lt;code&gt;parted /dev/block/sde&lt;/code&gt;，回车，行首变为&lt;code&gt;(parted)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;输入&lt;code&gt;p&lt;/code&gt;回车，出现一大串字，最后一行：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;31      2080MB  121GB   119GB   ext4         userdata&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;这是userdata分区&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rm 31&lt;/code&gt;，这里的31是userdata分区的序号&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mkpart vendor ext4 2080 4000&lt;/code&gt;，创建vendor分区&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mkpart userdata ext4 4000 121GB&lt;/code&gt;，创建userdata分区
+&lt;ul&gt;
+&lt;li&gt;此时输入&lt;code&gt;p&lt;/code&gt;，最后两行应当为&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;31      2080MB  4000MB   1920MB   ext4         vendor&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;32      4000MB  121GB    119GB    ext4         userdata&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;输入&lt;code&gt;q&lt;/code&gt;退出parted，输入&lt;code&gt;exit&lt;/code&gt;，退出adb shell&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;分区的事就到这里了，但扩容还未完成，接下来要格式化刚才新建的分区&lt;/p&gt;
+&lt;p&gt;重启手机至fastboot模式（比如在电脑终端中输入&lt;code&gt;adb reboot fastboot&lt;/code&gt;）&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;fastboot erase vendor&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fastboot erase system&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fastboot erase userdata&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;此时手机已经扩容完毕，若是线刷包，可以直接在fastboot模式下线刷了。但我是卡刷包，所以重启至recovery&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;fastboot reboot recovery&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;31-刷入卡刷包&#34;&gt;3.1 刷入卡刷包
+&lt;/h2&gt;&lt;p&gt;卡刷包为zip压缩包，里面有多个img文件，及META文件等&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在rec模式下，将zip压缩包复制到手机存储内
+&lt;ul&gt;
+&lt;li&gt;如果rec中文件显示为乱码，请百度如何解密，或者百度如何刷入防止自动解密补丁&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;在rec内，选择该zip文件，确认刷入，等待进度条结束即可。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;32-刷入线刷包&#34;&gt;3.2 刷入线刷包
+&lt;/h2&gt;&lt;p&gt;将手机重启至fastboot模式。&lt;/p&gt;
+&lt;p&gt;线刷包需要解压，文件夹内通常有多个img文件，也可能有bat后缀的文件&lt;/p&gt;
+&lt;p&gt;如果有bat后缀的文件，直接将这个文件拖入命令行，等待即可。&lt;/p&gt;
+&lt;p&gt;如果没有，或者bat运行失败，可以手动操作。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;fastboot flash boot &lt;/code&gt;，拖入&lt;code&gt;boot.img&lt;/code&gt;文件回车&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fastboot flash system &lt;/code&gt;，拖入&lt;code&gt;system.img&lt;/code&gt;文件回车&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fastboot flash vendor &lt;/code&gt;，拖入&lt;code&gt;vendor.img&lt;/code&gt;文件回车&lt;/li&gt;
+&lt;li&gt;。。。。。。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;文件与分区名大多为相同的，少数为不同，可以下载一个官方线刷包，查看其bat文件的内容。&lt;/p&gt;
+&lt;h2 id=&#34;4-结束&#34;&gt;4 结束
+&lt;/h2&gt;&lt;p&gt;到这里，系统就刷好了，重启手机。&lt;/p&gt;
+&lt;p&gt;卡住可以强制重启一次，一般来说，第二次就能正常开机了。&lt;/p&gt;
+&lt;p&gt;如果前面步骤有任何报错，请百度，或者酷安。当然如果没有报错，那我也不知道了，也许是你的刷机包有问题，换一个吧。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Kindle越狱</title>
+        <link>https://chenxi-Eumenides.github.io/p/kindle%E8%B6%8A%E7%8B%B1/</link>
+        <pubDate>Wed, 05 Jul 2023 01:09:41 +0800</pubDate>
+        
+        <guid>https://chenxi-Eumenides.github.io/p/kindle%E8%B6%8A%E7%8B%B1/</guid>
+        <description>&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;本文内容基本来自于&lt;a class=&#34;link&#34; href=&#34;https://bookfere.com/post/970.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;书伴&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;越狱插件内容基本来自于&lt;a class=&#34;link&#34; href=&#34;https://bookfere.com/post/311.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;书伴&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如有疑问, 请前往源网站查看。&lt;/p&gt;
+&lt;h2 id=&#34;准备&#34;&gt;准备
+&lt;/h2&gt;&lt;h3 id=&#34;设备&#34;&gt;设备
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;设备型号：Kindle Voyage&lt;/li&gt;
+&lt;li&gt;系统版本：5.13.6（其他版本请查阅&lt;a class=&#34;link&#34; href=&#34;https://bookfere.com/post/406.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;原网站&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;任意电脑（请熟悉电脑操作）&lt;/li&gt;
+&lt;li&gt;一根可以传输数据的micro-usb数据线(有些商家可能会卖只能充电不能传输数据的线, 请注意甄别)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;文件&#34;&gt;文件
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://pan.baidu.com/s/1xWeZlDj4S6rrv7lxARBLjA?pwd=rfwm&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;watchthis-jailbreak-r03.zip&lt;/a&gt;越狱包&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://down.bookfere.com/s/e919Wt1zT0QNbkl&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;JailBreak-x.xx.N-FW-5.x-hotfix.zip&lt;/a&gt;越狱环境固化包&lt;/li&gt;
+&lt;li&gt;*&lt;a class=&#34;link&#34; href=&#34;https://down.bookfere.com/s/87dWBnJuNRYWUps&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;kual-mrinstaller-1.7.N-r18896.tar.xz&lt;/a&gt;插件管理器（可选）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所有文件来自于原链接。&lt;/p&gt;
+&lt;h2 id=&#34;越狱&#34;&gt;越狱
+&lt;/h2&gt;&lt;h3 id=&#34;进入演示模式&#34;&gt;进入演示模式
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;重置&lt;/code&gt;Kindle(注意是重置)&lt;/li&gt;
+&lt;li&gt;等待重置后, 在语言选择界面选择&lt;code&gt;English(United Kingdom)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;选择WIFI界面,点击&lt;code&gt;set up&lt;/code&gt;, 然后点&lt;code&gt;X&lt;/code&gt;关闭选择WIFI页面, 点击新出现的&lt;code&gt;set up later&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;搜索栏输入&lt;code&gt;;enter_demo&lt;/code&gt;, 回车&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;重启&lt;/code&gt;设备(注意是重启, 与前面不同)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;秘密手势&#34;&gt;*秘密手势
+&lt;/h4&gt;&lt;p&gt;此步骤只有在版本号小于等于 5.14.1 时需要, 5.14.2 版本并且重启后没有出现&lt;code&gt;Register This Demo&lt;/code&gt;界面可直接跳过。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;进入&lt;code&gt;Register This Demo&lt;/code&gt;界面后跳出WIFI设置, 点&lt;code&gt;X&lt;/code&gt;跳过&lt;/li&gt;
+&lt;li&gt;三项信息的表单中输入任意字符, 然后点&lt;code&gt;CONTINUE&lt;/code&gt;继续&lt;/li&gt;
+&lt;li&gt;点击&lt;code&gt;Skip&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;点击&lt;code&gt;standard&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;点击&lt;code&gt;Done&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;点一下屏幕激活&lt;/li&gt;
+&lt;li&gt;使用&lt;code&gt;秘密手势&lt;/code&gt;进入系统&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://bookfere.com/wp-content/uploads/2022/04/kindle-jailbreak-secret-gesture.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;秘密手势示意图&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;双指点击右下角&lt;/li&gt;
+&lt;li&gt;单指从右下角向左划（大概到中间偏左即可）&lt;/li&gt;
+&lt;/ol&gt;&lt;/blockquote&gt;
+&lt;p&gt;有可能要多次尝试&lt;/p&gt;
+&lt;h3 id=&#34;侧载越狱文件&#34;&gt;侧载越狱文件
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;搜索栏输入&lt;code&gt;;demo&lt;/code&gt;进入演示菜单&lt;/li&gt;
+&lt;li&gt;点击&lt;code&gt;Sideload Content&lt;/code&gt;进入&lt;code&gt;Demo Mode: Add Content&lt;/code&gt;菜单&lt;/li&gt;
+&lt;li&gt;用USB线连接电脑&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;将&lt;code&gt;watchthis-jailbreak-r03.zip&lt;/code&gt;文件解压, 其目录内有&lt;code&gt;Update_hotfix_watchthis_custom.bin&lt;/code&gt;文件与一堆文件夹。&lt;/p&gt;
+&lt;p&gt;我的设备是Kindle Voyage, 进入KV文件夹。&lt;/p&gt;
+&lt;p&gt;我的版本号是5.13.6, 进入5.13.6文件夹, 其中有一个zip压缩包与一个demo.json文件。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在Kindle根目录下, 创建一个名为&lt;code&gt;.demo&lt;/code&gt;的文件夹（注意有个点）&lt;/li&gt;
+&lt;li&gt;在&lt;code&gt;.demo&lt;/code&gt;文件夹中, 放入zip与demo.json两个文件&lt;/li&gt;
+&lt;li&gt;在&lt;code&gt;.demo&lt;/code&gt;文件夹中, 创建一个名为&lt;code&gt;goodreads&lt;/code&gt;的空文件夹&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;此时文件树为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Kindle磁盘
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└── .demo
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ├── &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Kindle设备型号简称&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;固件版本号&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;.zip
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ├── demo.json
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    └── goodreads
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        └──
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;点击&lt;code&gt;Done&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;点击&lt;code&gt;Exit&lt;/code&gt;(如果在点击&lt;code&gt;Exit&lt;/code&gt;按钮后，出现&lt;code&gt;Application Error&lt;/code&gt;提示，请按住电源按钮 40 秒硬重启设备，重启后会再次进入演示模式，在搜索框中输入命令 &lt;code&gt;;demo&lt;/code&gt; 重新进入演示菜单&lt;code&gt;Demo Menu&lt;/code&gt;，然后断开 Kindle 与电脑的 USB 数据线连接，再一次点击&lt;code&gt;Sideload Content&lt;/code&gt; -&amp;gt; &lt;code&gt;Done&lt;/code&gt;，最后点击&lt;code&gt;Exit&lt;/code&gt;退出演示菜单)&lt;/li&gt;
+&lt;li&gt;在搜索栏中输入&lt;code&gt;;dsts&lt;/code&gt;进入设置，并依次点击&lt;code&gt;Help &amp;amp; User Guides&lt;/code&gt; -&amp;gt; &lt;code&gt;Get Started&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;此时设备会自动重启，重启过程中会看到启动界面上有文本提示越狱安装过程。&lt;/p&gt;
+&lt;h3 id=&#34;退出演示模式&#34;&gt;退出演示模式
+&lt;/h3&gt;&lt;p&gt;重启完成后会进入演示模式（如果之前没有使用“秘密手势”进入演示模式，这一步也不需要，否则需要再次操作秘密手势进入演示模式）&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;搜索栏输入&lt;code&gt;;demo&lt;/code&gt;进入演示菜单&lt;/li&gt;
+&lt;li&gt;点击&lt;code&gt;Sideload Content&lt;/code&gt;进入&lt;code&gt;Demo Mode: Add Content&lt;/code&gt;菜单&lt;/li&gt;
+&lt;li&gt;用USB线连接电脑&lt;/li&gt;
+&lt;li&gt;将&lt;code&gt;Update_hotfix_watchthis_custom.bin&lt;/code&gt;文件直接放入根目录中&lt;/li&gt;
+&lt;li&gt;点击&lt;code&gt;Done&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;电脑上弹出磁盘&lt;/li&gt;
+&lt;li&gt;搜索栏输入&lt;code&gt;;dsts&lt;/code&gt;进入设置, 点击&lt;code&gt;Device Options&lt;/code&gt; -&amp;gt; &lt;code&gt;Update Your Kindle&lt;/code&gt;，点OK&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Kindle会自动重启，重启完成后会在正常模式。&lt;/p&gt;
+&lt;h3 id=&#34;安装越狱环境固化更新&#34;&gt;安装越狱环境固化更新
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;用USB线连接电脑&lt;/li&gt;
+&lt;li&gt;将&lt;code&gt;Update_jailbreak_hotfix_x.xx.N_install.bin&lt;/code&gt;文件放入根目录&lt;/li&gt;
+&lt;li&gt;电脑上弹出磁盘&lt;/li&gt;
+&lt;li&gt;进入设置, 点击&lt;code&gt;Device Options&lt;/code&gt; -&amp;gt; &lt;code&gt;Update Your Kindle&lt;/code&gt;，点OK&lt;/li&gt;
+&lt;li&gt;等待重启&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;更新固件&#34;&gt;*更新固件
+&lt;/h3&gt;&lt;p&gt;越狱环境固化完成后，即可放心更新固件，越狱环境不会消失。&lt;/p&gt;
+&lt;h2 id=&#34;越狱插件&#34;&gt;*越狱插件
+&lt;/h2&gt;&lt;p&gt;下载文件&lt;a class=&#34;link&#34; href=&#34;https://down.bookfere.com/s/87dWBnJuNRYWUps&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;kual-mrinstaller-1.7.N-r18896.zip&lt;/a&gt;并解压。&lt;/p&gt;
+&lt;p&gt;把文件夹内的 extensions 和 mrpackages 拷贝到 Kindle 的根目录。&lt;/p&gt;
+&lt;p&gt;其他插件请去原网站下载安装&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -5,31 +5,11 @@ setup() {
     desc="cheni-zqs的blog网站，用hugo搭建，主题为stack。"
 }
 
-main() {
-    case $1 in
-        "-l"|"--local")
-            build="local"
-            shift
-            ;;
-        "-g"|"--github")
-            build="github"
-            shift
-            ;;
-        "-a"|"--all")
-            build="all"
-            shift
-            ;;
-        *)
-            build="all"
-            ;;
-    esac
-    [[ -z $1 ]] && read -p "input commit info: " input && { [ -z $input ] && echo "no input." && return 1; }
-    [[ -z $input ]] && input=$*
-    update_git $input
-    echo $build
-    [[ $build == "local" ]] && build_local
-    [[ $build == "github" ]] && build_github
-    [[ $build == "all" ]] && build_all
+git_commit() {
+    [[ -z $1 ]] && read -p "input commit info: " input && {
+        [[ -z "$input" ]] && echo "no input." && return 1
+    }
+    [[ -z "$input" ]] && input=$*
     return 0
 }
 
@@ -46,7 +26,6 @@ build_local() {
 build_github() {
     [[ -d docs ]] && rm -r docs
     hugo --config hugo-github.yaml --buildDrafts
-    push_git
 }
 
 update_git() {
@@ -71,19 +50,42 @@ init() {
     setup
 }
 
-help() {
+p_help() {
     echo "desc: ${desc}"
-    echo "args: build | draft ."
-    echo "commit: TYPE: content."
+    echo "args: -l | --local COMMIT   : build local"
+    echo "      -g | --github COMMIT  : build github"
+    echo "      -a | --all COMMIT     : build both"
+    echo "      -n | --no             : build but not git"
+    echo "      *                     : print help"
+    echo "commit: TYPE: content"
     echo "   e.t. update: this is a simple update info."
 }
 
 init
 case $1 in
-  "build")
-    main ${@:2}
-    ;;
-  *)
-    help
-    ;;
+    "-l"|"--local"|"local")
+        build_local
+        git_commit ${@:2} || exit 1
+        update_git $input
+        ;;
+    "-g"|"--github"|"github")
+        build_github
+        git_commit ${@:2} || exit 1
+        update_git $input
+        push_git
+        ;;
+    "-a"|"--all"|"all")
+        build_all
+        git_commit ${@:2} || exit 1
+        update_git $input
+        push_git
+        ;;
+    "-n"|"--no"|"no")
+        build_all
+#        git_commit ${@:2} || exit 1
+#        update_git $input
+        ;;
+    *)
+        p_help && exit 0
+        ;;
 esac

@@ -74,7 +74,7 @@ params:
 
   widgets:
     homepage:
-      #- type: search
+      - type: search
       - type: categories
         params:
           limit: 10
@@ -83,7 +83,7 @@ params:
           limit: 10
 
     page:
-      #- type: search
+      - type: search
       - type: toc
       - type: categories
         params:
