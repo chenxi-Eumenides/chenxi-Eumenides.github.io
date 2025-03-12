@@ -1,23 +1,24 @@
 ---
 title: "Todo List"
 auther: chenxi
-
 description: 待做事项
 image: 
-date: 2023-05-06T04:36:21+08:00
-weight: 10
 
 categories:
-    - Todo
+    - 个人
 tags:
     - todo
     - 待做事项
+series:
+    - 
 
+date: 2023-05-06T04:36:21+08:00
 math: false
 comments: false
 license: 
-hidden: false
+weight: 10
 
+hidden: false
 draft: false
 ---
 

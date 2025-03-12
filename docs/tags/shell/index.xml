@@ -6,12 +6,12 @@
         <description>Recent content in Shell on chenxi的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Tue, 11 Mar 2025 15:58:37 +0800</lastBuildDate><atom:link href="https://chenxi-Eumenides.github.io/tags/shell/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Powershell的美化与配置</title>
-        <link>https://chenxi-Eumenides.github.io/p/powershell%E7%9A%84%E7%BE%8E%E5%8C%96%E4%B8%8E%E9%85%8D%E7%BD%AE/</link>
+        <lastBuildDate>Wed, 12 Mar 2025 10:44:05 +0800</lastBuildDate><atom:link href="https://chenxi-Eumenides.github.io/tags/shell/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Powershell的配置、脚本用法</title>
+        <link>https://chenxi-Eumenides.github.io/p/powershell%E7%9A%84%E9%85%8D%E7%BD%AE%E8%84%9A%E6%9C%AC%E7%94%A8%E6%B3%95/</link>
         <pubDate>Thu, 30 May 2024 10:50:23 +0800</pubDate>
         
-        <guid>https://chenxi-Eumenides.github.io/p/powershell%E7%9A%84%E7%BE%8E%E5%8C%96%E4%B8%8E%E9%85%8D%E7%BD%AE/</guid>
+        <guid>https://chenxi-Eumenides.github.io/p/powershell%E7%9A%84%E9%85%8D%E7%BD%AE%E8%84%9A%E6%9C%AC%E7%94%A8%E6%B3%95/</guid>
         <description>&lt;h2 id=&#34;前言&#34;&gt;前言
 &lt;/h2&gt;&lt;p&gt;原始的终端并不算好看，所以打算进行一番配置，以符合我的审美&lt;/p&gt;
 &lt;h2 id=&#34;安装&#34;&gt;安装
