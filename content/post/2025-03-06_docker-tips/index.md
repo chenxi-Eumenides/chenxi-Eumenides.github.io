@@ -23,22 +23,49 @@ hidden: false
 draft: false
 ---
 
-## 文件结构
+## docker 基本概念
+
+### docker 文件
 
 ```bash
 Dockerfile # docker编译文件
-docker-com
+docker-compose.yml # compose文件
 ```
 
-### docker command
+### docker 概念
+
+```md
+            build
+ Dockerfile  -> docker-image
+            pull
+  internet   -> docker-image
+            run
+docker-image -> container
+            start
+ container   -> running-container
+```
+
+### docker 命令
 
 ```bash
 docker build <url> # 将指定路径的dockerfile编译为docker镜像
 # -t 指定docker镜像名称
 
 docker run <docker-image> # 启动docker镜像
-# --name <docker-name> # 指定容器名称，没有将自动命名
+# --name <container-name> # 指定容器名称，没有将自动命名
 # -p <local-port>:<docker-port> # 指定监听端口
+# -v <local-dir>:<docker-dir> # 挂载卷
+# -idt </bin/bash> # 指定后台运行终端，可以attach，或exec
+
+docker run --name <container-name> -p <local-port>:<docker-port> -v <local-dir>:<docker-dir> -idt <docker-image> /bin/bash
+# 运行一个docker的终端
+
+docker start <container-name> # 启动一个容器
+# -i 进入交互终端
+docker stop <container-name> # 停止一个容器
+docker rm <container-name> # 删除一个容器
+docker exec <runing-container-name> <command> # 在一个已启动的容器内执行一条命令
+docker exec -it <running-container-name> /bin/bash # 新开一个终端并进入
 ```
 
 ### Dockerfile
