@@ -76,6 +76,16 @@ FROM <name>:<version> # 选择一个基本镜像
 WORKDIR <url> # 工作目录
 
 COPY <local-dir> <docker-dir> # 从本地环境中复制文件
+ADD <local-tar> <docker-dir> # 从本地环境中复制tar文件，并自动解压到指定目录
+
+ENV key=value # 设定环境变量
+ARG key=value # 设定仅Dockerfile中可用的环境变量
+LABEL key=value # 设定元数据，如作者等
+
+VOLUME <local-url> # 挂载匿名数据卷
+VOLUME ["local-url-1", "local-url-2",...]
+EXPOSE <port> # 声明要用的端口
+USER <user>[:<group>] # 后续命令的执行用户
 
 RUN command arg1 arg2 ... # 创建docker容器时运行的命令
 # 可以有多个RUN
@@ -83,6 +93,8 @@ RUN command arg1 arg2 ... # 创建docker容器时运行的命令
 CMD ["command", "arg1", "arg2", ...] # 运行docker容器后运行的命令
 # 只有最后一个cmd起作用
 # 会被docker命令行参数覆盖，如 docker -it <docker> /bin/bash
+
+
 ```
 
 ### docker-compose

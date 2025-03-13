@@ -6,7 +6,7 @@
         <description>Recent content in 笔记 on chenxi的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Wed, 12 Mar 2025 17:14:04 +0800</lastBuildDate><atom:link href="https://chenxi-Eumenides.github.io/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 12 Mar 2025 17:19:14 +0800</lastBuildDate><atom:link href="https://chenxi-Eumenides.github.io/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Docker的用法，与创建一个开发环境</title>
         <link>https://chenxi-Eumenides.github.io/p/docker%E7%9A%84%E7%94%A8%E6%B3%95%E4%B8%8E%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</link>
         <pubDate>Thu, 06 Mar 2025 15:50:19 +0800</pubDate>
@@ -105,6 +105,16 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Dockerfile&#34; data-lang=&#34;Dockerfile&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; &amp;lt;name&amp;gt;:&amp;lt;version&amp;gt; # 选择一个基本镜像&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
@@ -112,6 +122,16 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WORKDIR&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; &amp;lt;url&amp;gt; # 工作目录&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;COPY&lt;/span&gt; &amp;lt;local-dir&amp;gt; &amp;lt;docker-dir&amp;gt; &lt;span class=&#34;c1&#34;&gt;# 从本地环境中复制文件&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ADD&lt;/span&gt; &amp;lt;local-tar&amp;gt; &amp;lt;docker-dir&amp;gt; &lt;span class=&#34;c1&#34;&gt;# 从本地环境中复制tar文件，并自动解压到指定目录&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ENV&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;value &lt;span class=&#34;c&#34;&gt;# 设定环境变量&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ARG&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;value &lt;span class=&#34;c&#34;&gt;# 设定仅Dockerfile中可用的环境变量&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;LABEL&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;value &lt;span class=&#34;c&#34;&gt;# 设定元数据，如作者等&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;VOLUME&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; &amp;lt;local-url&amp;gt; # 挂载匿名数据卷&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;VOLUME&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;local-url-1&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;local-url-2&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;EXPOSE&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; &amp;lt;port&amp;gt; # 声明要用的端口&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;USER&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; &amp;lt;user&amp;gt;[:&amp;lt;group&amp;gt;] # 后续命令的执行用户&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;RUN&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;command&lt;/span&gt; arg1 arg2 ... &lt;span class=&#34;c1&#34;&gt;# 创建docker容器时运行的命令&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# 可以有多个RUN&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;

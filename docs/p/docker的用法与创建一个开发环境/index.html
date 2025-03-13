@@ -376,7 +376,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 2 分钟
                 </time>
             </div>
         
@@ -484,6 +484,16 @@
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="s"> &lt;name&gt;:&lt;version&gt; # 选择一个基本镜像</span><span class="err">
@@ -491,6 +501,16 @@
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">WORKDIR</span><span class="s"> &lt;url&gt; # 工作目录</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> &lt;local-dir&gt; &lt;docker-dir&gt; <span class="c1"># 从本地环境中复制文件</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ADD</span> &lt;local-tar&gt; &lt;docker-dir&gt; <span class="c1"># 从本地环境中复制tar文件，并自动解压到指定目录</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENV</span> <span class="nv">key</span><span class="o">=</span>value <span class="c"># 设定环境变量</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ARG</span> <span class="nv">key</span><span class="o">=</span>value <span class="c"># 设定仅Dockerfile中可用的环境变量</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">LABEL</span> <span class="nv">key</span><span class="o">=</span>value <span class="c"># 设定元数据，如作者等</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">VOLUME</span><span class="s"> &lt;local-url&gt; # 挂载匿名数据卷</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">VOLUME</span> <span class="p">[</span><span class="s2">&#34;local-url-1&#34;</span><span class="p">,</span> <span class="s2">&#34;local-url-2&#34;</span><span class="p">,</span><span class="err">...</span><span class="p">]</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">EXPOSE</span><span class="s"> &lt;port&gt; # 声明要用的端口</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">USER</span><span class="s"> &lt;user&gt;[:&lt;group&gt;] # 后续命令的执行用户</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> <span class="nb">command</span> arg1 arg2 ... <span class="c1"># 创建docker容器时运行的命令</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 可以有多个RUN</span><span class="err">
