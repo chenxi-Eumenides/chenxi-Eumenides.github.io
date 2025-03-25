@@ -4,7 +4,6 @@ setup() {
     name="blog"
     desc="cheni-zqs的blog网站，用hugo搭建，主题为stack。"
     log="build.log"
-    log_line=100
 
     echo "" >> $log
     echo "[$(date +%F_%T)] auto build by build.sh" >> $log
