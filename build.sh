@@ -10,22 +10,22 @@ setup() {
 }
 
 get_commit() {
+    echo -n "start get commit"
     [[ -z $1 ]] && read -p "input commit info: " input && {
         [[ -z "$input" ]] && echo "no input." && return 1
     }
     [[ -z "$input" ]] && input=$*
-    return 0
 }
 
 build_local() {
-    [[ -d public ]] && rm -r public
     echo -n "start build local"
+    [[ -d public ]] && rm -r public
     hugo --config hugo-local.yaml >> $log 2>&1
 }
 
 build_github() {
-    [[ -d docs ]] && rm -r docs
     echo -n "start build github"
+    [[ -d docs ]] && rm -r docs
     hugo --config hugo-github.yaml --buildDrafts >> $log 2>&1
 }
 
@@ -97,7 +97,7 @@ main() {
             push_git && echo " √" || return 1
             ;;
         "-a"|"--all"|"all")
-            build_local
+            build_local && echo " √" || return 1
             build_github && echo " √" || return 1
             get_commit ${@:2} && echo " √" || return 1
             update_git $input && echo " √" || return 1
