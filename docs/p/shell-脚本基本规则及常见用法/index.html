@@ -280,6 +280,11 @@
         <li><a href="#合并执行">合并执行</a></li>
         <li><a href="#判断条件">判断条件</a></li>
         <li><a href="#数值计算">数值计算</a></li>
+        <li><a href="#重定向">重定向</a>
+          <ol>
+            <li><a href="#常用">常用</a></li>
+          </ol>
+        </li>
         <li><a href="#c语言规则">C语言规则</a></li>
         <li><a href="#其他">其他</a></li>
       </ol>
@@ -1075,6 +1080,101 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 使用 bc 命令行工具计算</span>
 </span></span><span class="line"><span class="cl"><span class="nv">res</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">&#34;scale=3;(</span><span class="nv">$num1</span><span class="s2"> + </span><span class="nv">$num2</span><span class="s2">) * </span><span class="nv">$num3</span><span class="s2"> / </span><span class="nv">$num4</span><span class="s2">&#34;</span> <span class="p">|</span> bc<span class="k">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># scale=3 精度为小数点3位</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="重定向">重定向
+</h3><p>输入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 将输入重定向到 file。</span>
+</span></span><span class="line"><span class="cl"><span class="nb">command</span> &lt; file
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将开始标记 tag 和结束标记 tag 之间的内容作为输入。</span>
+</span></span><span class="line"><span class="cl"><span class="nb">command</span> <span class="s">&lt;&lt; tag
+</span></span></span><span class="line"><span class="cl"><span class="s">    CONTENT
+</span></span></span><span class="line"><span class="cl"><span class="s">tag</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结束tag顶格且后面不能有空格</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 将输出重定向到 file。</span>
+</span></span><span class="line"><span class="cl"><span class="nb">command</span> &gt; file
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将输出以追加的方式重定向到 file。</span>
+</span></span><span class="line"><span class="cl"><span class="nb">command</span> &gt;&gt; file
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>标准流</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 将描述符为 n 的流重定向到 file。</span>
+</span></span><span class="line"><span class="cl">n &gt; file
+</span></span><span class="line"><span class="cl"><span class="c1"># 将描述符为 n 的流以追加的方式重定向到 file。</span>
+</span></span><span class="line"><span class="cl">n &gt;&gt; file
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将输出流 m 和 n 合并。</span>
+</span></span><span class="line"><span class="cl">n &gt;<span class="p">&amp;</span> m
+</span></span><span class="line"><span class="cl"><span class="c1"># 将输入流 m 和 n 合并。</span>
+</span></span><span class="line"><span class="cl">n &lt;<span class="p">&amp;</span> m
+</span></span><span class="line"><span class="cl"><span class="c1"># 0: stdin</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 1: stdout</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2: stderr</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="常用">常用
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 从文件中输入</span>
+</span></span><span class="line"><span class="cl"><span class="nb">command</span> &lt; file
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 合并std到标准输出</span>
+</span></span><span class="line"><span class="cl"><span class="nb">command</span> 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 合并输出并写入文件</span>
+</span></span><span class="line"><span class="cl"><span class="nb">command</span> &gt; file 2&gt;<span class="p">&amp;</span><span class="m">1</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="c语言规则">C语言规则

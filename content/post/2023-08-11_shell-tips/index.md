@@ -391,6 +391,58 @@ res=$(echo "scale=3;($num1 + $num2) * $num3 / $num4" | bc)
 # scale=3 精度为小数点3位
 ```
 
+### 重定向
+
+输入
+```bash
+# 将输入重定向到 file。
+command < file
+
+# 将开始标记 tag 和结束标记 tag 之间的内容作为输入。
+command << tag
+    CONTENT
+tag
+# 结束tag顶格且后面不能有空格
+```
+
+输出
+```bash
+# 将输出重定向到 file。
+command > file
+
+# 将输出以追加的方式重定向到 file。
+command >> file
+```
+
+标准流
+```bash
+# 将描述符为 n 的流重定向到 file。
+n > file
+# 将描述符为 n 的流以追加的方式重定向到 file。
+n >> file
+
+# 将输出流 m 和 n 合并。
+n >& m
+# 将输入流 m 和 n 合并。
+n <& m
+# 0: stdin
+# 1: stdout
+# 2: stderr
+```
+
+#### 常用
+
+```bash
+# 从文件中输入
+command < file
+
+# 合并std到标准输出
+command 2>&1
+
+# 合并输出并写入文件
+command > file 2>&1
+```
+
 ### C语言规则
 ```bash
 $((exp))
