@@ -4,6 +4,7 @@ setup() {
     name="blog"
     desc="cheni-zqs的blog网站，用hugo搭建，主题为stack。"
     log="build.log"
+    log_line=100
 
     echo "" >> $log
     echo "[$(date +%F_%T)] auto build by build.sh" >> $log
@@ -45,7 +46,17 @@ push_git() {
     git push github master:main >> $log 2>&1
 }
 
-#delete
+clear_log() {
+    line=$(wc -l $log | awk '{print $1}')
+    [ $line -gt 10000 ] && {
+        echo "log too large, clear" >> $log 2>&1
+        echo "clear log"
+        [[ -f ${log}.temp ]] || touch ${log}.temp
+        tail -n 1000 $log > ${log}.temp
+        rm $log
+        mv ${log}.temp $log
+    } || echo "log line ${line}"
+}
 
 init() {
     cd $(dirname $0)
@@ -73,42 +84,48 @@ p_help() {
     echo "     *   sync: sync main or master branch info."
 }
 
+main() {
+    case $1 in
+        "-l"|"--local"|"local")
+            build_local
+            get_commit ${@:2} || return 1
+            update_git $input
+            ;;
+        "-g"|"--github"|"github")
+            build_github
+            get_commit ${@:2} || return 1
+            update_git $input
+            push_git
+            ;;
+        "-a"|"--all"|"all")
+            build_local
+            build_github
+            get_commit ${@:2} || return 1
+            update_git $input
+            push_git
+            ;;
+        "-n"|"--no"|"no")
+            case $2 in
+                "l"|"local")
+                    build_local
+                    ;;
+                "g"|"github")
+                    build_github
+                    ;;
+                *)
+                    build_local
+                    build_github
+                    ;;
+            esac
+            return 0
+            ;;
+        *)
+            p_help && return 0
+            ;;
+    esac
+}
+
 init
-case $1 in
-    "-l"|"--local"|"local")
-        build_local
-        get_commit ${@:2} || exit 1
-        update_git $input
-        ;;
-    "-g"|"--github"|"github")
-        build_github
-        get_commit ${@:2} || exit 1
-        update_git $input
-        push_git
-        ;;
-    "-a"|"--all"|"all")
-        build_local
-        build_github
-        get_commit ${@:2} || exit 1
-        update_git $input
-        push_git
-        ;;
-    "-n"|"--no"|"no")
-        case $2 in
-            "l"|"local")
-                build_local
-                ;;
-            "g"|"github")
-                build_github
-                ;;
-            *)
-                build_local
-                build_github
-                ;;
-        esac
-        exit 0
-        ;;
-    *)
-        p_help && exit 0
-        ;;
-esac
+#TIMEFMT=$'\ntime\t%*E'
+main $*
+clear_log
