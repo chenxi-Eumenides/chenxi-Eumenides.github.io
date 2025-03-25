@@ -15,15 +15,18 @@ get_commit() {
 
 build_local() {
     [[ -d public ]] && rm -r public
-    hugo --config hugo-local.yaml
+    echo "start build local"
+    hugo --config hugo-local.yaml --quiet
 }
 
 build_github() {
     [[ -d docs ]] && rm -r docs
-    hugo --config hugo-github.yaml --buildDrafts
+    echo "start build github"
+    hugo --config hugo-github.yaml --buildDrafts --quiet
 }
 
 update_git() {
+    echo "start git update"
     git add ./
     if [[ -z $1 ]] ; then
         content="update: Auto build by runsh at $(date +%F_%T)"
@@ -34,6 +37,7 @@ update_git() {
 }
 
 push_git() {
+    echo "start git push to github"
     git push github master:main
 }
 
