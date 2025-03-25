@@ -23,13 +23,13 @@ hidden: false
 draft: false
 ---
 
-## 前言
+## 安装配置
 
 原始的终端并不算好看，所以打算进行一番配置，以符合我的审美
 
-## 安装
+### 安装
 
-### powershell
+#### powershell
 
 默认的powershell版本为5.1，将其升级为powershell 7。powershell 7默认就开启了很多功能，比如我最爱的↑↓→键快速匹配历史记录。
 
@@ -55,7 +55,7 @@ winget install --id Microsoft.PowerShell
 
 将默认值改为该配置文件。
 
-### oh-my-posh
+#### oh-my-posh
 
 oh-my-posh是一个类似与oh-my-zsh的美化插件，先进行安装。这里的winget我能正常使用，否则请前往官网。
 
@@ -63,7 +63,7 @@ oh-my-posh是一个类似与oh-my-zsh的美化插件，先进行安装。这里�
 winget install JanDeDobbeleer.OhMyPosh -s winget
 ```
 
-## 配置
+### 配置
 
 编辑powershell的用户配置
 
@@ -82,13 +82,13 @@ oh-my-posh init pwsh | Invoke-Expression
 
 重启终端。
 
-### 临时在当前环境中启用
+#### 临时在当前环境中启用
 
 ```powershell
 $env:Path += ";C:\Users\user\AppData\Local\Programs\oh-my-posh\bin"
 ```
 
-### 配置主题
+#### 配置主题
 
 主题是一个json配置文件，默认自带就有很多。
 
@@ -112,7 +112,7 @@ oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/<THEME_NAME>.omp.json" | In
 
 重启终端
 
-### 安装字体
+#### 安装字体
 
 omp的主题大多需要特殊符号，所以要安装一个nerf字体。
 
@@ -126,8 +126,40 @@ Invoke-WebRequest -Uri "https://github.com/ryanoasis/nerd-fonts/releases/downloa
 
 在终端-powershell7的配置文件-外观-字体，选择MesloLGM Nerd Font Mono字体，保存。
 
-## 完成
+### 完成
 
 到此，主题安装完成。
 
 我选择使用的是iterm2主题，
+
+## powershell脚本
+
+PowerShell的脚本后缀为ps1
+
+### 变量
+
+定义变量
+```pwsh
+$key = value
+# 中间可以有空格
+```
+
+使用变量
+```pwsh
+Write-Output $key
+Write-Output ${key}
+```
+
+### 控制
+
+#### 判断
+
+```pwsh
+
+```
+
+#### 循环
+
+```pwsh
+
+```

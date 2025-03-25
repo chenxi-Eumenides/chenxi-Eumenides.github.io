@@ -47,13 +47,22 @@ init() {
 
 p_help() {
     echo "desc: ${desc}"
-    echo "args: -l | --local COMMIT   : build local"
-    echo "      -g | --github COMMIT  : build github"
-    echo "      -a | --all COMMIT     : build both"
+    echo "args: -l | --local COMMIT    : build local"
+    echo "      -g | --github COMMIT   : build github"
+    echo "      -a | --all COMMIT      : build both"
     echo "      -n | --no local/github : build but not git"
-    echo "      *                     : print help"
-    echo "commit: TYPE: content"
-    echo "   e.t. update: this is a simple update info."
+    echo "      *                      : print help"
+    echo "commit:  TYPE: content"
+    echo "   e.t.  init: init git info."
+    echo "          new: add new file or new feature info."
+    echo "          fix: fix bug or fix wrong thing info."
+    echo "         feat: new feature or new method info."
+    echo "        merge: merge code or file info."
+    echo "       update: update something info."
+    echo "     *   test: add test info."
+    echo "     *   perf: improve performance or experience info."
+    echo "     *   docs: add test info."
+    echo "     *   sync: sync main or master branch info."
 }
 
 init

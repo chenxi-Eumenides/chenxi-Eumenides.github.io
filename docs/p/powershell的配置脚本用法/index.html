@@ -245,21 +245,35 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#前言">前言</a></li>
-    <li><a href="#安装">安装</a>
+    <li><a href="#安装配置">安装配置</a>
       <ol>
-        <li><a href="#powershell">powershell</a></li>
-        <li><a href="#oh-my-posh">oh-my-posh</a></li>
+        <li><a href="#安装">安装</a>
+          <ol>
+            <li><a href="#powershell">powershell</a></li>
+            <li><a href="#oh-my-posh">oh-my-posh</a></li>
+          </ol>
+        </li>
+        <li><a href="#配置">配置</a>
+          <ol>
+            <li><a href="#临时在当前环境中启用">临时在当前环境中启用</a></li>
+            <li><a href="#配置主题">配置主题</a></li>
+            <li><a href="#安装字体">安装字体</a></li>
+          </ol>
+        </li>
+        <li><a href="#完成">完成</a></li>
       </ol>
     </li>
-    <li><a href="#配置">配置</a>
+    <li><a href="#powershell脚本">powershell脚本</a>
       <ol>
-        <li><a href="#临时在当前环境中启用">临时在当前环境中启用</a></li>
-        <li><a href="#配置主题">配置主题</a></li>
-        <li><a href="#安装字体">安装字体</a></li>
+        <li><a href="#变量">变量</a></li>
+        <li><a href="#控制">控制</a>
+          <ol>
+            <li><a href="#判断">判断</a></li>
+            <li><a href="#循环">循环</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
-    <li><a href="#完成">完成</a></li>
   </ol>
 </nav>
         </div>
@@ -397,11 +411,11 @@
     <section class="article-content">
     
     
-    <h2 id="前言">前言
+    <h2 id="安装配置">安装配置
 </h2><p>原始的终端并不算好看，所以打算进行一番配置，以符合我的审美</p>
-<h2 id="安装">安装
-</h2><h3 id="powershell">powershell
-</h3><p>默认的powershell版本为5.1，将其升级为powershell 7。powershell 7默认就开启了很多功能，比如我最爱的↑↓→键快速匹配历史记录。</p>
+<h3 id="安装">安装
+</h3><h4 id="powershell">powershell
+</h4><p>默认的powershell版本为5.1，将其升级为powershell 7。powershell 7默认就开启了很多功能，比如我最爱的↑↓→键快速匹配历史记录。</p>
 <p>当前使用的版本</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -425,8 +439,8 @@
 <p>终端-设置-新配置文件-从powershell复制</p>
 <p>路径改为：<code>C:\Program Files\PowerShell\7\pwsh.exe</code></p>
 <p>将默认值改为该配置文件。</p>
-<h3 id="oh-my-posh">oh-my-posh
-</h3><p>oh-my-posh是一个类似与oh-my-zsh的美化插件，先进行安装。这里的winget我能正常使用，否则请前往官网。</p>
+<h4 id="oh-my-posh">oh-my-posh
+</h4><p>oh-my-posh是一个类似与oh-my-zsh的美化插件，先进行安装。这里的winget我能正常使用，否则请前往官网。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -435,8 +449,8 @@
 <pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">winget</span> <span class="n">install</span> <span class="n">JanDeDobbeleer</span><span class="p">.</span><span class="py">OhMyPosh</span> <span class="n">-s</span> <span class="n">winget</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="配置">配置
-</h2><p>编辑powershell的用户配置</p>
+</div><h3 id="配置">配置
+</h3><p>编辑powershell的用户配置</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -461,8 +475,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>重启终端。</p>
-<h3 id="临时在当前环境中启用">临时在当前环境中启用
-</h3><div class="highlight"><div class="chroma">
+<h4 id="临时在当前环境中启用">临时在当前环境中启用
+</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -470,8 +484,8 @@
 <pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nv">$env:Path</span> <span class="p">+=</span> <span class="s2">&#34;;C:\Users\user\AppData\Local\Programs\oh-my-posh\bin&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="配置主题">配置主题
-</h3><p>主题是一个json配置文件，默认自带就有很多。</p>
+</div><h4 id="配置主题">配置主题
+</h4><p>主题是一个json配置文件，默认自带就有很多。</p>
 <p>查看已安装主题</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -500,8 +514,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>重启终端</p>
-<h3 id="安装字体">安装字体
-</h3><p>omp的主题大多需要特殊符号，所以要安装一个nerf字体。</p>
+<h4 id="安装字体">安装字体
+</h4><p>omp的主题大多需要特殊符号，所以要安装一个nerf字体。</p>
 <p>官方推荐meslo字体，直接下载。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -513,10 +527,50 @@
 </div>
 </div><p>解压后全选ttf文件，右键安装。</p>
 <p>在终端-powershell7的配置文件-外观-字体，选择MesloLGM Nerd Font Mono字体，保存。</p>
-<h2 id="完成">完成
-</h2><p>到此，主题安装完成。</p>
+<h3 id="完成">完成
+</h3><p>到此，主题安装完成。</p>
 <p>我选择使用的是iterm2主题，</p>
-
+<h2 id="powershell脚本">powershell脚本
+</h2><p>PowerShell的脚本后缀为ps1</p>
+<h3 id="变量">变量
+</h3><p>定义变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-pwsh" data-lang="pwsh"><span class="line"><span class="cl"><span class="nv">$key</span> <span class="p">=</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl"><span class="c"># 中间可以有空格</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-pwsh" data-lang="pwsh"><span class="line"><span class="cl"><span class="nb">Write-Output</span> <span class="nv">$key</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Write-Output</span> <span class="p">${</span><span class="n">key</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="控制">控制
+</h3><h4 id="判断">判断
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-pwsh" data-lang="pwsh"></code></pre></td></tr></table>
+</div>
+</div><h4 id="循环">循环
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-pwsh" data-lang="pwsh"></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
