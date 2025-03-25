@@ -86,34 +86,34 @@ p_help() {
 main() {
     case $1 in
         "-l"|"--local"|"local")
-            build_local
+            build_local || return 1
             get_commit ${@:2} || return 1
-            update_git $input
+            update_git $input || return 1
             ;;
         "-g"|"--github"|"github")
-            build_github
+            build_github || return 1
             get_commit ${@:2} || return 1
-            update_git $input
-            push_git
+            update_git $input || return 1
+            push_git || return 1
             ;;
         "-a"|"--all"|"all")
-            build_local
-            build_github
+            build_local || return 1
+            build_github || return 1
             get_commit ${@:2} || return 1
-            update_git $input
-            push_git
+            update_git $input || return 1
+            push_git || return 1
             ;;
         "-n"|"--no"|"no")
             case $2 in
                 "l"|"local")
-                    build_local
+                    build_local || return 1
                     ;;
                 "g"|"github")
-                    build_github
+                    build_github || return 1
                     ;;
                 *)
-                    build_local
-                    build_github
+                    build_local || return 1
+                    build_github || return 1
                     ;;
             esac
             return 0
