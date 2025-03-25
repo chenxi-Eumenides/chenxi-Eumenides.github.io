@@ -474,57 +474,54 @@ $$
 
 单文件启用：在文件头中修改`math`为`true`。
 
-### \*富文本
-
-Hugo ships with several [Built-in Shortcodes](https://gohugo.io/content-management/shortcodes/#use-hugo-s-built-in-shortcodes) for rich content, along with a [Privacy Config](https://gohugo.io/about/hugo-and-gdpr/) and a set of Simple Shortcodes that enable static and no-JS versions of various social 
-
 ### 特殊代码
 
-#### 插入YouTube视频
+hugo 提供了几种[短代码](https://gohugo.io/content-management/shortcodes/#use-hugo-s-built-in-shortcodes)来插入内容。
 
-{{< youtube ZJthWmvUzzc >}}
+以及具有隐私配置和一组简单捷径的[长代码](https://gohugo.io/about/hugo-and-gdpr/)，支持各种社交的静态和非JS版本.
 
-```md
-{{< youtube ZJthWmvUzzc >}}
-```
-
----
-
-#### 插入X推文
-
-{{< x user="DesignReviewed" id="1085870671291310081" >}}
 
 ```md
-{{< x user="DesignReviewed" id="1085870671291310081" >}}
+{ {< CODE_NAME ARGS >}}
+# 我不知道为什么hugo一定要把代码块内部的短代码
+# 渲染出来，导致我构建时一直出问题。所以我在两
+# 个{中间加了一个空格，使用时请删除这个空格。
+
+# 二维码
+{ {< qr text="CONTENT" />}}
+# e.t. text="blog.chenxi-eumenides.top:81"
+
+# 本地、远程视频文件
+{ {< video src=VIDEO_URL autoplay="true" poster=COVER_URL >}}
+# video file
+# src="VIDEO_URL" autoplay="true" poster="COVER_URL"
+
+# B站视频
+{ {< bilibili VIDEO_ID PART_NUMBER >}}
+# https://www.bilibili.com/video/VIDEO_ID?p=PART_NUMBER
+
+# 腾讯视频
+{ {< tencent VIDEO_ID >}}
+# 
+
+# 油管视频
+{ {< youtube VIDEO_ID >}}
+# https://www.youtube.com/watch?v=VIDEO_ID
+
+# Vimeo视频
+{ {< vimeo_simple VIDEO_ID >}}
+# 
+
+# X推文
+{ {< x user="USER_NAME" id="POST_ID" >}}
+# 
+
+# Gitlab代码片段
+{ {< gitlab CODE_ID >}}
+# 
 ```
 
----
-
-#### 插入Vimeo视频
-
-{{< vimeo_simple 48912912 >}}
-
-```md
-{{< vimeo_simple 48912912 >}}
-```
-
-#### 插入bilibili视频
-
-{{< bilibili av498363026 >}}
-
-```md
-{{< bilibili av498363026 >}}
-```
-
-#### 插入Gitlab代码片段
-
-{{< gitlab 2349278 >}}
-
-```md
-{{< gitlab 2349278 >}}
-```
-
-#### 插入Quote
+### 插入Quote
 
 Stack adds a `quote` shortcode.  For example:
 
@@ -547,11 +544,5 @@ Content
 [^label]label是什么不会影响显示的数字，只是用来标记。
 [^label]: 脚注内容
 ```
-
-
-
-
-
-
 
 

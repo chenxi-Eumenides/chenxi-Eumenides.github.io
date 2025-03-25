@@ -10,7 +10,7 @@
 <meta property='og:description' content="hugo是一个轻量级的使用markdown语法的静态博客网站。本文记录了我安装，配置过程中的一些笔记，也包括hugo中可以使用的markdown语法。">
 <meta property='og:url' content='https://chenxi-Eumenides.github.io/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/'>
 <meta property='og:site_name' content='chenxi的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='hugo' /><meta property='article:tag' content='博客' /><meta property='article:tag' content='教程' /><meta property='article:tag' content='笔记' /><meta property='article:tag' content='配置' /><meta property='article:tag' content='markdown' /><meta property='article:published_time' content='2023-04-03T19:03:56&#43;08:00'/><meta property='article:modified_time' content='2025-03-25T10:18:03&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='hugo' /><meta property='article:tag' content='博客' /><meta property='article:tag' content='教程' /><meta property='article:tag' content='笔记' /><meta property='article:tag' content='配置' /><meta property='article:tag' content='markdown' /><meta property='article:published_time' content='2023-04-03T19:03:56&#43;08:00'/><meta property='article:modified_time' content='2025-03-25T15:10:20&#43;08:00'/>
 <meta name="twitter:title" content="hugo安装、配置、命令与markdown语法">
 <meta name="twitter:description" content="hugo是一个轻量级的使用markdown语法的静态博客网站。本文记录了我安装，配置过程中的一些笔记，也包括hugo中可以使用的markdown语法。">
     <link rel="shortcut icon" href="/web_icon.ico" />
@@ -285,17 +285,8 @@
         <li><a href="#转义">转义</a></li>
         <li><a href="#emoji">*Emoji</a></li>
         <li><a href="#数学公式">*数学公式</a></li>
-        <li><a href="#富文本">*富文本</a></li>
-        <li><a href="#特殊代码">特殊代码</a>
-          <ol>
-            <li><a href="#插入youtube视频">插入YouTube视频</a></li>
-            <li><a href="#插入x推文">插入X推文</a></li>
-            <li><a href="#插入vimeo视频">插入Vimeo视频</a></li>
-            <li><a href="#插入bilibili视频">插入bilibili视频</a></li>
-            <li><a href="#插入gitlab代码片段">插入Gitlab代码片段</a></li>
-            <li><a href="#插入quote">插入Quote</a></li>
-          </ol>
-        </li>
+        <li><a href="#特殊代码">特殊代码</a></li>
+        <li><a href="#插入quote">插入Quote</a></li>
         <li><a href="#脚注">*脚注</a></li>
       </ol>
     </li>
@@ -1206,167 +1197,93 @@ $$</p>
 </div>
 </div><p>全局启用：在<code>config.yaml</code>中修改<code>params.article.math</code>为<code>true</code>。</p>
 <p>单文件启用：在文件头中修改<code>math</code>为<code>true</code>。</p>
-<h3 id="富文本">*富文本
-</h3><p>Hugo ships with several <a class="link" href="https://gohugo.io/content-management/shortcodes/#use-hugo-s-built-in-shortcodes"  target="_blank" rel="noopener"
-    >Built-in Shortcodes</a> for rich content, along with a <a class="link" href="https://gohugo.io/about/hugo-and-gdpr/"  target="_blank" rel="noopener"
-    >Privacy Config</a> and a set of Simple Shortcodes that enable static and no-JS versions of various social</p>
 <h3 id="特殊代码">特殊代码
-</h3><h4 id="插入youtube视频">插入YouTube视频
-</h4><div class="video-wrapper">
-    <iframe loading="lazy" 
-            src="https://www.youtube.com/embed/ZJthWmvUzzc" 
-            allowfullscreen 
-            title="YouTube Video"
-    >
-    </iframe>
-</div>
-
+</h3><p>hugo 提供了几种<a class="link" href="https://gohugo.io/content-management/shortcodes/#use-hugo-s-built-in-shortcodes"  target="_blank" rel="noopener"
+    >短代码</a>来插入内容。</p>
+<p>以及具有隐私配置和一组简单捷径的<a class="link" href="https://gohugo.io/about/hugo-and-gdpr/"  target="_blank" rel="noopener"
+    >长代码</a>，支持各种社交的静态和非JS版本.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><div class="video-wrapper">
-    <iframe loading="lazy" 
-            src="https://www.youtube.com/embed/ZJthWmvUzzc" 
-            allowfullscreen 
-            title="YouTube Video"
-    >
-    </iframe>
-</div>
-
+<pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">{ {<span class="p">&lt;</span> <span class="nt">CODE_NAME</span> <span class="na">ARGS</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl"><span class="gh"># 我不知道为什么hugo一定要把代码块内部的短代码
+</span></span></span><span class="line"><span class="cl"><span class="gh"># 渲染出来，导致我构建时一直出问题。所以我在两
+</span></span></span><span class="line"><span class="cl"><span class="gh"># 个{中间加了一个空格，使用时请删除这个空格。
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
+</span></span><span class="line"><span class="cl"><span class="gh"># 二维码
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>{ {<span class="p">&lt;</span> <span class="nt">qr</span> <span class="na">text</span><span class="o">=</span><span class="s">&#34;CONTENT&#34;</span> <span class="p">/&gt;</span>}}
+</span></span><span class="line"><span class="cl"><span class="gh"># e.t. text=&#34;blog.chenxi-eumenides.top:81&#34;
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
+</span></span><span class="line"><span class="cl"><span class="gh"># 本地、远程视频文件
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>{ {<span class="p">&lt;</span> <span class="nt">video</span> <span class="na">src</span><span class="o">=</span><span class="s">VIDEO_URL</span> <span class="na">autoplay</span><span class="o">=</span><span class="s">&#34;true&#34;</span> <span class="na">poster</span><span class="o">=</span><span class="s">COVER_URL</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl"><span class="gh"># video file
+</span></span></span><span class="line"><span class="cl"><span class="gh"># src=&#34;VIDEO_URL&#34; autoplay=&#34;true&#34; poster=&#34;COVER_URL&#34;
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
+</span></span><span class="line"><span class="cl"><span class="gh"># B站视频
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>{ {<span class="p">&lt;</span> <span class="nt">bilibili</span> <span class="na">VIDEO_ID</span> <span class="na">PART_NUMBER</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl"><span class="gh"># https://www.bilibili.com/video/VIDEO_ID?p=PART_NUMBER
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
+</span></span><span class="line"><span class="cl"><span class="gh"># 腾讯视频
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>{ {<span class="p">&lt;</span> <span class="nt">tencent</span> <span class="na">VIDEO_ID</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl"># 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gh"># 油管视频
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>{ {<span class="p">&lt;</span> <span class="nt">youtube</span> <span class="na">VIDEO_ID</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl"><span class="gh"># https://www.youtube.com/watch?v=VIDEO_ID
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
+</span></span><span class="line"><span class="cl"><span class="gh"># Vimeo视频
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>{ {<span class="p">&lt;</span> <span class="nt">vimeo_simple</span> <span class="na">VIDEO_ID</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl"># 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gh"># X推文
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>{ {<span class="p">&lt;</span> <span class="nt">x</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;USER_NAME&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;POST_ID&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl"># 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gh"># Gitlab代码片段
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>{ {<span class="p">&lt;</span> <span class="nt">gitlab</span> <span class="na">CODE_ID</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl"># 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><hr>
-<h4 id="插入x推文">插入X推文
-</h4><blockquote class="twitter-tweet"><p lang="en" dir="ltr">“In addition to being more logical, asymmetry has the advantage that its complete appearance is far more optically effective than symmetry.”<br>— Jan Tschichold <a href="https://t.co/gcv7SrhvJb">pic.twitter.com/gcv7SrhvJb</a></p>&mdash; Design Reviewed | Graphic Design History (@DesignReviewed) <a href="https://twitter.com/DesignReviewed/status/1085870671291310081?ref_src=twsrc%5Etfw">January 17, 2019</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">“In addition to being more logical, asymmetry has the advantage that its complete appearance is far more optically effective than symmetry.”<br>— Jan Tschichold <a href="https://t.co/gcv7SrhvJb">pic.twitter.com/gcv7SrhvJb</a></p>&mdash; Design Reviewed | Graphic Design History (@DesignReviewed) <a href="https://twitter.com/DesignReviewed/status/1085870671291310081?ref_src=twsrc%5Etfw">January 17, 2019</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-</span></span></code></pre></td></tr></table>
-</div>
-</div><hr>
-<h4 id="插入vimeo视频">插入Vimeo视频
-</h4><style>
-.__h_video {
-   position: relative;
-   padding-bottom: 56.23%;
-   height: 0;
-   overflow: hidden;
-   width: 100%;
-   background: #000;
-}
-.__h_video img {
-   width: 100%;
-   height: auto;
-   color: #000;
-}
-.__h_video .play {
-   height: 72px;
-   width: 72px;
-   left: 50%;
-   top: 50%;
-   margin-left: -36px;
-   margin-top: -36px;
-   position: absolute;
-   cursor: pointer;
-}
-</style><div class="s_video_simple __h_video">
-          <a href="https://vimeo.com/4.8912912e&#43;07" rel="noopener" target="_blank">
-            <img src="https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640" srcset="https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640 1x, https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640 2x" alt="Sing Jan Swing - Kinetic Type">
-            <div class="play">
-              <svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61 61"><circle cx="30.5" cy="30.5" r="30.5" opacity=".8" fill="#000"></circle><path d="M25.3 19.2c-2.1-1.2-3.8-.2-3.8 2.2v18.1c0 2.4 1.7 3.4 3.8 2.2l16.6-9.1c2.1-1.2 2.1-3.2 0-4.4l-16.6-9z" fill="#fff"></path></svg>
-            </div>
-          </a>
-        </div>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><div class="s_video_simple __h_video">
-          <a href="https://vimeo.com/4.8912912e&#43;07" rel="noopener" target="_blank">
-            <img src="https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640" srcset="https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640 1x, https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640 2x" alt="Sing Jan Swing - Kinetic Type">
-            <div class="play">
-              <svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61 61"><circle cx="30.5" cy="30.5" r="30.5" opacity=".8" fill="#000"></circle><path d="M25.3 19.2c-2.1-1.2-3.8-.2-3.8 2.2v18.1c0 2.4 1.7 3.4 3.8 2.2l16.6-9.1c2.1-1.2 2.1-3.2 0-4.4l-16.6-9z" fill="#fff"></path></svg>
-            </div>
-          </a>
-        </div>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="插入bilibili视频">插入bilibili视频
-</h4>
-
-
-
-
-
-    
-
-
-<div class="video-wrapper">
-    <iframe src="https://player.bilibili.com/player.html?as_wide=1&amp;high_quality=1&amp;page=1&aid=498363026"
-            scrolling="no"
-            frameborder="no"
-            framespacing="0"
-            allowfullscreen="true"
-    >
-    </iframe>
-</div>
-
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">
-
-
-
-
-
-    
-
-
-<div class="video-wrapper">
-    <iframe src="https://player.bilibili.com/player.html?as_wide=1&amp;high_quality=1&amp;page=1&aid=498363026"
-            scrolling="no"
-            frameborder="no"
-            framespacing="0"
-            allowfullscreen="true"
-    >
-    </iframe>
-</div>
-
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="插入gitlab代码片段">插入Gitlab代码片段
-</h4><script
-    type="application/javascript"
-    src="https://gitlab.com/-/snippets/2349278.js"
-></script>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><script
-    type="application/javascript"
-    src="https://gitlab.com/-/snippets/2349278.js"
-></script>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="插入quote">插入Quote
-</h4><p>Stack adds a <code>quote</code> shortcode.  For example:</p>
+</div><h3 id="插入quote">插入Quote
+</h3><p>Stack adds a <code>quote</code> shortcode.  For example:</p>
 <blockquote>
     <p>Content</p><span class="cite"><span>― </span><span>A famous person, </span><a href="https://en.wikipedia.org/wiki/Book"><cite>The book they wrote</cite></a></span></blockquote>
 <div class="highlight"><div class="chroma">
@@ -1443,7 +1360,7 @@ $$</p>
 
 
         <span>
-            最后更新于 2025.03.25 10:18 CST
+            最后更新于 2025.03.25 15:10 CST
         </span>
     </section></footer>
 

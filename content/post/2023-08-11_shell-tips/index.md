@@ -54,10 +54,8 @@ ${key}
 ```bash
 # 若值未定义，则以default字符串或者变量${var}作为其值
 ${key-default}
-${key=default}
 # 若值未定义，或者为空，则以default字符串或者变量${var}作为其值
 ${key:-default}
-${key:=default}
 # 若值已定义，则以default字符串或者变量${var}作为其值
 ${key+default}
 # 若值已定义，并且不为空，则以default字符串或者变量${var}作为其值

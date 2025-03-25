@@ -19,18 +19,18 @@ get_commit() {
 
 build_local() {
     [[ -d public ]] && rm -r public
-    echo "start build local"
+    echo -n "start build local"
     hugo --config hugo-local.yaml >> $log 2>&1
 }
 
 build_github() {
     [[ -d docs ]] && rm -r docs
-    echo "start build github"
+    echo -n "start build github"
     hugo --config hugo-github.yaml --buildDrafts >> $log 2>&1
 }
 
 update_git() {
-    echo "start git update"
+    echo -n "start git update"
     git add ./ >> $log 2>&1
     if [[ -z $1 ]] ; then
         content="update: Auto build by runsh at $(date +%F_%T)"
@@ -41,7 +41,7 @@ update_git() {
 }
 
 push_git() {
-    echo "start git push to github"
+    echo -n "start git push to github"
     git push github master:main >> $log 2>&1
 }
 
@@ -86,34 +86,34 @@ p_help() {
 main() {
     case $1 in
         "-l"|"--local"|"local")
-            build_local || return 1
-            get_commit ${@:2} || return 1
-            update_git $input || return 1
+            build_local && echo " √" || return 1
+            get_commit ${@:2} && echo " √" || return 1
+            update_git $input && echo " √" || return 1
             ;;
         "-g"|"--github"|"github")
-            build_github || return 1
-            get_commit ${@:2} || return 1
-            update_git $input || return 1
-            push_git || return 1
+            build_github && echo " √" || return 1
+            get_commit ${@:2} && echo " √" || return 1
+            update_git $input && echo " √" || return 1
+            push_git && echo " √" || return 1
             ;;
         "-a"|"--all"|"all")
-            build_local || return 1
-            build_github || return 1
-            get_commit ${@:2} || return 1
-            update_git $input || return 1
-            push_git || return 1
+            build_local
+            build_github && echo " √" || return 1
+            get_commit ${@:2} && echo " √" || return 1
+            update_git $input && echo " √" || return 1
+            push_git && echo " √" || return 1
             ;;
         "-n"|"--no"|"no")
             case $2 in
                 "l"|"local")
-                    build_local || return 1
+                    build_local && echo " √" || return 1
                     ;;
                 "g"|"github")
-                    build_github || return 1
+                    build_github && echo " √" || return 1
                     ;;
                 *)
-                    build_local || return 1
-                    build_github || return 1
+                    build_local && echo " √" || return 1
+                    build_github && echo " √" || return 1
                     ;;
             esac
             return 0
