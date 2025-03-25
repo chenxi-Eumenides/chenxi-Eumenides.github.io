@@ -478,7 +478,9 @@ $$
 
 Hugo ships with several [Built-in Shortcodes](https://gohugo.io/content-management/shortcodes/#use-hugo-s-built-in-shortcodes) for rich content, along with a [Privacy Config](https://gohugo.io/about/hugo-and-gdpr/) and a set of Simple Shortcodes that enable static and no-JS versions of various social 
 
-#### YouTube Privacy Enhanced Shortcode
+### 特殊代码
+
+#### 插入YouTube视频
 
 {{< youtube ZJthWmvUzzc >}}
 
@@ -488,7 +490,7 @@ Hugo ships with several [Built-in Shortcodes](https://gohugo.io/content-manageme
 
 ---
 
-#### X Shortcode
+#### 插入X推文
 
 {{< x user="DesignReviewed" id="1085870671291310081" >}}
 
@@ -498,7 +500,7 @@ Hugo ships with several [Built-in Shortcodes](https://gohugo.io/content-manageme
 
 ---
 
-#### Vimeo Simple Shortcode
+#### 插入Vimeo视频
 
 {{< vimeo_simple 48912912 >}}
 
@@ -506,7 +508,7 @@ Hugo ships with several [Built-in Shortcodes](https://gohugo.io/content-manageme
 {{< vimeo_simple 48912912 >}}
 ```
 
-#### bilibili Shortcode
+#### 插入bilibili视频
 
 {{< bilibili av498363026 >}}
 
@@ -514,7 +516,7 @@ Hugo ships with several [Built-in Shortcodes](https://gohugo.io/content-manageme
 {{< bilibili av498363026 >}}
 ```
 
-#### Gitlab Snippets Shortcode
+#### 插入Gitlab代码片段
 
 {{< gitlab 2349278 >}}
 
@@ -522,7 +524,7 @@ Hugo ships with several [Built-in Shortcodes](https://gohugo.io/content-manageme
 {{< gitlab 2349278 >}}
 ```
 
-#### Quote Shortcode
+#### 插入Quote
 
 Stack adds a `quote` shortcode.  For example:
 

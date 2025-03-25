@@ -4721,7 +4721,8 @@ $$&lt;/p&gt;
 &lt;/h3&gt;&lt;p&gt;Hugo ships with several &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/content-management/shortcodes/#use-hugo-s-built-in-shortcodes&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Built-in Shortcodes&lt;/a&gt; for rich content, along with a &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/about/hugo-and-gdpr/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Privacy Config&lt;/a&gt; and a set of Simple Shortcodes that enable static and no-JS versions of various social&lt;/p&gt;
-&lt;h4 id=&#34;youtube-privacy-enhanced-shortcode&#34;&gt;YouTube Privacy Enhanced Shortcode
+&lt;h3 id=&#34;特殊代码&#34;&gt;特殊代码
+&lt;/h3&gt;&lt;h4 id=&#34;插入youtube视频&#34;&gt;插入YouTube视频
 &lt;/h4&gt;&lt;div class=&#34;video-wrapper&#34;&gt;
     &lt;iframe loading=&#34;lazy&#34; 
             src=&#34;https://www.youtube.com/embed/ZJthWmvUzzc&#34; 
@@ -4748,7 +4749,7 @@ $$&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;hr&gt;
-&lt;h4 id=&#34;x-shortcode&#34;&gt;X Shortcode
+&lt;h4 id=&#34;插入x推文&#34;&gt;插入X推文
 &lt;/h4&gt;&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;“In addition to being more logical, asymmetry has the advantage that its complete appearance is far more optically effective than symmetry.”&lt;br&gt;— Jan Tschichold &lt;a href=&#34;https://t.co/gcv7SrhvJb&#34;&gt;pic.twitter.com/gcv7SrhvJb&lt;/a&gt;&lt;/p&gt;&amp;mdash; Design Reviewed | Graphic Design History (@DesignReviewed) &lt;a href=&#34;https://twitter.com/DesignReviewed/status/1085870671291310081?ref_src=twsrc%5Etfw&#34;&gt;January 17, 2019&lt;/a&gt;&lt;/blockquote&gt;
 &lt;script async src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
 
@@ -4765,7 +4766,7 @@ $$&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;hr&gt;
-&lt;h4 id=&#34;vimeo-simple-shortcode&#34;&gt;Vimeo Simple Shortcode
+&lt;h4 id=&#34;插入vimeo视频&#34;&gt;插入Vimeo视频
 &lt;/h4&gt;&lt;style&gt;
 .__h_video {
    position: relative;
@@ -4813,7 +4814,7 @@ $$&lt;/p&gt;
         &lt;/div&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;bilibili-shortcode&#34;&gt;bilibili Shortcode
+&lt;/div&gt;&lt;h4 id=&#34;插入bilibili视频&#34;&gt;插入bilibili视频
 &lt;/h4&gt;
 
 
@@ -4859,7 +4860,7 @@ $$&lt;/p&gt;
 
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;gitlab-snippets-shortcode&#34;&gt;Gitlab Snippets Shortcode
+&lt;/div&gt;&lt;h4 id=&#34;插入gitlab代码片段&#34;&gt;插入Gitlab代码片段
 &lt;/h4&gt;&lt;script
     type=&#34;application/javascript&#34;
     src=&#34;https://gitlab.com/-/snippets/2349278.js&#34;
@@ -4875,7 +4876,7 @@ $$&lt;/p&gt;
 &gt;&lt;/script&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;quote-shortcode&#34;&gt;Quote Shortcode
+&lt;/div&gt;&lt;h4 id=&#34;插入quote&#34;&gt;插入Quote
 &lt;/h4&gt;&lt;p&gt;Stack adds a &lt;code&gt;quote&lt;/code&gt; shortcode.  For example:&lt;/p&gt;
 &lt;blockquote&gt;
     &lt;p&gt;Content&lt;/p&gt;&lt;span class=&#34;cite&#34;&gt;&lt;span&gt;― &lt;/span&gt;&lt;span&gt;A famous person, &lt;/span&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Book&#34;&gt;&lt;cite&gt;The book they wrote&lt;/cite&gt;&lt;/a&gt;&lt;/span&gt;&lt;/blockquote&gt;
