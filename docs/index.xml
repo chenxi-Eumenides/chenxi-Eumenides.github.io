@@ -37,6 +37,57 @@
 </description>
         </item>
         <item>
+        <title>笔记本改nas</title>
+        <link>https://chenxi-Eumenides.github.io/p/%E7%AC%94%E8%AE%B0%E6%9C%AC%E6%94%B9nas/</link>
+        <pubDate>Mon, 17 Mar 2025 14:34:29 +0800</pubDate>
+        
+        <guid>https://chenxi-Eumenides.github.io/p/%E7%AC%94%E8%AE%B0%E6%9C%AC%E6%94%B9nas/</guid>
+        <description>&lt;h2 id=&#34;背景&#34;&gt;背景
+&lt;/h2&gt;&lt;p&gt;我大学时期有一台笔记本电脑y7000 2019，在我购买台式电脑后，就不用了。&lt;/p&gt;
+&lt;p&gt;放在那也是浪费，性能也还算不错，打算将其改为nas，或者兼顾家庭服务器的角色。&lt;/p&gt;
+&lt;p&gt;本人在动手这一块是完全的小白，也不知道能不能成，试试再说。&lt;/p&gt;
+&lt;h3 id=&#34;配置&#34;&gt;配置
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://detail.zol.com.cn/1268/1267890/param.shtml&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Y7000 2019&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CPU：i7-9750H&lt;/li&gt;
+&lt;li&gt;GPU：1660ti&lt;/li&gt;
+&lt;li&gt;RAM：32G&lt;/li&gt;
+&lt;li&gt;显示屏：1080p60hz&lt;/li&gt;
+&lt;li&gt;网卡：ac9560ngw&lt;/li&gt;
+&lt;li&gt;接口
+&lt;ul&gt;
+&lt;li&gt;网口：2.4g&lt;/li&gt;
+&lt;li&gt;usb：5gps*3&lt;/li&gt;
+&lt;li&gt;hdmi：2.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;供电：联想方口200w&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;改造思路&#34;&gt;改造思路
+&lt;/h2&gt;&lt;p&gt;先拆开笔记本，进行一些清灰和换硅脂的标准操作，看一下基本结构&lt;/p&gt;
+&lt;p&gt;主板开机键在背面，原先是由键盘上方中心位置的按键触发，改装后需要考虑如何启动。&lt;/p&gt;
+&lt;p&gt;方案一是来电自启，这样可以用电源去控制。&lt;/p&gt;
+&lt;p&gt;方案二是将按键露在外侧，或者安装一个直接接触的按钮。&lt;/p&gt;
+&lt;p&gt;不打算接线到其他位置，技术不够。&lt;/p&gt;
+&lt;h3 id=&#34;主板改装&#34;&gt;主板改装
+&lt;/h3&gt;&lt;p&gt;主板本身是异形的，左侧接口由小板引出。&lt;/p&gt;
+&lt;p&gt;笔记本主板改塔式散热比较困难，至少对于我这样的小白来说，根本不可能。所以原本的散热装置保留，本身散热就是足够的，再在主板的对面安装一个风扇，应该就可以了。&lt;/p&gt;
+&lt;p&gt;主板上有原生的一个m2nevme接口，可以购买m2nvme转6sata转接板使用。再加上原生的一个sata接口，总计7个sata接口，对于我来说是足够了。&lt;/p&gt;
+&lt;p&gt;nvme固态和sata固态有差距，但对于我来说，区别不是很大。&lt;/p&gt;
+&lt;p&gt;主板上有wifi网卡，m2接口，可拆下，毕竟nas使用有线网口就足够了。淘宝上可购买m2wifi转2口sata，这样就多了2个sata接口口。&lt;/p&gt;
+&lt;h3 id=&#34;供电改装&#34;&gt;供电改装
+&lt;/h3&gt;&lt;p&gt;首先要考虑如何供电。主板本身使用的是20v11.5A的电源，这个电压并不常见，特别是要作为nas使用。机械硬盘使用的是12v和5v，固态使用的是3.3v和5v。&lt;/p&gt;
+&lt;p&gt;方案一是主板使用原装电源板砖，再外带一个pc电源给硬盘固态使用。这样简单，但两个电源比较累赘，控制也不方便。&lt;/p&gt;
+&lt;p&gt;方案二是主板使用12v升压20v模块。由于淘宝上没有pc电源接口直接转联想方口的配件，所以需要将pc电源12pin接口转12vDC，再接升压模块变为20vDC，再接DC接口转联想方口。不确定这样转接后，是否能正常使用。但好处也很明显，一个500w电源供电绰绰有余，控制也方便了。&lt;/p&gt;
+&lt;h3 id=&#34;外壳设计&#34;&gt;外壳设计
+&lt;/h3&gt;&lt;p&gt;先为主板画个简单cad图&lt;/p&gt;
+&lt;p&gt;购买了一些基础工具，测量了主板的长、宽、以及螺丝孔位的位置。&lt;/p&gt;
+&lt;p&gt;由于主板是异形，所以先找一张白纸，将主板的大小划在纸上，再测量划线之间的距离。同样标出螺丝空位的位置。&lt;/p&gt;
+&lt;p&gt;将纸上的数据&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Docker的用法，与创建一个开发环境</title>
         <link>https://chenxi-Eumenides.github.io/p/docker%E7%9A%84%E7%94%A8%E6%B3%95%E4%B8%8E%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</link>
         <pubDate>Thu, 06 Mar 2025 15:50:19 +0800</pubDate>
@@ -4722,7 +4773,7 @@ $$&lt;/p&gt;
         &lt;/div&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;bilibilibi-shortcode&#34;&gt;bilibilibi Shortcode
+&lt;/div&gt;&lt;h4 id=&#34;bilibili-shortcode&#34;&gt;bilibili Shortcode
 &lt;/h4&gt;
 
 
