@@ -3,6 +3,10 @@
 setup() {
     name="blog"
     desc="cheni-zqs的blog网站，用hugo搭建，主题为stack。"
+    log="build.log"
+
+    echo "" >> $log
+    echo "[$(date +%F_%T)] auto build by build.sh" >> $log
 }
 
 get_commit() {
@@ -16,29 +20,29 @@ get_commit() {
 build_local() {
     [[ -d public ]] && rm -r public
     echo "start build local"
-    hugo --config hugo-local.yaml --quiet
+    hugo --config hugo-local.yaml >> $log 2>&1
 }
 
 build_github() {
     [[ -d docs ]] && rm -r docs
     echo "start build github"
-    hugo --config hugo-github.yaml --buildDrafts --quiet
+    hugo --config hugo-github.yaml --buildDrafts >> $log 2>&1
 }
 
 update_git() {
     echo "start git update"
-    git add ./
+    git add ./ >> $log 2>&1
     if [[ -z $1 ]] ; then
         content="update: Auto build by runsh at $(date +%F_%T)"
     else
         content="$* at $(date +%F_%T)"
     fi
-    git commit -m "${content}"
+    git commit -m "${content}" >> $log 2>&1
 }
 
 push_git() {
     echo "start git push to github"
-    git push github master:main
+    git push github master:main >> $log 2>&1
 }
 
 #delete
