@@ -1,0 +1,168 @@
+# basic config
+baseurl: https://chenxi-Eumenides.github.io/
+title: chenxi的个人博客
+publishDir: docs
+
+enableEmoji: true
+enableGitInfo: true
+googleAnalytics:
+
+ignoreErrors:
+  - "error-remote-getjson"
+
+# module
+module:
+    hugoVersion:
+        extended: true
+        min: "0.87.0"
+
+# theme
+theme: hugo-theme-stack
+disqusShortname: hugo-theme-stack
+
+# language
+DefaultContentLanguage: zh-cn
+languageCode: zh-cn
+hasCJKLanguage: true
+languages:
+  zh-cn:
+    languageName: 中文
+    title: chenxi的个人博客
+    #description: chenxi
+    weight: 1
+
+# custom config
+pagination.pageSize: 10
+permalinks:
+  post: /p/:slug/
+  page: /:slug/
+params:
+  mainSections:
+    - post
+    #- about
+  featuredImageField: image
+  rssFullContent: true
+  favicon: /web_icon.ico
+
+  colorScheme:
+    toggle: true
+    default: auto
+
+  footer:
+    since: 2023
+    customText: 记录我所经历的。
+
+  dateFormat:
+    published: 2006.01.02
+    lastUpdated: 2006.01.02 15:04 MST
+
+  sidebar:
+    emoji: 🌞
+    subtitle: 我总在看这个世界。美好那么多，回忆那么远。
+    avatar:
+      enabled: true
+      local: true
+      src: img/avatar-3.jpg
+
+  article:
+    math: false
+    toc: true
+    readingTime: true
+    license:
+      enabled: true
+      default: Licensed under CC BY-NC-SA 4.0
+
+  widgets:
+    homepage:
+      - type: search
+      - type: categories
+        params:
+          limit: 10
+      - type: tag-cloud
+        params:
+          limit: 10
+
+    page:
+      - type: search
+      - type: toc
+      - type: categories
+        params:
+          limit: 10
+
+  comments:
+    enabled: false
+    provider: disqus
+
+  opengraph:
+    x:
+      site: cx_Eumenides
+      card: summary_large_image
+
+  defaultImage:
+    opengraph:
+      enabled: false
+      local: false
+      src:
+
+  imageProcessing:
+    cover:
+      enabled: true
+    content:
+      enabled: true
+
+#menu:
+#  social:
+#    - identifier: github
+#      name: GitHub
+#      url: https://github.com/chenxi-Eumenides
+#      params:
+#        icon: svg/brand-github
+#
+#    - identifier: qq
+#      name: QQ
+#      url: tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=174241477
+#      params:
+#        icon: svg/brand-qq
+#
+#    - identifier: bilibili
+#      name: Bilibili
+#      url: https://space.bilibili.com/34515347
+#      params:
+#        icon: svg/brand-bilibili
+#
+#    - identifier: steam
+#      name: Steam
+#      url: https://space.bilibili.com/34515347
+#      params:
+#        icon: svg/brand-steam
+
+related:
+  includeNewer: true
+  threshold: 60
+  toLower: false
+  indices:
+    - name: tags
+      weight: 100
+    - name: categories
+      weight: 200
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  tableOfContents:
+    endLevel: 4
+    ordered: true
+    startLevel: 2
+  highlight:
+    noClasses: false
+    codeFences: true
+    guessSyntax: true
+    lineNoStart: 1
+    lineNos: true
+    lineNumbersInTable: true
+    tabWidth: 4
+
+frontmatter:
+  lastmod: [":git", ":fileModTime", "lastmod", ":default"]
+  date: ["lastmod", "date", "publishDate"]
