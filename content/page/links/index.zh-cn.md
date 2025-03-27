@@ -4,7 +4,7 @@ links:
   - title: GitHub
     description: Quick Link to my Github.
     website: https://github.com/chenxi-Eumenides
-    image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+    image: github_github.svg
   - title: Bilibili
     description: Quick Link to my Bilibili.
     website: https://space.bilibili.com/34515347
@@ -12,7 +12,7 @@ links:
   - title: Steam
     description: Quick Link to my Steam.
     website: https://space.bilibili.com/34515347
-    image: ts-logo-128.jpg
+    image: steam.svg
 menu:
     main:
         weight: -80

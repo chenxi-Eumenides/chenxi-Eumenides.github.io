@@ -2,7 +2,7 @@
 
 config() {
     name="blog" # 必填
-    desc="我自己的blog网站，用hugo搭建，主题为stack。\n构建两个版本：本地、github.io" # 描述
+    desc="我自己的blog网站，用hugo搭建，主题为stack。\n构建两个版本：本地、github.io\n应当先手动add文件，再使用该脚本。" # 描述
 
     # 0:verbose 1:info 2:warning 3:error 4:panic 5:quiet
     log_level=1 # 输出日志等级
@@ -49,16 +49,24 @@ build_github() {
 update_git() {
     log 1 "start git update"
     local git_log_level=1
+    if [[ $1 == "-f" ]] ; then
+        skip_add=true
+        log 2 "dont use -f option, you need add file manual and use `git status` to check."
+    else
+        skip_add=false
+    fi
+    shift
     if [[ -z $1 ]] ; then
-        content="update: Auto build by runsh at $(date +%F_%T)"
+        content="auto: no commit info. auto build at $(date +%F_%T)"
     else
         content="$* at $(date +%F_%T)"
     fi
+    log 1 "add: ${skip_add}, start commit"
     if $enable_log_file ; then
-        git add ./ >> $( (( $git_log_level >= $log_level )) && echo "$log_file" || echo "/dev/null" ) 2>&1
+        $skip_add && git add ./ >> $( (( $git_log_level >= $log_level )) && echo "$log_file" || echo "/dev/null" ) 2>&1
         git commit -m "${content}" $( (( $git_log_level >= $log_level )) || echo \-$arg-quiet ) >> $log_file 2>&1
     else
-        git add ./
+        $skip_add && git add ./
         git commit -m "${content}" $( (( $git_log_level >= $log_level )) || echo \-$arg-quiet )
     fi
 }
@@ -91,6 +99,13 @@ main() {
             build_github || return 1
             get_commit ${@:2} || return 1
             update_git $input || return 1
+            push_git || return 1
+            ;;
+        "-f"|"--force"|"force")
+            build_local || return 1
+            build_github || return 1
+            get_commit ${@:2} || return 1
+            update_git -f $input || return 1
             push_git || return 1
             ;;
         "-n"|"--no"|"no")
@@ -167,11 +182,11 @@ config_check() {
 
 log() {
     # 0:verbose 1:info 2:warning 3:error 4:panic 5:output
-    level=$1 # 打印的日志等级
-    msg=${@:2} # 日志内容
-    func=${FUNCNAME[1]} # 调用log的函数
-    log_level_name=("VERBOSE" "INFO" "WARN" "ERROR" "PANIC")
-    log_color=("\e[37m" "\e[97m" "\e[33m" "\e[31m" "\e[91m")
+    local level=$1 # 打印的日志等级
+    local msg=${@:2} # 日志内容
+    local func=${FUNCNAME[1]} # 调用log的函数
+    local log_level_name=("VERBOSE" "INFO" "WARN" "ERROR" "PANIC")
+    local log_color=("\e[37m" "\e[97m" "\e[33m" "\e[31m" "\e[91m")
 
     # 检查传入的日志等级是否正确
     ! [[ $level =~ ^[0-5]$ ]] && level=3 && msg="args error ( \$1 : $1 )"
@@ -180,16 +195,16 @@ log() {
 
     # 构造并输出
     if $enable_log_file ; then
-        content="[${log_level_name[${level}]}] (${func}) : ${msg}"
+        local log_content="[${log_level_name[${level}]}] (${func}) : ${msg}"
         # 日志等级 >= 设定的日志等级，写入日志
         if (( $level >= $log_level )) ; then
-            echo "$content" >> $log_file 2>&1
+            echo "$log_content" >> $log_file 2>&1
         fi
     else
-        content="[${log_color[${level}]}${log_level_name[${level}]}\e[0m] (${func}) : ${msg}"
+        local log_content="[${log_color[${level}]}${log_level_name[${level}]}\e[0m] (${func}) : ${msg}"
         # 日志等级 >= 设定的日志等级，输出日志
         if [[ $level = 5 ]] || (( $level >= $log_level )) ; then
-            echo -e "$content"
+            echo -e "$log_content"
         fi
     fi
 }
