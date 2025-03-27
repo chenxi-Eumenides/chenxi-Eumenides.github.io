@@ -57,15 +57,18 @@ update_git() {
     fi
     shift
 
+    # commit补充时间
     if [[ -z $1 ]] ; then
         local content="auto: no commit info. auto build at $(date +%F_%T)"
     else
         local content="$* at $(date +%F_%T)"
     fi
 
-    [[ $(git status -s) != "" ]] && local change=true || local no_change=false
+    # 判断是否有提交改动
+    [[ $(git status -s | grep "^M") != "" ]] && local change=true || local no_change=false
 
     log 1 "add: ${skip_add_all}, change: ${change}, start commit"
+    # 有改动就commit
     if $enable_log_file ; then
         $skip_add_all && git add ./ >> $( (( $git_log_level >= $log_level )) && echo "$log_file" || echo "/dev/null" ) 2>&1
         $change && git commit -m "${content}" $( (( $git_log_level >= $log_level )) || echo \-$arg-quiet ) >> $log_file 2>&1
@@ -138,6 +141,7 @@ init() {
     file_name=$(basename $0)
     path=$(pwd)
     config && config_check || return 1
+    echo "" >> $log_file
     log 1 "start init"
     # 其他初始化操作
 
