@@ -6,37 +6,6 @@
         <description>Recent content on chenxi的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language><atom:link href="https://chenxi-Eumenides.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Todo List</title>
-        <link>https://chenxi-Eumenides.github.io/p/todo-list/</link>
-        <pubDate>Sat, 06 May 2023 04:36:21 +0800</pubDate>
-        
-        <guid>https://chenxi-Eumenides.github.io/p/todo-list/</guid>
-        <description>&lt;h2 id=&#34;笔记&#34;&gt;笔记
-&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; python3安装&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; mc服务器&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; rtmp直播推流&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 泰拉瑞亚服务器&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; git&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; kindle越狱&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;编程&#34;&gt;编程
-&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; rust学习&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;学习&#34;&gt;学习
-&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 考公
-&lt;ul&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 网上报课&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 论文&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 周记&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        </item>
-        <item>
         <title>笔记本改nas</title>
         <link>https://chenxi-Eumenides.github.io/p/%E7%AC%94%E8%AE%B0%E6%9C%AC%E6%94%B9nas/</link>
         <pubDate>Mon, 17 Mar 2025 14:34:29 +0800</pubDate>
