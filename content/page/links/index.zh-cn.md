@@ -8,7 +8,7 @@ links:
   - title: Bilibili
     description: Quick Link to my Bilibili.
     website: https://space.bilibili.com/34515347
-    image: ts-logo-128.jpg
+    image: bilibili-logo.png
   - title: Steam
     description: Quick Link to my Steam.
     website: https://space.bilibili.com/34515347
@@ -22,4 +22,4 @@ menu:
 comments: false
 ---
 
-Link Start!
+以下列出了一些我的相关链接。
