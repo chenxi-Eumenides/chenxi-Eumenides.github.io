@@ -131,7 +131,7 @@ git branch -D <branch> # 强制删除分支
 git log --graph # 查看分支合并图
 ```
 
-### 暂存
+#### 暂存
 
 ```git
 git stash # 将当前改动存到临时区
@@ -143,7 +143,7 @@ git stash drop # 删除某个临时区
 git stash pop # 恢复并删除某个临时区
 ```
 
-### 标签
+#### 标签
 
 ```git
 git tag <tag_name> <COMMIT_ID> # 为某次提交添加标签
@@ -165,9 +165,20 @@ git push origin :refs/tags/<tag_name> # 删除远程库标签
 ```git
 git rebase -i HEAD~n # 交互式修改前n个提交
 # 将其中的pick改为fixup可合并commit
+# fixup会将该行提交合并到上一行
 # 其他可看提示信息
+
 git rebase --edit-todo # 编辑rebase
 git rebase --continue # 继续rebase
 git rebase --skip # 跳过rebase的错误
 git rebase --abort # 取消rebase，回退到之前的状态
+
+git push -f ... # 强制推送更新
+```
+
+### 零散指令
+
+```git
+git shortlog -sn # 查看各个作者的提交数量
+git rev-list --count HEAD # 获取所有提交数量
 ```

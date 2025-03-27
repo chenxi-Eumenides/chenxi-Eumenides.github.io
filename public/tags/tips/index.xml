@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Tips on chenxi的个人博客</title>
+        <link>http://blog.chenxi-eumenides.top:81/tags/tips/</link>
+        <description>Recent content in Tips on chenxi的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Thu, 27 Mar 2025 10:36:08 +0800</lastBuildDate><atom:link href="http://blog.chenxi-eumenides.top:81/tags/tips/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Ranger配置及使用</title>
+        <link>http://blog.chenxi-eumenides.top:81/p/ranger%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/</link>
+        <pubDate>Sat, 06 May 2023 01:35:00 +0800</pubDate>
+        
+        <guid>http://blog.chenxi-eumenides.top:81/p/ranger%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/</guid>
+        <description>&lt;h2 id=&#34;安装&#34;&gt;安装
+&lt;/h2&gt;&lt;p&gt;pacman直接安装即可&lt;/p&gt;
+&lt;h2 id=&#34;配置&#34;&gt;配置
+&lt;/h2&gt;&lt;p&gt;运行命令将全局配置复制到 &lt;code&gt;~/.config/ranger/&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ranger --copy-config&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;all
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;编辑&lt;code&gt;~/.config/ranger/rc.conf&lt;/code&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;文件预览&#34;&gt;文件预览
+&lt;/h3&gt;&lt;p&gt;默认打开的。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;set preview_files true
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;图像预览&#34;&gt;图像预览
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;注：我按照网上说的没成功。有说需要xterm字符界面，不能是terminal虚拟终端。&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;set preview_images false # 改成 true
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;set preview_images_method w3m # 改成自己用的就行 w3m/kitty/等，需要自己安装
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;代码高亮&#34;&gt;代码高亮
+&lt;/h3&gt;&lt;p&gt;安装&lt;code&gt;highlight&lt;/code&gt;即可。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pacman -S highlight
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;压缩包预览&#34;&gt;压缩包预览
+&lt;/h3&gt;&lt;p&gt;安装&lt;code&gt;atool&lt;/code&gt;即可。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pacman -S atool
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;编辑器选择&#34;&gt;编辑器选择
+&lt;/h3&gt;&lt;p&gt;第一次用ranger打开文件会让选择编辑器&lt;/p&gt;
+&lt;h3 id=&#34;外观&#34;&gt;外观
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;set draw_borders true # 绘制边框
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;set line_numbers true # 显示序号
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;set column_ratios 2,3,5 # 设置宽度，比例
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;使用&#34;&gt;使用
+&lt;/h2&gt;&lt;h3 id=&#34;基本操作&#34;&gt;基本操作
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;按键1&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;按键2&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;作用&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;h&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;←&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;返回上一层&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;l&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;→&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;进入文件/文件夹&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;j&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;↓&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;向下&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;k&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;↑&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;向上&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Enter&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;打开文件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;q&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;退出&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;新建删除&#34;&gt;新建/删除
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;按键1&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;按键2&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;作用&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;F7&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;code&gt;:mkdir&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;新建文件夹&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;INSERT&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;code&gt;:touch&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;新建文件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;dD&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;F8&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;删除文件/文件夹，等同&lt;code&gt;:delete&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;DD&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;移至回收站&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;重命名&#34;&gt;重命名
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;按键&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;作用&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;cw&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;重命名，包括后缀&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;I&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;重命名，光标在最前&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;A&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;重命名，光标在最后&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;a&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;重命名，光标在最后，不包括后缀&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;粘贴&#34;&gt;粘贴
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;按键&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;作用&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;pp&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;粘贴，默认 append 模式&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;pP&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;append 模式，如果该目录中有同名条目，则在条目后面加上 _、_0、_1……。如果条目是文件，则在文件后缀名后加入。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;po&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;overwrite 模式，如果该目录中有同名条目，则覆盖原来的条目。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;pO&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;append 模式 + overwrite 模式。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;pl&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;粘贴为符号链接，不在状态栏显示目标条目的相对路径。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;pL&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;粘贴为符号链接（相对路径），在状态栏显示目标条目的相对路径。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;phl&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;粘贴为硬链接&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;pht&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;粘贴为硬链接的子目录（hardlinked subtree）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;搜索&#34;&gt;搜索
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;按键&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;作用&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;/&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;打开搜索框，输入要搜索的字符串，回车后开始搜索。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;f&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;查找，等同于运行满足条件的文件或者打开满足条件的文件夹。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;zf&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;与命令行 filter 作用一样，只显示符合条件的条目，区分大小写。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;n N&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;查找下一个搜索结果 查找上一个搜索结果&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;c + 对应字母&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;通过对应属性依次遍历，如：ca：通过 atime属性依次遍历cc：通过 ctime 属性依次遍历ci：通过 mimetype 属性依次遍历cm：通过 mtime 属性依次遍历cs：通过 size 属性依次遍历ct：通过 tag 属性依次遍历&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;帮助页面&#34;&gt;帮助页面
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;按键&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;作用&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;m&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;打开手册页&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;k&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;打开按键绑定&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;c&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;打开可用命令和描述的列表&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;s&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;打开设置及其当前值的列表&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,1665 @@
+
+[2025-03-25_13:53:28] auto build by build.sh
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+ERROR render of "/home/chenxi-zqs/Apps/blog/content/_index.zh-cn.md" failed: "/home/chenxi-zqs/Apps/blog/themes/hugo-theme-stack/layouts/index.html:9:15": execute of template failed: template: index.html:9:15: executing "main" at <partial "article-list/default" .>: error calling partial: "/home/chenxi-zqs/Apps/blog/themes/hugo-theme-stack/layouts/partials/article-list/default.html:3:7": execute of template failed: template: partials/article-list/default.html:3:7: executing "partials/article-list/default.html" at <partial "article/components/header" .>: error calling partial: "/home/chenxi-zqs/Apps/blog/themes/hugo-theme-stack/layouts/partials/article/components/header.html:34:7": execute of template failed: template: partials/article/components/header.html:34:7: executing "partials/article/components/header.html" at <partialCached "article/components/details" . .RelPermalink>: error calling partialCached: partial "article/components/details" timed out after 30s. This is most likely due to infinite recursion. If this is just a slow template, you can try to increase the 'timeout' config setting.
+Total in 30178 ms
+Error: error building site: render: failed to render pages: render of "/home/chenxi-zqs/Apps/blog/content/post/2023-04-03_hugo-blog-tips/index.md" failed: "/home/chenxi-zqs/Apps/blog/themes/hugo-theme-stack/layouts/_default/single.html:27:7": execute of template failed: template: _default/single.html:27:7: executing "main" at <partial "article/article.html" .>: error calling partial: partial "article/article.html" timed out after 30s. This is most likely due to infinite recursion. If this is just a slow template, you can try to increase the 'timeout' config setting.
+
+[2025-03-25_13:55:05] auto build by build.sh
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+[2025-03-25_13:56:14] auto build by build.sh
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+[2025-03-25_14:06:33] auto build by build.sh
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+[2025-03-25_14:56:00] auto build by build.sh
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+Total in 86 ms
+Error: error building site: process: readAndProcessContent: "/home/chenxi-zqs/Apps/blog/content/post/2023-04-03_hugo-blog-tips/index.md:484:1": failed to extract shortcode: template for shortcode "code-name" not found
+
+[2025-03-25_14:56:08] auto build by build.sh
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+Total in 92 ms
+Error: error building site: process: readAndProcessContent: "/home/chenxi-zqs/Apps/blog/content/post/2023-04-03_hugo-blog-tips/index.md:484:1": failed to extract shortcode: template for shortcode "code-name" not found
+
+[2025-03-25_15:10:19] auto build by build.sh
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 271 ms
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 277 ms
+[master caadcc9] update: update blog md with new shortcode at 2025-03-25_15:10:20
+ 21 files changed, 840 insertions(+), 1637 deletions(-)
+ create mode 100644 docs/qr_e26ce9a112fe2602.png
+To github.com:chenxi-Eumenides/chenxi-Eumenides.github.io.git
+   d192e2b..caadcc9  master -> main
+
+[2025-03-25_15:21:00] auto build by build.sh
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 267 ms
+
+[2025-03-25_15:25:33] auto build by build.sh
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 269 ms
+
+[2025-03-25_15:26:01] auto build by build.sh
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 256 ms
+
+[2025-03-25_15:26:37] auto build by build.sh
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 271 ms
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 269 ms
+
+[2025-03-25_15:32:34] auto build by build.sh
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 272 ms
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 270 ms
+
+[2025-03-25_15:33:18] auto build by build.sh
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 286 ms
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 277 ms
+
+[2025-03-25_15:47:23] auto build by build.sh
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 262 ms
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 270 ms
+[master 416b530] update: update blog md with new shortcode at 2025-03-25_15:47:24
+ 104 files changed, 244 insertions(+), 247 deletions(-)
+ delete mode 100644 docs/qr_e26ce9a112fe2602.png
+To github.com:chenxi-Eumenides/chenxi-Eumenides.github.io.git
+   caadcc9..416b530  master -> main
+
+[2025-03-25_15:49:07] auto build by build.sh
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 277 ms
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 283 ms
+[master 8b7a94e] fix: build.sh can print right at 2025-03-25_15:49:08
+ 93 files changed, 104 insertions(+), 104 deletions(-)
+To github.com:chenxi-Eumenides/chenxi-Eumenides.github.io.git
+   416b530..8b7a94e  master -> main
+
+[2025-03-25_15:50:13] auto build by build.sh
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 279 ms
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 278 ms
+[master 9300970] fix: build.sh can print right at 2025-03-25_15:50:13
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:chenxi-Eumenides/chenxi-Eumenides.github.io.git
+   8b7a94e..9300970  master -> main
+
+[2025-03-25_15:51:22] auto build by build.sh
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 267 ms
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 274 ms
+[master b00d892] fix: build.sh can print right at 2025-03-25_15:51:23
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+To github.com:chenxi-Eumenides/chenxi-Eumenides.github.io.git
+   9300970..b00d892  master -> main
+
+[2025-03-25_16:57:18] auto build by build.sh
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 285 ms
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 273 ms
+[master 99740dd] update: add redirection tips at 2025-03-25_16:57:19
+ 12 files changed, 1008 insertions(+), 1 deletion(-)
+To github.com:chenxi-Eumenides/chenxi-Eumenides.github.io.git
+   b00d892..99740dd  master -> main
+
+[2025-03-25_16:58:58] auto build by build.sh
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 283 ms
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 288 ms
+[master 4ce346a] update: disable googleapis option at 2025-03-25_16:58:59
+ 92 files changed, 115 insertions(+), 115 deletions(-)
+To github.com:chenxi-Eumenides/chenxi-Eumenides.github.io.git
+   99740dd..4ce346a  master -> main
+[INFO] (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 279 ms
+[INFO] (build_github) : start build github
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 287 ms
+[INFO] (get_commit) : start get commit
+[INFO] (update_git) : start git update
+[master 45a9c9f] update: update build.sh at 2025-03-26_16:39:34
+ 2 files changed, 275 insertions(+), 60 deletions(-)
+ create mode 100755 build.old.sh
+[INFO] (push_git) : start git push to github
+To github.com:chenxi-Eumenides/chenxi-Eumenides.github.io.git
+   4ce346a..45a9c9f  master -> main
+[97m[INFO][0m (init) : start init
+[97m[INFO][0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 270 ms
+[97m[INFO][0m (build_github) : start build github
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 287 ms
+[97m[INFO][0m (get_commit) : start get commit
+[97m[INFO][0m (update_git) : start git update
+位于分支 master
+您的分支与上游分支 'github/main' 一致。
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+[97m[INFO][0m (close) : finished
+[97m[INFO][0m (init) : start init
+[97m[INFO][0m (close) : finished
+[97m[INFO][0m (init) : start init
+[97m[INFO][0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 287 ms
+[97m[INFO][0m (build_github) : start build github
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 290 ms
+[97m[INFO][0m (get_commit) : start get commit
+[97m[INFO][0m (update_git) : start git update
+位于分支 master
+您的分支与上游分支 'github/main' 一致。
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+[97m[INFO][0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 304 ms
+\e[97m[INFO]\e[0m (build_github) : start build github
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 315 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支与上游分支 'github/main' 一致。
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 269 ms
+\e[97m[INFO]\e[0m (build_github) : start build github
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 289 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支与上游分支 'github/main' 一致。
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 307 ms
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 276 ms
+\e[97m[INFO]\e[0m (build_github) : start build github
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 302 ms
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 286 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_github) : start build github
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 303 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支与上游分支 'github/main' 一致。
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 283 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支与上游分支 'github/main' 一致。
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 299 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支与上游分支 'github/main' 一致。
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 294 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支与上游分支 'github/main' 一致。
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 297 ms
+\e[97m[INFO]\e[0m (build_local) : test
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 275 ms
+\e[97m[INFO]\e[0m (build_local) : test
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 268 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支与上游分支 'github/main' 一致。
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+content
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支与上游分支 'github/main' 一致。
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+content
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支与上游分支 'github/main' 一致。
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+content
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支与上游分支 'github/main' 一致。
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+content
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支与上游分支 'github/main' 一致。
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 300 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支与上游分支 'github/main' 一致。
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 297 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支与上游分支 'github/main' 一致。
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 293 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支与上游分支 'github/main' 一致。
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 289 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+[master e6a60ac] test: test build.sh at 2025-03-27_08:58:45
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 278 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支领先 'github/main' 共 1 个提交。
+  （使用 "git push" 来发布您的本地提交）
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 277 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支领先 'github/main' 共 1 个提交。
+  （使用 "git push" 来发布您的本地提交）
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 280 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支领先 'github/main' 共 1 个提交。
+  （使用 "git push" 来发布您的本地提交）
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 278 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支领先 'github/main' 共 1 个提交。
+  （使用 "git push" 来发布您的本地提交）
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 283 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支领先 'github/main' 共 1 个提交。
+  （使用 "git push" 来发布您的本地提交）
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 281 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支领先 'github/main' 共 1 个提交。
+  （使用 "git push" 来发布您的本地提交）
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 272 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支领先 'github/main' 共 1 个提交。
+  （使用 "git push" 来发布您的本地提交）
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 278 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+[master 11bb4a8] test: test build.sh at 2025-03-27_09:08:43
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 281 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支领先 'github/main' 共 2 个提交。
+  （使用 "git push" 来发布您的本地提交）
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+未跟踪的文件:
+  （使用 "git add <文件>..." 以包含要提交的内容）
+	hugo-github.yaml
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 307 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支领先 'github/main' 共 2 个提交。
+  （使用 "git push" 来发布您的本地提交）
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+未跟踪的文件:
+  （使用 "git add <文件>..." 以包含要提交的内容）
+	hugo-github.yaml
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+\e[97m[INFO]\e[0m (init) : start init
+\e[97m[INFO]\e[0m (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 280 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 280 ms
+\e[97m[INFO]\e[0m (get_commit) : start get commit
+\e[97m[INFO]\e[0m (update_git) : start git update
+位于分支 master
+您的分支领先 'github/main' 共 2 个提交。
+  （使用 "git push" 来发布您的本地提交）
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+  （提交或丢弃子模组中未跟踪或修改的内容）
+	修改：     build.sh
+	修改：     themes/hugo-theme-stack (修改的内容, 未跟踪的内容)
+
+未跟踪的文件:
+  （使用 "git add <文件>..." 以包含要提交的内容）
+	hugo-github.yaml
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+\e[97m[INFO]\e[0m (close) : finished
+[INFO] (init) : start init
+[INFO] (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 277 ms
+[INFO] (get_commit) : start get commit
+[INFO] (update_git) : start git update
+[master 563a758] test: test build.sh at 2025-03-27_09:19:49
+ 2 files changed, 177 insertions(+), 7 deletions(-)
+ create mode 100644 hugo-github.yaml
+[INFO] (close) : finished
+[INFO] (init) : start init
+[INFO] (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 313 ms
+[INFO] (build_github) : start build github
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 278 ms
+[INFO] (get_commit) : start get commit
+[INFO] (update_git) : start git update
+[master 82d4de8] update: update build.sh and shell md at 2025-03-27_09:27:05
+ 13 files changed, 141 insertions(+), 4 deletions(-)
+[INFO] (push_git) : start git push to github
+To github.com:chenxi-Eumenides/chenxi-Eumenides.github.io.git
+   44470fb..82d4de8  master -> main
+[INFO] (close) : finished
+
+[INFO] (init) : start init
+[INFO] (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 290 ms
+[INFO] (build_github) : start build github
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 301 ms
+[INFO] (get_commit) : start get commit
+[INFO] (update_git) : start git update
+[master b1d40ac] fix: fix build.sh at 2025-03-27_09:57:33
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+[INFO] (push_git) : start git push to github
+To github.com:chenxi-Eumenides/chenxi-Eumenides.github.io.git
+   2de6997..b1d40ac  master -> main
+[INFO] (close) : finished
+[INFO] (init) : start init
+[INFO] (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 306 ms
+[INFO] (build_github) : start build github
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 310 ms
+[INFO] (get_commit) : start get commit
+[INFO] (update_git) : start git update
+[master ee566d0] update: add rebase info to git.md at 2025-03-27_10:16:40
+ 10 files changed, 178 insertions(+), 4 deletions(-)
+[INFO] (push_git) : start git push to github
+To github.com:chenxi-Eumenides/chenxi-Eumenides.github.io.git
+ ! [rejected]        master -> main (non-fast-forward)
+错误：无法推送一些引用到 'github.com:chenxi-Eumenides/chenxi-Eumenides.github.io.git'
+提示： 更新被拒绝，因为推送的一个分支的最新提交落后于其对应的远程分支。
+提示： 如果您希望先与远程变更合并，请在推送前执行 'git pull'。
+提示： 详见 'git push --help' 中的 'Note about fast-forwards' 小节。
+[INFO] (close) : finished
+[INFO] (init) : start init
+[INFO] (build_local) : start build local
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   160  
+  Paginator pages  |     8  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    66  
+  Cleaned          |     0  
+
+Total in 305 ms
+[INFO] (build_github) : start build github
+Start building sites … 
+hugo v0.145.0+extended+withdeploy linux/amd64 BuildDate=unknown
+
+
+                   | ZH-CN  
+-------------------+--------
+  Pages            |   169  
+  Paginator pages  |     9  
+  Non-page files   |    23  
+  Static files     |     0  
+  Processed images |    41  
+  Aliases          |    70  
+  Cleaned          |     0  
+
+Total in 284 ms
+[INFO] (get_commit) : start get commit
+[INFO] (update_git) : start git update

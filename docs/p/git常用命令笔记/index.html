@@ -10,7 +10,7 @@
 <meta property='og:description' content="git的一些常用命令，方便查询使用。">
 <meta property='og:url' content='https://chenxi-Eumenides.github.io/p/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AC%94%E8%AE%B0/'>
 <meta property='og:site_name' content='chenxi的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='git' /><meta property='article:tag' content='编程' /><meta property='article:tag' content='github' /><meta property='article:published_time' content='2023-05-06T16:25:48&#43;08:00'/><meta property='article:modified_time' content='2025-03-12T11:32:54&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='git' /><meta property='article:tag' content='编程' /><meta property='article:tag' content='github' /><meta property='article:published_time' content='2023-05-06T16:25:48&#43;08:00'/><meta property='article:modified_time' content='2025-03-27T10:16:41&#43;08:00'/>
 <meta name="twitter:title" content="git常用命令笔记">
 <meta name="twitter:description" content="git的一些常用命令，方便查询使用。">
     <link rel="shortcut icon" href="/web_icon.ico" />
@@ -255,11 +255,12 @@
             <li><a href="#远程">远程</a></li>
             <li><a href="#文件">文件</a></li>
             <li><a href="#分支">分支</a></li>
+            <li><a href="#暂存">暂存</a></li>
+            <li><a href="#标签">标签</a></li>
           </ol>
         </li>
-        <li><a href="#暂存">暂存</a></li>
-        <li><a href="#标签">标签</a></li>
         <li><a href="#整理提交">整理提交</a></li>
+        <li><a href="#零散指令">零散指令</a></li>
       </ol>
     </li>
   </ol>
@@ -369,7 +370,7 @@
 
 
 
-                <time class="article-time--lastmod">2025.03.12</time>
+                <time class="article-time--lastmod">2025.03.27</time>
             </div>
         
 
@@ -593,8 +594,8 @@
 </span></span><span class="line"><span class="cl">git log --graph # 查看分支合并图
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="暂存">暂存
-</h3><div class="highlight"><div class="chroma">
+</div><h4 id="暂存">暂存
+</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -614,8 +615,8 @@
 </span></span><span class="line"><span class="cl">git stash pop # 恢复并删除某个临时区
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="标签">标签
-</h3><div class="highlight"><div class="chroma">
+</div><h4 id="标签">标签
+</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -648,22 +649,41 @@
 </div><h3 id="整理提交">整理提交
 </h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git rebase -i HEAD~n # 交互式修改前n个提交
 </span></span><span class="line"><span class="cl"># 将其中的pick改为fixup可合并commit
+</span></span><span class="line"><span class="cl"># fixup会将该行提交合并到上一行
 </span></span><span class="line"><span class="cl"># 其他可看提示信息
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">git rebase --edit-todo # 编辑rebase
 </span></span><span class="line"><span class="cl">git rebase --continue # 继续rebase
 </span></span><span class="line"><span class="cl">git rebase --skip # 跳过rebase的错误
 </span></span><span class="line"><span class="cl">git rebase --abort # 取消rebase，回退到之前的状态
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git push -f ... # 强制推送更新
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="零散指令">零散指令
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git shortlog -sn # 查看各个作者的提交数量
+</span></span><span class="line"><span class="cl">git rev-list --count HEAD # 获取所有提交数量
 </span></span></code></pre></td></tr></table>
 </div>
 </div>
@@ -705,7 +725,7 @@
 
 
         <span>
-            最后更新于 2025.03.12 11:32 CST
+            最后更新于 2025.03.27 10:16 CST
         </span>
     </section></footer>
 

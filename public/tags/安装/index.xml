@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>安装 on chenxi的个人博客</title>
+        <link>http://blog.chenxi-eumenides.top:81/tags/%E5%AE%89%E8%A3%85/</link>
+        <description>Recent content in 安装 on chenxi的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Thu, 27 Mar 2025 10:36:09 +0800</lastBuildDate><atom:link href="http://blog.chenxi-eumenides.top:81/tags/%E5%AE%89%E8%A3%85/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Powershell的配置、脚本用法</title>
+        <link>http://blog.chenxi-eumenides.top:81/p/powershell%E7%9A%84%E9%85%8D%E7%BD%AE%E8%84%9A%E6%9C%AC%E7%94%A8%E6%B3%95/</link>
+        <pubDate>Thu, 30 May 2024 10:50:23 +0800</pubDate>
+        
+        <guid>http://blog.chenxi-eumenides.top:81/p/powershell%E7%9A%84%E9%85%8D%E7%BD%AE%E8%84%9A%E6%9C%AC%E7%94%A8%E6%B3%95/</guid>
+        <description>&lt;h2 id=&#34;安装配置&#34;&gt;安装配置
+&lt;/h2&gt;&lt;p&gt;原始的终端并不算好看，所以打算进行一番配置，以符合我的审美&lt;/p&gt;
+&lt;h3 id=&#34;安装&#34;&gt;安装
+&lt;/h3&gt;&lt;h4 id=&#34;powershell&#34;&gt;powershell
+&lt;/h4&gt;&lt;p&gt;默认的powershell版本为5.1，将其升级为powershell 7。powershell 7默认就开启了很多功能，比如我最爱的↑↓→键快速匹配历史记录。&lt;/p&gt;
+&lt;p&gt;当前使用的版本&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$psversiontable&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;我的版本7.4.2。&lt;/p&gt;
+&lt;p&gt;没有7版本的进行安装&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;winget&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-id&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Microsoft&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;PowerShell&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;我的电脑默认两个版本都安装了，所以将终端的powershell 7启用即可。&lt;/p&gt;
+&lt;p&gt;终端-设置-新配置文件-从powershell复制&lt;/p&gt;
+&lt;p&gt;路径改为：&lt;code&gt;C:\Program Files\PowerShell\7\pwsh.exe&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;将默认值改为该配置文件。&lt;/p&gt;
+&lt;h4 id=&#34;oh-my-posh&#34;&gt;oh-my-posh
+&lt;/h4&gt;&lt;p&gt;oh-my-posh是一个类似与oh-my-zsh的美化插件，先进行安装。这里的winget我能正常使用，否则请前往官网。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;winget&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;JanDeDobbeleer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;OhMyPosh&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-s&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;winget&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;配置&#34;&gt;配置
+&lt;/h3&gt;&lt;p&gt;编辑powershell的用户配置&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;notepad&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$PROFILE&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;# 没有该文件，则创建一个新的&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;New-Item&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-Path&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$PROFILE&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-Type&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;File&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-Force&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;添加以下内容保存&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;oh-my-posh init pwsh | Invoke-Expression
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;重启终端。&lt;/p&gt;
+&lt;h4 id=&#34;临时在当前环境中启用&#34;&gt;临时在当前环境中启用
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$env:Path&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;;C:\Users\user\AppData\Local\Programs\oh-my-posh\bin&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;配置主题&#34;&gt;配置主题
+&lt;/h4&gt;&lt;p&gt;主题是一个json配置文件，默认自带就有很多。&lt;/p&gt;
+&lt;p&gt;查看已安装主题&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Get-PoshThemes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;要使用某个主题，编辑powershell配置&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;notepad&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$PROFILE&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;将前面的语句修改为&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;oh-my-posh init pwsh --config &amp;#34;$env:POSH_THEMES_PATH/&amp;lt;THEME_NAME&amp;gt;.omp.json&amp;#34; | Invoke-Expression
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;重启终端&lt;/p&gt;
+&lt;h4 id=&#34;安装字体&#34;&gt;安装字体
+&lt;/h4&gt;&lt;p&gt;omp的主题大多需要特殊符号，所以要安装一个nerf字体。&lt;/p&gt;
+&lt;p&gt;官方推荐meslo字体，直接下载。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Invoke-WebRequest&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-Uri&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.zip&amp;#34;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-OutFile&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Meslo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;zip&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;解压后全选ttf文件，右键安装。&lt;/p&gt;
+&lt;p&gt;在终端-powershell7的配置文件-外观-字体，选择MesloLGM Nerd Font Mono字体，保存。&lt;/p&gt;
+&lt;h3 id=&#34;完成&#34;&gt;完成
+&lt;/h3&gt;&lt;p&gt;到此，主题安装完成。&lt;/p&gt;
+&lt;p&gt;我选择使用的是iterm2主题，&lt;/p&gt;
+&lt;h2 id=&#34;powershell脚本&#34;&gt;powershell脚本
+&lt;/h2&gt;&lt;p&gt;PowerShell的脚本后缀为ps1&lt;/p&gt;
+&lt;h3 id=&#34;变量&#34;&gt;变量
+&lt;/h3&gt;&lt;p&gt;定义变量&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-pwsh&#34; data-lang=&#34;pwsh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$key&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;# 中间可以有空格&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用变量&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-pwsh&#34; data-lang=&#34;pwsh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Write-Output&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$key&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Write-Output&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;控制&#34;&gt;控制
+&lt;/h3&gt;&lt;h4 id=&#34;判断&#34;&gt;判断
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-pwsh&#34; data-lang=&#34;pwsh&#34;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;循环&#34;&gt;循环
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-pwsh&#34; data-lang=&#34;pwsh&#34;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
+        <title>Ms Office 安装激活</title>
+        <link>http://blog.chenxi-eumenides.top:81/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/</link>
+        <pubDate>Tue, 11 Apr 2023 20:26:59 +0800</pubDate>
+        
+        <guid>http://blog.chenxi-eumenides.top:81/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/</guid>
+        <description>&lt;h1 id=&#34;所用的软件&#34;&gt;所用的软件
+&lt;/h1&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://otp.landian.vip/zh-cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Office Tool Plus&lt;/a&gt;选择框架版（有.NET6.0的可以使用无框架的版本）。&lt;/p&gt;
+&lt;h1 id=&#34;安装&#34;&gt;安装
+&lt;/h1&gt;&lt;h2 id=&#34;部署&#34;&gt;部署
+&lt;/h2&gt;&lt;p&gt;打开Office Tool Plus，进入&lt;code&gt;部署&lt;/code&gt;选项页。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://blog.chenxi-eumenides.top:81/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/install-page.jpg&#34;
+	width=&#34;1440&#34;
+	height=&#34;789&#34;
+	srcset=&#34;http://blog.chenxi-eumenides.top:81/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/install-page_hu_75d37354e2387fac.jpg 480w, http://blog.chenxi-eumenides.top:81/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/install-page_hu_e3b4e460830b2938.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;部署选项页&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;182&#34;
+		data-flex-basis=&#34;438px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;点击&lt;code&gt;添加产品&lt;/code&gt;，选择所需的软件版本，我选择了office365企业应用版（但我用的是我微软账户的2019家庭学生版，所以这项其实可以选2019家庭学生版）与visio专业版2021（这是我写论文所需）。&lt;/p&gt;
+&lt;p&gt;添加完成后，在下方选择需要的应用，不需要就关闭选项即可。&lt;/p&gt;
+&lt;p&gt;在部署Office中打开&lt;code&gt;下载后再部署开关&lt;/code&gt;，其他都不修改。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://blog.chenxi-eumenides.top:81/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/install-option.jpg&#34;
+	width=&#34;1440&#34;
+	height=&#34;789&#34;
+	srcset=&#34;http://blog.chenxi-eumenides.top:81/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/install-option_hu_b4ba0384ee0f4c0f.jpg 480w, http://blog.chenxi-eumenides.top:81/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/install-option_hu_beb142771def85ef.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;部署配置&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;182&#34;
+		data-flex-basis=&#34;438px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;点&lt;code&gt;开始部署&lt;/code&gt;，等待软件自己安装完成。&lt;/p&gt;
+&lt;h2 id=&#34;激活&#34;&gt;激活
+&lt;/h2&gt;&lt;p&gt;进入&lt;code&gt;激活&lt;/code&gt;选项页。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://blog.chenxi-eumenides.top:81/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/active-page.jpg&#34;
+	width=&#34;1440&#34;
+	height=&#34;789&#34;
+	srcset=&#34;http://blog.chenxi-eumenides.top:81/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/active-page_hu_1407735449c3f9a0.jpg 480w, http://blog.chenxi-eumenides.top:81/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/active-page_hu_9f307ea935bcdfbe.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;部署选项页&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;182&#34;
+		data-flex-basis=&#34;438px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;先清除已有的许可证。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://blog.chenxi-eumenides.top:81/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/remove-activation.jpg&#34;
+	width=&#34;529&#34;
+	height=&#34;336&#34;
+	srcset=&#34;http://blog.chenxi-eumenides.top:81/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/remove-activation_hu_d02941e6db151c75.jpg 480w, http://blog.chenxi-eumenides.top:81/p/ms-office-%E5%AE%89%E8%A3%85%E6%BF%80%E6%B4%BB/remove-activation_hu_18c696c60cd5c30a.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;清楚已有许可证&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;157&#34;
+		data-flex-basis=&#34;377px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;我微软账户有office2019家庭学生，所以word四件套我直接登录账号即可。&lt;/p&gt;
+&lt;p&gt;点击&lt;code&gt;安装许可证&lt;/code&gt;，选择visio专业版2021（和上面安装的版本一致），等待其运行完成即可。&lt;/p&gt;
+&lt;h1 id=&#34;完成&#34;&gt;完成
+&lt;/h1&gt;&lt;p&gt;这个软件有新手帮助，出问题可以直接寻找。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>oh-my-zsh安装及配置</title>
+        <link>http://blog.chenxi-eumenides.top:81/p/oh-my-zsh%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE/</link>
+        <pubDate>Sun, 29 Jan 2023 05:02:30 +0800</pubDate>
+        
+        <guid>http://blog.chenxi-eumenides.top:81/p/oh-my-zsh%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE/</guid>
+        <description>&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;本文基本来至&lt;a class=&#34;link&#34; href=&#34;https://ohmyz.sh/#install&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;oh-my-zsh官网&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;安装&#34;&gt;安装
+&lt;/h2&gt;&lt;h3 id=&#34;zsh&#34;&gt;zsh
+&lt;/h3&gt;&lt;p&gt;系统为manjaro,直接pacman安装zsh&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pacman -Sy zsh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在&lt;code&gt;/etc/passwd&lt;/code&gt;中修改root和用户的默认shell为&lt;code&gt;/bin/zsh&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;重启终端即可。&lt;/p&gt;
+&lt;h3 id=&#34;oh-my-zsh&#34;&gt;oh-my-zsh
+&lt;/h3&gt;&lt;p&gt;前往官网复制安装命令，一键安装。&lt;/p&gt;
+&lt;p&gt;以下二选一即可。&lt;/p&gt;
+&lt;p&gt;1.使用curl&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sh -c &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;2.使用wget&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sh -c &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;配置&#34;&gt;配置
+&lt;/h2&gt;&lt;p&gt;oh-my-zsh会自动替换.zshrc文件。&lt;/p&gt;
+&lt;h3 id=&#34;alias&#34;&gt;alias
+&lt;/h3&gt;&lt;p&gt;alias就是命令的简写方式&lt;/p&gt;
+&lt;p&gt;格式为&lt;code&gt;alias short_command=&#39;long_command&#39;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在.zshrc文件尾添加alias,也可以在.zshrc文件尾添加&lt;code&gt;source .zsh_alias&lt;/code&gt;，然后创建.zsh_alias文件，在这其中添加alias。&lt;/p&gt;
+&lt;h3 id=&#34;插件&#34;&gt;插件
+&lt;/h3&gt;&lt;p&gt;在&lt;a class=&#34;link&#34; href=&#34;https://github.com/zsh-users&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;github&lt;/a&gt;上可以看到多个插件，点进去，找到&lt;code&gt;INSTALL.md&lt;/code&gt;链接，找到oh-my-zsh的安装命令，在终端中运行。&lt;/p&gt;
+&lt;p&gt;在&lt;code&gt;.zshrc&lt;/code&gt;文件中的plugin一项中，添加刚下载的插件名称即可。&lt;/p&gt;
+&lt;h3 id=&#34;主题&#34;&gt;主题
+&lt;/h3&gt;&lt;p&gt;去&lt;a class=&#34;link&#34; href=&#34;https://github.com/ohmyzsh/ohmyzsh/wiki/Themes&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;官网&lt;/a&gt;可以找到所有的主题，在更改theme变量为所要的主题名。&lt;/p&gt;
+&lt;h2 id=&#34;更新配置&#34;&gt;更新配置
+&lt;/h2&gt;&lt;p&gt;刚写完的配置是不会启用的，手动启用一次，或者打开新的终端就能使用了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;source&lt;/span&gt; .zshrc
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

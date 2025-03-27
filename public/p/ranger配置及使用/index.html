@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="ranger的功能配置，及使用的一些方法">
+<title>Ranger配置及使用</title>
+
+<link rel='canonical' href='http://blog.chenxi-eumenides.top:81/p/ranger%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/'>
+
+<link rel="stylesheet" href="/scss/style.min.2e5541a60d5db0a1a9ae76847053d786aaa8ded081c951a91110d97e96fcbb26.css"><meta property='og:title' content="Ranger配置及使用">
+<meta property='og:description' content="ranger的功能配置，及使用的一些方法">
+<meta property='og:url' content='http://blog.chenxi-eumenides.top:81/p/ranger%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/'>
+<meta property='og:site_name' content='chenxi的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='笔记' /><meta property='article:tag' content='ranger' /><meta property='article:tag' content='tips' /><meta property='article:tag' content='linux' /><meta property='article:published_time' content='2023-05-06T01:35:00&#43;08:00'/><meta property='article:modified_time' content='2025-03-27T10:36:08&#43;08:00'/>
+<meta name="twitter:title" content="Ranger配置及使用">
+<meta name="twitter:description" content="ranger的功能配置，及使用的一些方法">
+    <link rel="shortcut icon" href="/web_icon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar-3_hu_2be0edece8cbea5b.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌞</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">chenxi的个人博客</a></h1>
+            <h2 class="site-description">我总在看这个世界。美好那么多，回忆那么远。</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                <form action="/search/" class="search-form widget" >
+        <p>
+            <label>搜索</label>
+            <input name="keyword" required placeholder="输入关键词..." />
+        
+            <button title="搜索">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+            
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#配置">配置</a>
+      <ol>
+        <li><a href="#文件预览">文件预览</a></li>
+        <li><a href="#图像预览">图像预览</a></li>
+        <li><a href="#代码高亮">代码高亮</a></li>
+        <li><a href="#压缩包预览">压缩包预览</a></li>
+        <li><a href="#编辑器选择">编辑器选择</a></li>
+        <li><a href="#外观">外观</a></li>
+      </ol>
+    </li>
+    <li><a href="#使用">使用</a>
+      <ol>
+        <li><a href="#基本操作">基本操作</a></li>
+        <li><a href="#新建删除">新建/删除</a></li>
+        <li><a href="#重命名">重命名</a></li>
+        <li><a href="#粘贴">粘贴</a></li>
+        <li><a href="#搜索">搜索</a></li>
+        <li><a href="#帮助页面">帮助页面</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+            
+                <section class="widget tagCloud">
+    <div class="widget-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+    </div>
+    <h2 class="widget-title section-title">分类</h2>
+
+    <div class="tagCloud-tags">
+        
+            <a href="/categories/%E8%BD%AF%E4%BB%B6/" class="font_size_6">
+                软件
+            </a>
+        
+            <a href="/categories/%E5%BC%80%E5%8F%91/" class="font_size_5">
+                开发
+            </a>
+        
+            <a href="/categories/%E6%B8%B8%E6%88%8F/" class="font_size_5">
+                游戏
+            </a>
+        
+            <a href="/categories/%E7%8E%A9%E6%9C%BA/" class="font_size_3">
+                玩机
+            </a>
+        
+            <a href="/categories/%E4%B8%AA%E4%BA%BA/" class="font_size_2">
+                个人
+            </a>
+        
+    </div>
+</section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%BD%AF%E4%BB%B6/" >
+                软件
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/ranger%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/">Ranger配置及使用</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            ranger的功能配置，及使用的一些方法
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023.05.06</time>
+            </div>
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--lastmod">2025.03.27</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="安装">安装
+</h2><p>pacman直接安装即可</p>
+<h2 id="配置">配置
+</h2><p>运行命令将全局配置复制到 <code>~/.config/ranger/</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ranger --copy-config<span class="o">=</span>all
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>编辑<code>~/.config/ranger/rc.conf</code>。</p>
+<h3 id="文件预览">文件预览
+</h3><p>默认打开的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set preview_files true
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="图像预览">图像预览
+</h3><p><code>注：我按照网上说的没成功。有说需要xterm字符界面，不能是terminal虚拟终端。</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set preview_images false # 改成 true
+</span></span><span class="line"><span class="cl">set preview_images_method w3m # 改成自己用的就行 w3m/kitty/等，需要自己安装
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="代码高亮">代码高亮
+</h3><p>安装<code>highlight</code>即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pacman -S highlight
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="压缩包预览">压缩包预览
+</h3><p>安装<code>atool</code>即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pacman -S atool
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="编辑器选择">编辑器选择
+</h3><p>第一次用ranger打开文件会让选择编辑器</p>
+<h3 id="外观">外观
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set draw_borders true # 绘制边框
+</span></span><span class="line"><span class="cl">set line_numbers true # 显示序号
+</span></span><span class="line"><span class="cl">set column_ratios 2,3,5 # 设置宽度，比例
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="使用">使用
+</h2><h3 id="基本操作">基本操作
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">按键1</th>
+          <th style="text-align: center">按键2</th>
+          <th style="text-align: center">作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">h</td>
+          <td style="text-align: center">←</td>
+          <td style="text-align: center">返回上一层</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">l</td>
+          <td style="text-align: center">→</td>
+          <td style="text-align: center">进入文件/文件夹</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">j</td>
+          <td style="text-align: center">↓</td>
+          <td style="text-align: center">向下</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">k</td>
+          <td style="text-align: center">↑</td>
+          <td style="text-align: center">向上</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">Enter</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center">打开文件</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">q</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center">退出</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="新建删除">新建/删除
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">按键1</th>
+          <th style="text-align: center">按键2</th>
+          <th style="text-align: center">作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">F7</td>
+          <td style="text-align: center"><code>:mkdir</code></td>
+          <td style="text-align: center">新建文件夹</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">INSERT</td>
+          <td style="text-align: center"><code>:touch</code></td>
+          <td style="text-align: center">新建文件</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">dD</td>
+          <td style="text-align: center">F8</td>
+          <td style="text-align: center">删除文件/文件夹，等同<code>:delete</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">DD</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center">移至回收站</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="重命名">重命名
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">按键</th>
+          <th style="text-align: center">作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">cw</td>
+          <td style="text-align: center">重命名，包括后缀</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">I</td>
+          <td style="text-align: center">重命名，光标在最前</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">A</td>
+          <td style="text-align: center">重命名，光标在最后</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">a</td>
+          <td style="text-align: center">重命名，光标在最后，不包括后缀</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="粘贴">粘贴
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">按键</th>
+          <th style="text-align: center">作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">pp</td>
+          <td style="text-align: center">粘贴，默认 append 模式</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">pP</td>
+          <td style="text-align: center">append 模式，如果该目录中有同名条目，则在条目后面加上 _、_0、_1……。如果条目是文件，则在文件后缀名后加入。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">po</td>
+          <td style="text-align: center">overwrite 模式，如果该目录中有同名条目，则覆盖原来的条目。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">pO</td>
+          <td style="text-align: center">append 模式 + overwrite 模式。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">pl</td>
+          <td style="text-align: center">粘贴为符号链接，不在状态栏显示目标条目的相对路径。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">pL</td>
+          <td style="text-align: center">粘贴为符号链接（相对路径），在状态栏显示目标条目的相对路径。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">phl</td>
+          <td style="text-align: center">粘贴为硬链接</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">pht</td>
+          <td style="text-align: center">粘贴为硬链接的子目录（hardlinked subtree）</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="搜索">搜索
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">按键</th>
+          <th style="text-align: center">作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">/</td>
+          <td style="text-align: center">打开搜索框，输入要搜索的字符串，回车后开始搜索。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">f</td>
+          <td style="text-align: center">查找，等同于运行满足条件的文件或者打开满足条件的文件夹。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">zf</td>
+          <td style="text-align: center">与命令行 filter 作用一样，只显示符合条件的条目，区分大小写。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">n N</td>
+          <td style="text-align: center">查找下一个搜索结果 查找上一个搜索结果</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c + 对应字母</td>
+          <td style="text-align: center">通过对应属性依次遍历，如：ca：通过 atime属性依次遍历cc：通过 ctime 属性依次遍历ci：通过 mimetype 属性依次遍历cm：通过 mtime 属性依次遍历cs：通过 size 属性依次遍历ct：通过 tag 属性依次遍历</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="帮助页面">帮助页面
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">按键</th>
+          <th style="text-align: center">作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">m</td>
+          <td style="text-align: center">打开手册页</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">k</td>
+          <td style="text-align: center">打开按键绑定</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c</td>
+          <td style="text-align: center">打开可用命令和描述的列表</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">s</td>
+          <td style="text-align: center">打开设置及其当前值的列表</td>
+      </tr>
+  </tbody>
+</table></div>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+        
+            <a href="/tags/ranger/">Ranger</a>
+        
+            <a href="/tags/tips/">Tips</a>
+        
+            <a href="/tags/linux/">Linux</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2025.03.27 10:36 CST
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/%E7%B3%BB%E7%BB%9F%E5%85%A8%E7%9B%98%E8%BF%81%E7%A7%BB/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">系统全盘迁移</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">hugo安装、配置、命令与markdown语法</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/oh-my-zsh%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">oh-my-zsh安装及配置</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/docker%E7%9A%84%E7%94%A8%E6%B3%95%E4%B8%8E%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Docker的用法，与创建一个开发环境</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/powershell%E7%9A%84%E9%85%8D%E7%BD%AE%E8%84%9A%E6%9C%AC%E7%94%A8%E6%B3%95/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Powershell的配置、脚本用法</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2025 chenxi的个人博客
+    </section>
+    
+    <section class="powerby">
+        
+            记录我所经历的。 <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
