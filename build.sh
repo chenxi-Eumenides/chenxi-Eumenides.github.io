@@ -55,12 +55,11 @@ update_git() {
         content="$* at $(date +%F_%T)"
     fi
     if $enable_log_file ; then
-        git add ./ >> /dev/null
         git add ./ >> $( (( $git_log_level >= $log_level )) && echo "$log_file" || echo "/dev/null" ) 2>&1
-        git commit -m "${content}" $( (( $git_log_level >= $log_level )) || echo $arg-quiet ) >> $log_file 2>&1
+        git commit -m "${content}" $( (( $git_log_level >= $log_level )) || echo \-$arg-quiet ) >> $log_file 2>&1
     else
-        git add ./ $( (( $git_log_level >= $log_level )) || echo '&>/dev/null')
-        git commit -m "${content}" $( (( $git_log_level >= $log_level )) || echo $arg-quiet )
+        git add ./
+        git commit -m "${content}" $( (( $git_log_level >= $log_level )) || echo \-$arg-quiet )
     fi
 }
 
@@ -68,9 +67,9 @@ push_git() {
     log 1 "start git push to github"
     local git_log_level=1
     if $enable_log_file ; then
-        git push github master:main $( (( $git_log_level >= $log_level )) || echo $arg-quiet ) >> $log_file 2>&1
+        git push github master:main $( (( $git_log_level >= $log_level )) || echo \-$arg-quiet ) >> $log_file 2>&1
     else
-        git push github master:main $( (( $git_log_level >= $log_level )) || echo $arg-quiet )
+        git push github master:main $( (( $git_log_level >= $log_level )) || echo \-$arg-quiet )
     fi
 }
 
@@ -203,6 +202,7 @@ log_return() {
 }
 
 log_flash() {
+    $enable_log_file || return 0
     line=$(wc -l ${log_file} | awk '{print $1}')
     [ $line -gt $log_file_max_line ] && {
         log 2 "log file line ${line}, too large."
