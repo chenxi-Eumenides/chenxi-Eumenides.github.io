@@ -119,6 +119,7 @@ git rm <FILE> # 删除文件
 git branch <branch> # 创建分支
 git switch <branch> # 切换分支
 git switch -c <branch> # 创建并切换分支
+git checkout -b <branch> # 创建并切换分支，老方法
 
 git merge <other_branch> # 合并分支
 
@@ -129,7 +130,6 @@ git branch -D <branch> # 强制删除分支
 
 git log --graph # 查看分支合并图
 ```
-
 
 ### 暂存
 
@@ -158,4 +158,16 @@ git push origin --tags # 将所有没被推送的标签推送到远程库
 
 git tag -d <tag_name> # 删除本地标签
 git push origin :refs/tags/<tag_name> # 删除远程库标签
+```
+
+### 整理提交
+
+```git
+git rebase -i HEAD~n # 交互式修改前n个提交
+# 将其中的pick改为fixup可合并commit
+# 其他可看提示信息
+git rebase --edit-todo # 编辑rebase
+git rebase --continue # 继续rebase
+git rebase --skip # 跳过rebase的错误
+git rebase --abort # 取消rebase，回退到之前的状态
 ```

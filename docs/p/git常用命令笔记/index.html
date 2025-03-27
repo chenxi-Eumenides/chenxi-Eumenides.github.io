@@ -259,6 +259,7 @@
         </li>
         <li><a href="#暂存">暂存</a></li>
         <li><a href="#标签">标签</a></li>
+        <li><a href="#整理提交">整理提交</a></li>
       </ol>
     </li>
   </ol>
@@ -383,7 +384,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 2 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -574,11 +575,13 @@
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git branch &lt;branch&gt; # 创建分支
 </span></span><span class="line"><span class="cl">git switch &lt;branch&gt; # 切换分支
 </span></span><span class="line"><span class="cl">git switch -c &lt;branch&gt; # 创建并切换分支
+</span></span><span class="line"><span class="cl">git checkout -b &lt;branch&gt; # 创建并切换分支，老方法
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">git merge &lt;other_branch&gt; # 合并分支
 </span></span><span class="line"><span class="cl">
@@ -640,6 +643,27 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">git tag -d &lt;tag_name&gt; # 删除本地标签
 </span></span><span class="line"><span class="cl">git push origin :refs/tags/&lt;tag_name&gt; # 删除远程库标签
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="整理提交">整理提交
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git rebase -i HEAD~n # 交互式修改前n个提交
+</span></span><span class="line"><span class="cl"># 将其中的pick改为fixup可合并commit
+</span></span><span class="line"><span class="cl"># 其他可看提示信息
+</span></span><span class="line"><span class="cl">git rebase --edit-todo # 编辑rebase
+</span></span><span class="line"><span class="cl">git rebase --continue # 继续rebase
+</span></span><span class="line"><span class="cl">git rebase --skip # 跳过rebase的错误
+</span></span><span class="line"><span class="cl">git rebase --abort # 取消rebase，回退到之前的状态
 </span></span></code></pre></td></tr></table>
 </div>
 </div>
