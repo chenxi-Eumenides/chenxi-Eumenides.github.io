@@ -55,10 +55,8 @@ update_git() {
         content="$* at $(date +%F_%T)"
     fi
     if $enable_log_file ; then
-#         echo "tail $log_file | $(echo 'tee -a $log_file')"
-#        tail $log_file | $(echo "tee -a $log_file")
         git add ./ >> /dev/null
-#        git add ./ $( (( $git_log_level >= $log_level )) && echo "| tee -a $log_file 2>&1" || echo '&>/dev/null' )
+        git add ./ >> $( (( $git_log_level >= $log_level )) && echo "$log_file" || echo "/dev/null" ) 2>&1
         git commit -m "${content}" $( (( $git_log_level >= $log_level )) || echo $arg-quiet ) >> $log_file 2>&1
     else
         git add ./ $( (( $git_log_level >= $log_level )) || echo '&>/dev/null')

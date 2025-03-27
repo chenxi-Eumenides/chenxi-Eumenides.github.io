@@ -293,6 +293,7 @@
       <ol>
         <li><a href="#获取后缀名">获取后缀名</a></li>
         <li><a href="#判断变量是否存在">判断变量是否存在</a></li>
+        <li><a href="#去除字符串后n位">去除字符串后n位</a></li>
         <li><a href="#工作路径切换">工作路径切换</a></li>
         <li><a href="#获取带空格的文件名">获取带空格的文件名</a></li>
         <li><a href="#判断语句的简单写法">判断语句的简单写法</a></li>
@@ -546,10 +547,12 @@
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">str</span><span class="o">=</span><span class="s2">&#34;old_string&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">str</span><span class="p">/#old/new</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># new_string</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>字符串大小写</p>
@@ -1278,6 +1281,17 @@
 </span></span><span class="line"><span class="cl"><span class="k">else</span>
 </span></span><span class="line"><span class="cl">    <span class="c1"># 存在</span>
 </span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="去除字符串后n位">去除字符串后n位
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">string</span><span class="o">=</span><span class="s2">&#34;012345&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">string</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span>$<span class="p">[</span><span class="si">${#</span><span class="nv">string</span><span class="si">}</span><span class="p">-n]</span><span class="si">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="工作路径切换">工作路径切换

@@ -93,6 +93,7 @@ ${str##regex}
 ```bash
 str="old_string"
 ${str/#old/new}
+# new_string
 ```
 
 字符串大小写
@@ -499,6 +500,13 @@ elif [[ -z "${key:=}" ]] ; then
 else
     # 存在
 fi
+```
+
+### 去除字符串后n位
+
+```bash
+string="012345"
+${string:0:$[${#string}-n]}
 ```
 
 ### 工作路径切换
