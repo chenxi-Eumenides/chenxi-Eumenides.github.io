@@ -1,0 +1,23 @@
+
+<!--
+Parameters:
+    id - (Required) App ID
+    width - (Optional) width
+    height - (Optional) height
+-->
+
+{{ if .IsNamedParams }}
+<iframe src="https://store.steampowered.com/widget/{{ .Get "id" }}"
+    width="{{ default "100%" (.Get "width") }}"
+    height="{{ default "380" (.Get "height") }}"
+    frameborder="0"
+    allowtransparency="true"
+    allow="encrypted-media"></iframe>
+{{ else }}
+<iframe src="https://store.steampowered.com/widget/{{ .Get 0 }}"
+    width="{{ default "100%" (.Get 1) }}"
+    height="{{ default "380" (.Get 2) }}"
+    frameborder="0"
+    allowtransparency="true"
+    allow="encrypted-media"></iframe>
+{{ end }}
