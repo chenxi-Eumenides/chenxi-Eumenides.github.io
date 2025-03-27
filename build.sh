@@ -50,24 +50,28 @@ update_git() {
     log 1 "start git update"
     local git_log_level=1
     if [[ $1 == "-f" ]] ; then
-        skip_add=true
+        local skip_add_all=true
         log 2 "dont use -f option, you need add file manual and use `git status` to check."
     else
-        skip_add=false
+        local skip_add_all=false
     fi
     shift
+
     if [[ -z $1 ]] ; then
-        content="auto: no commit info. auto build at $(date +%F_%T)"
+        local content="auto: no commit info. auto build at $(date +%F_%T)"
     else
-        content="$* at $(date +%F_%T)"
+        local content="$* at $(date +%F_%T)"
     fi
-    log 1 "add: ${skip_add}, start commit"
+
+    [[ $(git status -s) != "" ]] && local change=true || local no_change=false
+
+    log 1 "add: ${skip_add_all}, change: ${change}, start commit"
     if $enable_log_file ; then
-        $skip_add && git add ./ >> $( (( $git_log_level >= $log_level )) && echo "$log_file" || echo "/dev/null" ) 2>&1
-        git commit -m "${content}" $( (( $git_log_level >= $log_level )) || echo \-$arg-quiet ) >> $log_file 2>&1
+        $skip_add_all && git add ./ >> $( (( $git_log_level >= $log_level )) && echo "$log_file" || echo "/dev/null" ) 2>&1
+        $change && git commit -m "${content}" $( (( $git_log_level >= $log_level )) || echo \-$arg-quiet ) >> $log_file 2>&1
     else
-        $skip_add && git add ./
-        git commit -m "${content}" $( (( $git_log_level >= $log_level )) || echo \-$arg-quiet )
+        $skip_add_all && git add ./
+        $change && git commit -m "${content}" $( (( $git_log_level >= $log_level )) || echo \-$arg-quiet )
     fi
 }
 
