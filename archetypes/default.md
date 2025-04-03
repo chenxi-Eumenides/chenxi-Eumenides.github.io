@@ -16,6 +16,6 @@ math:
 comments: false
 license: 
 
-hidden: false
-draft: true
+hidden: true
+draft: false
 ---
