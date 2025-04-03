@@ -47,7 +47,8 @@ draft: false
 
 ```bash
 uv init <Project-Path>
-uv init --name <Project-Name> --python <Python-Version> <Project-Path>
+# --name <Project-Name> # 指定项目名称
+# --python <Python-Version> # 指定python版本
 # --app 作为app创建
 # --lib 作为liv创建
 # --script 作为script创建
