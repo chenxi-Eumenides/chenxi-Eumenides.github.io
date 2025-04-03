@@ -10,7 +10,7 @@
 <meta property='og:description' content="使用uv等工具对python的开发环境进行管理">
 <meta property='og:url' content='https://chenxi-Eumenides.github.io/p/python%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86/'>
 <meta property='og:site_name' content='chenxi的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='开发' /><meta property='article:tag' content='编程' /><meta property='article:tag' content='python' /><meta property='article:tag' content='uv' /><meta property='article:published_time' content='2025-04-03T11:07:59&#43;08:00'/><meta property='article:modified_time' content='2025-04-03T11:09:15&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='开发' /><meta property='article:tag' content='编程' /><meta property='article:tag' content='python' /><meta property='article:tag' content='uv' /><meta property='article:published_time' content='2025-04-03T11:07:59&#43;08:00'/><meta property='article:modified_time' content='2025-04-03T11:15:22&#43;08:00'/>
 <meta name="twitter:title" content="python环境管理">
 <meta name="twitter:description" content="使用uv等工具对python的开发环境进行管理">
     <link rel="shortcut icon" href="/web_icon.ico" />
@@ -227,6 +227,38 @@
         
             
                 
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#常见python管理工具">常见python管理工具</a></li>
+    <li><a href="#uv使用方法">uv使用方法</a>
+      <ol>
+        <li><a href="#初始化">初始化</a></li>
+        <li><a href="#文件结构">文件结构</a></li>
+        <li><a href="#使用">使用</a></li>
+        <li><a href="#全局工具">全局工具</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
             
         
             
@@ -344,7 +376,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 0 分钟
+                    阅读时长: 2 分钟
                 </time>
             </div>
         
@@ -359,7 +391,109 @@
     <section class="article-content">
     
     
-    
+    <h2 id="常见python管理工具">常见python管理工具
+</h2><p><code>pip+venv</code>: 原生内置的包管理和虚拟环境工具</p>
+<p><code>virtualenv</code>: 第三方venv，提供更多选项</p>
+<p><code>pyenv</code>: 轻量管理多个python版本的工具</p>
+<p><code>poetry</code>: 现代化的依赖管理和打包工具，专注于简化项目依赖管理</p>
+<p><code>conda(miniconda)</code>: 开源的数据科学和机器学习环境管理工具，支持包管理和虚拟环境</p>
+<p><code>mamba</code>: conda的开源高性能替代</p>
+<p><code>pipenv</code>: 结合 pip 和 virtualenv 的工具，提供更简洁的依赖管理方式</p>
+<p><code>uv</code>: 用rust写的高效全能一站式环境包管理工具</p>
+<h2 id="uv使用方法">uv使用方法
+</h2><h3 id="初始化">初始化
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">uv init &lt;Project-Path&gt;
+</span></span><span class="line"><span class="cl">uv init --name &lt;Project-Name&gt; --python &lt;Python-Version&gt; &lt;Project-Path&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># --app 作为app创建</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --lib 作为liv创建</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --script 作为script创建</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="文件结构">文件结构
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">├── .git             <span class="c1"># git</span>
+</span></span><span class="line"><span class="cl">├── .gitignore       <span class="c1"># git</span>
+</span></span><span class="line"><span class="cl">├── hello.py         <span class="c1"># 默认代码</span>
+</span></span><span class="line"><span class="cl">├── pyproject.toml   <span class="c1"># 项目配置信息</span>
+</span></span><span class="line"><span class="cl">├── .python-version  <span class="c1"># python版本</span>
+</span></span><span class="line"><span class="cl">└── README.md        <span class="c1"># 说明文件</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用">使用
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">uv run &lt;Py-File&gt; <span class="c1"># 运行文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --with &lt;lib&gt; 带依赖运行</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">uv sync <span class="c1"># 同步环境，第一次会生成必要文件</span>
+</span></span><span class="line"><span class="cl">uv add &lt;Py-Pkg&gt; <span class="c1"># 安装依赖</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --group &lt;Group-Name&gt; # 指定依赖的组，比如区分开发环境和生产环境</span>
+</span></span><span class="line"><span class="cl">uv remove &lt;Py-Pkg&gt; <span class="c1"># 删除依赖</span>
+</span></span><span class="line"><span class="cl">uv lock --upgrade-package requests <span class="c1"># 更新依赖</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">uv venv <span class="c1"># 进入虚拟环境</span>
+</span></span><span class="line"><span class="cl">deactivate <span class="c1"># 退出环境</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">uv python install &lt;Python-Version&gt; <span class="c1"># 安装指定版本的python</span>
+</span></span><span class="line"><span class="cl">uv python list <span class="c1"># 列出可用版本</span>
+</span></span><span class="line"><span class="cl">uvx python@3.13.2 -c <span class="s2">&#34;print(&#39;hello world&#39;)&#34;</span> <span class="c1"># 用指定版本直接运行</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">uv pip &lt;Args&gt; <span class="c1"># 使用环境中的pip</span>
+</span></span><span class="line"><span class="cl">uv tree <span class="c1"># 显示树状图</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="全局工具">全局工具
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">uv tool install &lt;Cli-Tool&gt; <span class="c1"># 安装全局工具</span>
+</span></span><span class="line"><span class="cl">uv tool run &lt;Cli-Tool&gt; &lt;Args&gt; <span class="c1"># 使用全局工具</span>
+</span></span><span class="line"><span class="cl">uvx &lt;Cli-Tool&gt; &lt;Args&gt; <span class="c1"># 直接使用工具，未安装会自动下载</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
@@ -400,7 +534,7 @@
 
 
         <span>
-            最后更新于 2025.04.03 11:09 CST
+            最后更新于 2025.04.03 11:15 CST
         </span>
     </section></footer>
 
