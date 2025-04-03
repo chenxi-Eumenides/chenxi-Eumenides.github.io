@@ -20,7 +20,7 @@ math: false
 comments: false
 license: 
 
-hidden: false
+hidden: true
 draft: false
 ---
 
