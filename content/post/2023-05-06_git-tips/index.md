@@ -71,6 +71,25 @@ git pull <remote-name> <remote-branch>:<local-branch> # 将远程仓库的某个
 git push <remote-name> <local-branch>:<remote-branch> # 将本地分支推送到远程仓库的某个分支中
 ```
 
+#### from new repo
+
+```bash
+git init
+git add README.md
+git commit -m "commit"
+git branch -M master
+git remote add origin git@github.com:chenxi-Eumenides/...
+git push -u origin master
+```
+
+#### from exist repo
+
+```bash
+git remote add origin git@github.com:chenxi-Eumenides/...
+git branch -M master
+git push -u origin master
+```
+
 ### 常用命令
 
 #### 仓库
