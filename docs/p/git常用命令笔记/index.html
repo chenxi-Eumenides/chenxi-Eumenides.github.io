@@ -248,7 +248,12 @@
     <li><a href="#常用git命令">常用git命令</a>
       <ol>
         <li><a href="#设置">设置</a></li>
-        <li><a href="#基本流程">基本流程</a></li>
+        <li><a href="#基本流程">基本流程</a>
+          <ol>
+            <li><a href="#from-new-repo">from new repo</a></li>
+            <li><a href="#from-exist-repo">from exist repo</a></li>
+          </ol>
+        </li>
         <li><a href="#常用命令">常用命令</a>
           <ol>
             <li><a href="#仓库">仓库</a></li>
@@ -487,6 +492,38 @@
 </span></span><span class="line"><span class="cl"># 获取、推送
 </span></span><span class="line"><span class="cl">git pull &lt;remote-name&gt; &lt;remote-branch&gt;:&lt;local-branch&gt; # 将远程仓库的某个分支合并到本地分支中
 </span></span><span class="line"><span class="cl">git push &lt;remote-name&gt; &lt;local-branch&gt;:&lt;remote-branch&gt; # 将本地分支推送到远程仓库的某个分支中
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="from-new-repo">from new repo
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git add README.md
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;commit&#34;</span>
+</span></span><span class="line"><span class="cl">git branch -M master
+</span></span><span class="line"><span class="cl">git remote add origin git@github.com:chenxi-Eumenides/...
+</span></span><span class="line"><span class="cl">git push -u origin master
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="from-exist-repo">from exist repo
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git remote add origin git@github.com:chenxi-Eumenides/...
+</span></span><span class="line"><span class="cl">git branch -M master
+</span></span><span class="line"><span class="cl">git push -u origin master
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="常用命令">常用命令

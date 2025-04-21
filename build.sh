@@ -70,7 +70,7 @@ update_git() {
     # 是否修改了docs
     [[ $(git status -s | grep -E "^ M \"?docs/") != "" ]] && local build=true || local build=false
 
-    log 1 "add: ${skip_add_all}, change: ${change}, start commit"
+    log 1 "add:${skip_add_all}, change:${change}, build:${build}, start commit"
     # 有改动就commit
     if $enable_log_file ; then
         $skip_add_all && git add ./ >> $( (( $git_log_level >= $log_level )) && echo "$log_file" || echo "/dev/null" ) 2>&1
@@ -154,7 +154,17 @@ init() {
 }
 
 close() {
-    log 1 "finished"
+    local main_return=$1
+    if [[ ${main_return-default} == "default" ]] ; then
+        log 1 "init failed"
+        $enable_log_file && echo "init failed"
+    elif [[ $main_return == "0" ]] ; then
+        log 1 "main success"
+        $enable_log_file && echo "main success"
+    else
+        log 1 "main failed"
+        $enable_log_file && echo "main failed"
+    fi
     log_flash
     exit 0
 }
@@ -244,5 +254,6 @@ log_flash() {
 
 init && {
     main $*
+    main_return=$?
 }
-close
+close $main_return
