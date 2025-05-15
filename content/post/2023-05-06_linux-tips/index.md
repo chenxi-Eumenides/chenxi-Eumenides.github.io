@@ -455,12 +455,12 @@ wget -O <SAVE_FILE_NAME> <URL>
 
 pdf每页一个文件
 ```bash
-qpdf input1.pdf --split-pages
+qpdf input1.pdf --split-pages -- o.pdf
 ```
 
 每两页一个文件
 ```bash
-qpdf input1.pdf --split-pages=2
+qpdf input1.pdf --split-pages=2 -- o.pdf
 ```
 
 #### pdf合并
