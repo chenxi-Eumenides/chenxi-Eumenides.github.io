@@ -140,8 +140,12 @@ PowerShell的脚本后缀为ps1
 
 定义变量
 ```pwsh
-$key = value
 # 中间可以有空格
+$key = value
+$list = @()
+# 强类型
+[int] $key = int_value
+[string[]] $list = @('str_value')
 ```
 
 使用变量
@@ -150,16 +154,118 @@ Write-Output $key
 Write-Output ${key}
 ```
 
+#### 整数
+
+#### 浮点
+
+#### 字符串
+
+#### 数组
+
+```pwsh
+# 空数组
+$list = @()
+# 单行定义，可省略@()
+$list = @('one','two')
+$list = 'one','two'
+# 多行定义，逗号可省略
+$list = @(
+    'one'
+    'two'
+)
+```
+
+```pwsh
+$list[0] # 第一个
+$list[0,2,5] # 第一、三、六个
+$list[1..3] # 第二、三、四个
+$list[-1] # 倒数第一个
+
+$list1 + $list2
+$list += new_value
+$list * 2 # $list + $list
+```
+
+```pwsh
+$list.count # 获取数量
+$list.foreach({"$_"}) # 循环执行
+```
+
+```pwsh
+$list = @(1,2,3)
+$list -join '-' # 1-2-3
+-join $list # 123
+$list -replace "old","new" # 将old替换new
+$list -split "arg" # 以arg分割
+2 -in $list # True
+$list -eq/ne 1 # 返回完全匹配/不匹配的数组
+$list -match 1 # 返回部分匹配的数组
+Write-Output -NoEnumerate $data | Get-Member # 不展开数组传递管道
+```
+
+#### 对象数组
+
+```pwsh
+# 手动定义
+$data = @(
+    [pscustomobject]@{FirstName='Kevin';LastName='Marquette'}
+    [pscustomobject]@{FirstName='John'; LastName='Doe'}
+)
+```
+
+```pwsh
+$data[1] # 访问第二个对象
+$data[0].FirstName # 访问第一个对象的FirstName属性
+$data.LastName # 获取所有对象的LastName属性
+$data.Where({$_.FirstName -eq 'Kevin'}) # 筛选方法
+```
+
+```pwsh
+$data | ForEach-Object {$_.LastName} # 循环
+$data | Where-Object {$_.FirstName -eq 'Kevin'} # 筛选
+```
+
+#### 特殊变量
+
+```pwsh
+$null # 空
+$_ # 管道/循环当中的对象
+$PSItem # 与 $_ 相同
+```
+
+#### 泛型列表
+
+```pwsh
+using namespace System.Collections.Generic
+$myList = [List[int]]@(1,2,3)
+$myList.Add(4)
+$myList.Remove(3)
+```
+
 ### 控制
 
 #### 判断
 
 ```pwsh
+if () {
+    //
+}elseif () {
+    //
+}else {
+    //
+}
+```
 
+```bash
+switch (value/value_list) {
+    value1 {}
+    value2 {}
+    value3 {;break}
+}
 ```
 
 #### 循环
 
 ```pwsh
-
+for
 ```
