@@ -110,6 +110,14 @@ FallbackNTP=ntp.ntsc.ac.cn ntp.aliyun.com ntp.tencent.com
 systemctl restart systemd-timesyncd
 ```
 
+### 查看ip信息
+
+```bash
+hostname -I
+ifconfig
+ip addr show
+```
+
 ### 文件格式化处理
 
 使用awk
