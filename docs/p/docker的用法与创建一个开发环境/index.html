@@ -413,17 +413,15 @@
 </span><span class="lnt">5
 </span><span class="lnt">6
 </span><span class="lnt">7
-</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">            build
-</span></span><span class="line"><span class="cl"> Dockerfile  -&gt; docker-image
-</span></span><span class="line"><span class="cl">            pull
-</span></span><span class="line"><span class="cl">  internet   -&gt; docker-image
-</span></span><span class="line"><span class="cl">            run
-</span></span><span class="line"><span class="cl">docker-image -&gt; container
-</span></span><span class="line"><span class="cl">            start
-</span></span><span class="line"><span class="cl"> container   -&gt; running-container
+<pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">  dockerfile    internet
+</span></span><span class="line"><span class="cl">    build ↘     ↙ pull
+</span></span><span class="line"><span class="cl">        docker-image
+</span></span><span class="line"><span class="cl">              ↓ run
+</span></span><span class="line"><span class="cl">          container
+</span></span><span class="line"><span class="cl">              ↓ start
+</span></span><span class="line"><span class="cl">       running-container
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="docker-命令">docker 命令
