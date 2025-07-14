@@ -10,7 +10,7 @@
 <meta property='og:description' content="git的一些常用命令，方便查询使用。">
 <meta property='og:url' content='https://chenxi-Eumenides.github.io/p/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AC%94%E8%AE%B0/'>
 <meta property='og:site_name' content='chenxi的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='git' /><meta property='article:tag' content='编程' /><meta property='article:tag' content='github' /><meta property='article:published_time' content='2023-05-06T16:25:48&#43;08:00'/><meta property='article:modified_time' content='2025-04-21T21:58:02&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='git' /><meta property='article:tag' content='编程' /><meta property='article:tag' content='github' /><meta property='article:published_time' content='2023-05-06T16:25:48&#43;08:00'/><meta property='article:modified_time' content='2025-07-14T10:33:11&#43;08:00'/>
 <meta name="twitter:title" content="git常用命令笔记">
 <meta name="twitter:description" content="git的一些常用命令，方便查询使用。">
     <link rel="shortcut icon" href="/web_icon.ico" />
@@ -375,7 +375,7 @@
 
 
 
-                <time class="article-time--lastmod">2025.04.21</time>
+                <time class="article-time--lastmod">2025.07.14</time>
             </div>
         
 
@@ -460,6 +460,8 @@
 </span><span class="lnt">28
 </span><span class="lnt">29
 </span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 克隆远程仓库到本地
@@ -469,8 +471,10 @@
 </span></span><span class="line"><span class="cl">git init # 初始化仓库
 </span></span><span class="line"><span class="cl">git remote add &lt;remote-name&gt; &lt;remote-url&gt; # 添加远程仓库
 </span></span><span class="line"><span class="cl"># 通常远程仓库名称可以叫 origin
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">git status # 仓库状态
+</span></span><span class="line"><span class="cl"># 通过https，只能账号密码上传。
+</span></span><span class="line"><span class="cl">#   例如：https://github.com/chenxi-Eumenides/chenxi-Eumenides.github.io.git
+</span></span><span class="line"><span class="cl"># 通过git，可通过密钥上传。在~/.ssh/config中配置github.com的密钥
+</span></span><span class="line"><span class="cl">#   例如：git@github.com:chenxi-Eumenides/chenxi-Eumenides.github.io.git
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"># 修改仓库
 </span></span><span class="line"><span class="cl">git add &lt;FILE&gt; # 将文件的改动添加到暂存区
@@ -542,11 +546,13 @@
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git init # 初始化仓库
 </span></span><span class="line"><span class="cl">git init -b &lt;branch-name&gt; # 初始化仓库，并设置默认分支名
 </span></span><span class="line"><span class="cl">git status # 仓库状态
+</span></span><span class="line"><span class="cl">git status -s # 简要仓库状态
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">git reset --soft &lt;COMMIT_ID&gt; # 回退到指定提交
 </span></span><span class="line"><span class="cl"># HEAD 当前提交；HEAD^ 上一个提交； HEAD^^ 上上个提交
@@ -762,7 +768,7 @@
 
 
         <span>
-            最后更新于 2025.04.21 21:58 CST
+            最后更新于 2025.07.14 10:33 CST
         </span>
     </section></footer>
 
