@@ -35,14 +35,13 @@ docker-compose.yml # compose文件
 ### docker 概念
 
 ```md
-            build
- Dockerfile  -> docker-image
-            pull
-  internet   -> docker-image
-            run
-docker-image -> container
-            start
- container   -> running-container
+  dockerfile    internet
+    build ↘     ↙ pull
+        docker-image
+              ↓ run
+          container
+              ↓ start
+       running-container
 ```
 
 ### docker 命令

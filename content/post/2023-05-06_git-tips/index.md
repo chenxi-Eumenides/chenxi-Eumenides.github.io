@@ -46,8 +46,10 @@ git clone <URL> # 克隆远程仓库
 git init # 初始化仓库
 git remote add <remote-name> <remote-url> # 添加远程仓库
 # 通常远程仓库名称可以叫 origin
-
-git status # 仓库状态
+# 通过https，只能账号密码上传。
+#   例如：https://github.com/chenxi-Eumenides/chenxi-Eumenides.github.io.git
+# 通过git，可通过密钥上传。在~/.ssh/config中配置github.com的密钥
+#   例如：git@github.com:chenxi-Eumenides/chenxi-Eumenides.github.io.git
 
 # 修改仓库
 git add <FILE> # 将文件的改动添加到暂存区
@@ -98,6 +100,7 @@ git push -u origin master
 git init # 初始化仓库
 git init -b <branch-name> # 初始化仓库，并设置默认分支名
 git status # 仓库状态
+git status -s # 简要仓库状态
 
 git reset --soft <COMMIT_ID> # 回退到指定提交
 # HEAD 当前提交；HEAD^ 上一个提交； HEAD^^ 上上个提交
