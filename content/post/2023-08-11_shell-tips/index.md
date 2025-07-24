@@ -29,6 +29,14 @@ draft: false
 
 适用于`bash`，`zsh`等shell的sh脚本文件
 
+### 推荐
+
+使用shellcheck检查脚本的错误
+
+```bash
+shellcheck SCRIPT.sh
+```
+
 ## 基本
 
 ### 变量
