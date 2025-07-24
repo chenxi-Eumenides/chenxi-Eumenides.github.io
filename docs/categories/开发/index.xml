@@ -262,7 +262,17 @@
         <guid>https://chenxi-Eumenides.github.io/p/shell-%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%A7%84%E5%88%99%E5%8F%8A%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/</guid>
         <description>&lt;h2 id=&#34;适用范围&#34;&gt;适用范围
 &lt;/h2&gt;&lt;p&gt;适用于&lt;code&gt;bash&lt;/code&gt;，&lt;code&gt;zsh&lt;/code&gt;等shell的sh脚本文件&lt;/p&gt;
-&lt;h2 id=&#34;基本&#34;&gt;基本
+&lt;h3 id=&#34;推荐&#34;&gt;推荐
+&lt;/h3&gt;&lt;p&gt;使用shellcheck检查脚本的错误&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shellcheck SCRIPT.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;基本&#34;&gt;基本
 &lt;/h2&gt;&lt;h3 id=&#34;变量&#34;&gt;变量
 &lt;/h3&gt;&lt;h4 id=&#34;普通变量&#34;&gt;普通变量
 &lt;/h4&gt;&lt;p&gt;定义变量&lt;/p&gt;
@@ -1634,6 +1644,20 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# -n 忽略外部AUR包&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yay -Qqd &lt;span class=&#34;c1&#34;&gt;# 列出所有依赖安装的包&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yay -Qqdt &lt;span class=&#34;c1&#34;&gt;# 列出所有孤立的包&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;报错&#34;&gt;报错
+&lt;/h4&gt;&lt;p&gt;来自 &amp;ldquo;****&amp;rdquo; 的签名是未知信任的&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yay -S archlinuxcn-keyring
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 哪个地址报错，就重新安装哪个地址的&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 比如这里是archlinuxcn&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;清除查看占用文件的进程&#34;&gt;清除查看占用文件的进程
