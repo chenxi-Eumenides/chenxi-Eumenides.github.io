@@ -269,3 +269,27 @@ switch (value/value_list) {
 ```pwsh
 for
 ```
+
+
+
+## 常见用法
+
+### 路径
+
+常见win10路径变量
+
+```txt
+%SYSTEMDRIVE% -> 系统所在磁盘分区，通常是 C:\
+%SYSTEMROOT% -> Windows系统目录，通常是 C:\Windows
+%WINDIR% -> 与%SYSTEMROOT%相同，指向系统目录
+%USERPROFILE% -> 当前用户目录，通常是 C:\Users\当前用户名
+%HOMEPATH% -> 当前用户主路径，通常是 \Users\当前用户名
+%HOMEDRIVE% -> 当前用户所在盘符，通常是 C:\
+%APPDATA% -> 当前用户的应用程序数据目录，通常是 C:\Users\当前用户名\AppData\Roaming
+%LOCALAPPDATA% -> 当前用户的本地应用程序数据目录，通常是 C:\Users\当前用户名\AppData\Local
+%TEMP% 或 %TMP% -> 当前用户的临时文件目录，通常是 C:\Users\当前用户名\AppData\Local\Temp
+%PROGRAMFILES% -> 程序文件目录，通常是 C:\Program Files
+%PROGRAMFILES(X86)% -> 32位程序文件目录，通常是 C:\Program Files (x86)
+%ALLUSERSPROFILE% -> 所有用户的公共数据目录，通常是 C:\ProgramData
+```
+
