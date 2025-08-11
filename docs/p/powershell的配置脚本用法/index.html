@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://chenxi-Eumenides.github.io/p/powershell%E7%9A%84%E9%85%8D%E7%BD%AE%E8%84%9A%E6%9C%AC%E7%94%A8%E6%B3%95/'>
 
-<link rel="stylesheet" href="/scss/style.min.2e5541a60d5db0a1a9ae76847053d786aaa8ded081c951a91110d97e96fcbb26.css"><meta property='og:title' content="Powershell的配置、脚本用法">
+<link rel="stylesheet" href="/scss/style.min.32fee57655dcce91bc3c3d3eda65b6173114b3b4f2172bb73bccb01c7ca4559d.css"><meta property='og:title' content="Powershell的配置、脚本用法">
 <meta property='og:description' content="对终端的powershell进行配置、美化，并记录ps1脚本的使用方法。">
 <meta property='og:url' content='https://chenxi-Eumenides.github.io/p/powershell%E7%9A%84%E9%85%8D%E7%BD%AE%E8%84%9A%E6%9C%AC%E7%94%A8%E6%B3%95/'>
 <meta property='og:site_name' content='chenxi的个人博客'>
@@ -282,6 +282,11 @@
             <li><a href="#循环">循环</a></li>
           </ol>
         </li>
+      </ol>
+    </li>
+    <li><a href="#常见用法">常见用法</a>
+      <ol>
+        <li><a href="#路径">路径</a></li>
       </ol>
     </li>
   </ol>
@@ -773,6 +778,39 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-pwsh" data-lang="pwsh"><span class="line"><span class="cl"><span class="k">for</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="常见用法">常见用法
+</h2><h3 id="路径">路径
+</h3><p>常见win10路径变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">%SYSTEMDRIVE% -&gt; 系统所在磁盘分区，通常是 C:\
+</span></span><span class="line"><span class="cl">%SYSTEMROOT% -&gt; Windows系统目录，通常是 C:\Windows
+</span></span><span class="line"><span class="cl">%WINDIR% -&gt; 与%SYSTEMROOT%相同，指向系统目录
+</span></span><span class="line"><span class="cl">%USERPROFILE% -&gt; 当前用户目录，通常是 C:\Users\当前用户名
+</span></span><span class="line"><span class="cl">%HOMEPATH% -&gt; 当前用户主路径，通常是 \Users\当前用户名
+</span></span><span class="line"><span class="cl">%HOMEDRIVE% -&gt; 当前用户所在盘符，通常是 C:\
+</span></span><span class="line"><span class="cl">%APPDATA% -&gt; 当前用户的应用程序数据目录，通常是 C:\Users\当前用户名\AppData\Roaming
+</span></span><span class="line"><span class="cl">%LOCALAPPDATA% -&gt; 当前用户的本地应用程序数据目录，通常是 C:\Users\当前用户名\AppData\Local
+</span></span><span class="line"><span class="cl">%TEMP% 或 %TMP% -&gt; 当前用户的临时文件目录，通常是 C:\Users\当前用户名\AppData\Local\Temp
+</span></span><span class="line"><span class="cl">%PROGRAMFILES% -&gt; 程序文件目录，通常是 C:\Program Files
+</span></span><span class="line"><span class="cl">%PROGRAMFILES(X86)% -&gt; 32位程序文件目录，通常是 C:\Program Files (x86)
+</span></span><span class="line"><span class="cl">%ALLUSERSPROFILE% -&gt; 所有用户的公共数据目录，通常是 C:\ProgramData
 </span></span></code></pre></td></tr></table>
 </div>
 </div>
