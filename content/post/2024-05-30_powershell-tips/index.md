@@ -293,3 +293,10 @@ for
 %ALLUSERSPROFILE% -> 所有用户的公共数据目录，通常是 C:\ProgramData
 ```
 
+### 测试远程端口
+
+```pwsh
+test-NetConnection -ComputerName <IP> -Port <PORT>
+```
+
+### 

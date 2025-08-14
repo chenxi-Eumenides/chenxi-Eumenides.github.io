@@ -688,6 +688,24 @@ rsync --exclude-from="./exclude.txt" /src/ /target/
 rsync --include-from="./include.txt" --exclude="*.*" /src/ /target/
 ```
 
+### 用ssh端口转发
+
+本地转发到远程
+
+user -> local -> remote -> target
+
+```bash
+ssh -fgN -L <local_port>:<target_ip>:<target_port> <remote_user>@<remote_ip> ...
+```
+
+远程转发到本地
+
+user -> local -> remote -> target
+
+```bash
+ssh -fgN -R <remote_port>:<user_ip>:<user_port> <remote_user>@<remote_ip> ...
+```
+
 ### 修复nginx模块版本不正确
 
 #### 获取必要信息

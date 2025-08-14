@@ -317,6 +317,7 @@
             <li><a href="#常用方式">常用方式</a></li>
           </ol>
         </li>
+        <li><a href="#用ssh端口转发">用ssh端口转发</a></li>
         <li><a href="#修复nginx模块版本不正确">修复nginx模块版本不正确</a>
           <ol>
             <li><a href="#获取必要信息">获取必要信息</a></li>
@@ -1538,6 +1539,27 @@ END{} 结束后运行的命令
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 白名单同步</span>
 </span></span><span class="line"><span class="cl">rsync --include-from<span class="o">=</span><span class="s2">&#34;./include.txt&#34;</span> --exclude<span class="o">=</span><span class="s2">&#34;*.*&#34;</span> /src/ /target/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="用ssh端口转发">用ssh端口转发
+</h3><p>本地转发到远程</p>
+<p>user -&gt; local -&gt; remote -&gt; target</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh -fgN -L &lt;local_port&gt;:&lt;target_ip&gt;:&lt;target_port&gt; &lt;remote_user&gt;@&lt;remote_ip&gt; ...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>远程转发到本地</p>
+<p>user -&gt; local -&gt; remote -&gt; target</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh -fgN -R &lt;remote_port&gt;:&lt;user_ip&gt;:&lt;user_port&gt; &lt;remote_user&gt;@&lt;remote_ip&gt; ...
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="修复nginx模块版本不正确">修复nginx模块版本不正确
