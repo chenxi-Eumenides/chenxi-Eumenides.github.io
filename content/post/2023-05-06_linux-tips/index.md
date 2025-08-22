@@ -93,6 +93,19 @@ kill <PID>
 
 lsof报错`lsof: WARNING: can't stat()`，添加参数`-e <ERROR_URL>`。
 
+### 清楚占用端口的进程
+
+查看端口被哪些进程占用
+```bash
+ss -tulnp | grep <port>
+netstat -tuln | grep <port>
+```
+
+结束进程
+```bash
+kill <PID>
+```
+
 ### linux同步时间
 
 系统时间信息
