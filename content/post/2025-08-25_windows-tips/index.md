@@ -5,19 +5,19 @@ description: 收集使用过的值得记录的一些技巧或笔记
 image: 
 
 categories:
-    - 
+    - 笔记
 tags:
     - Windows
-    - 
+    - 笔记
 series:
-    - 
+    - 笔记
 
 date: 2025-08-25T10:18:46+08:00
 math: 
 comments: false
 license: 
 
-hidden: true
+hidden: false
 draft: false
 ---
 
