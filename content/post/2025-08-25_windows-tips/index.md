@@ -26,15 +26,15 @@ draft: false
 ### 添加webdav网络位置
 
 1. 允许http协议的webdav
-  1. HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WebClient\Parameters
-  2. BasicAuthLevel把这个值从1改为2
-  3. 重启或开启WebClient服务
+    1. HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WebClient\Parameters
+    2. BasicAuthLevel把这个值从1改为2
+    3. 重启或开启WebClient服务
 2. 修改文件复制上限
-  1. HKLM\SYSTEM\CurrentControlSet\Services\WebClient\Parameters
-  2. FileSizeLimitInBytes改为ffffffff(4G左右)
+    1. HKLM\SYSTEM\CurrentControlSet\Services\WebClient\Parameters
+    2. FileSizeLimitInBytes改为ffffffff(4G左右)
 3. 添加webdav位置
-  1. 此电脑右键，添加一个网络位置
-  2. 下一步，输入url，确认
+    1. 此电脑右键，添加一个网络位置
+    2. 下一步，输入url，确认
 
 ## 第三方软件
 
@@ -43,10 +43,10 @@ draft: false
 修改win11的系统
 
 1. temp1
-  - 修改任务栏
+    - 修改任务栏
 2. temp2
-  - 修改开始菜单
+    - 修改开始菜单
 3. temp3
-  - 文件管理器显示文件夹总大小
+    - 文件管理器显示文件夹总大小
 4. temp4
 5. temp5

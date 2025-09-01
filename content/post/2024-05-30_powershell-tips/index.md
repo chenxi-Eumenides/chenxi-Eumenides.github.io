@@ -151,7 +151,7 @@ $key = value
 $list = @()
 # 强类型
 [int] $key = int_value
-[string[]] $list = @('str_value')
+[string[]] $list = @('str_1','str_2')
 ```
 
 使用变量
@@ -207,6 +207,7 @@ $list * 2 # $list + $list
 ```pwsh
 $list.count # 获取数量
 $list.foreach({"$_"}) # 循环执行
+$list.GetUpperBound(0) # 获取最大索引号
 ```
 
 ```pwsh
@@ -271,32 +272,33 @@ $hash.GetEnumerator() | Sort-Object -Property key # 根据key排序
 | $? | 表示上次操作的执行状态。 如果最后一次操作成功则包含 TRUE，如果失败则包含 FALSE。 |
 | $^ | 表示会话收到的最后一行中的第一个令牌。 |
 | $_ | 与 $PSItem 相同。 包含管道对象中的当前对象。 您可以在对管道中的每个对象或选定对象执行操作的命令中使用此变量。 |
+| $PSITEM | 与$_相同。 包含管道对象中的当前对象。 |
+| $TRUE | 代表 TRUE。 您可以使用此变量在命令和脚本中表示 TRUE。 |
+| $FALSE | 代表FALSE。 您可以在命令和脚本中使用此变量来表示 FALSE，而不是使用字符串"false"。 |
+| $NULL | $null 是包含 NULL 或空值的自动变量。 您可以使用此变量来表示命令和脚本中不存在或未定义的值。 |
 | $ARGS | 表示传递给函数、脚本或脚本块的未声明参数和/或参数值的数组。 |
-| $CONSOLEFILENAME | 表示会话中最近使用的控制台文件 (.psc1) 的路径。 |
+| $FOREACH | 表示 ForEach 循环的枚举数（不是结果值）。 您可以对 $ForEach 变量的值使用枚举器的属性和方法。 |
 | $ERROR | 表示一个错误对象数组，这些对象代表最近的错误。 |
+| $INPUT | 表示一个枚举器，用于枚举传递给函数的所有输入。 |
+| $PID | 表示托管当前 PowerShell 会话的进程的进程标识符 (PID)。 |
+| $HOME | 表示用户主目录的完整路径。 |
+| $PSSCRIPTROOT | 表示正在运行脚本的目录。 |
+| $HOST | 代表一个对象，该对象代表 PowerShell 的当前主机应用程序。 |
+| $LASTEXITCODE | 表示最后运行的基于 Windows 的程序的退出代码。 |
+| $CONSOLEFILENAME | 表示会话中最近使用的控制台文件 (.psc1) 的路径。 |
 | $EVENT | 表示 PSEventArgs 对象，该对象表示正在处理的事件。 |
 | $EVENTARGS | 表示一个对象，该对象表示从正在处理的事件的 EventArgs 派生的第一个事件参数。 |
 | $EVENTSUBSCRIBER | 表示一个 PSEventSubscriber 对象，该对象表示正在处理的事件的事件订阅者。 |
 | $EXECUTIONCONTEXT | 表示 EngineIntrinsics 对象，该对象表示 PowerShell 主机的执行上下文。 |
-| $FALSE | 代表FALSE。 您可以在命令和脚本中使用此变量来表示 FALSE，而不是使用字符串"false"。 |
-| $FOREACH | 表示 ForEach 循环的枚举数（不是结果值）。 您可以对 $ForEach 变量的值使用枚举器的属性和方法。 |
-| $HOME | 表示用户主目录的完整路径。 |
-| $HOST | 代表一个对象，该对象代表 PowerShell 的当前主机应用程序。 |
-| $INPUT | 表示一个枚举器，用于枚举传递给函数的所有输入。 |
-| $LASTEXITCODE | 表示最后运行的基于 Windows 的程序的退出代码。 |
 | $MATCHES | $Matches 变量与 -match 和 -notmatch 运算符一起使用。 |
 | $MYINVOCATION | $MyInspiration 仅针对脚本、函数和脚本块填充。 $MyInspiration 自动变量的 PSScriptRoot 和 PSCommandPath 属性包含有关调用者或调用脚本的信息，而不是当前脚本的信息。 |
 | $NESTEDPROMPTLEVEL | 代表当前提示级别。 |
-| $NULL | $null 是包含 NULL 或空值的自动变量。 您可以使用此变量来表示命令和脚本中不存在或未定义的值。 |
-| $PID | 表示托管当前 PowerShell 会话的进程的进程标识符 (PID)。 |
 | $PROFILE | 表示当前用户和当前主机应用程序的 PowerShell 配置文件的完整路径。 |
 | $PSCMDLET | 代表一个对象，该对象代表正在运行的 cmdlet 或高级函数。 |
 | $PSCOMMANDPATH | 表示正在运行的脚本的完整路径和文件名。 |
 | $PSCULTURE | 表示操作系统中当前使用的区域性名称。 |
 | $PSDEBUGCONTEXT | 调试时，该变量包含有关调试环境的信息。 否则，它包含 NULL 值。 |
 | $PSHOME | 表示 PowerShell 安装目录的完整路径。 |
-| $PSITEM | 与$_相同。 包含管道对象中的当前对象。 |
-| $PSSCRIPTROOT | 表示正在运行脚本的目录。 |
 | $PSSENDERINFO | 表示有关启动 PSSession 的用户的信息，包括用户身份和发起计算机的时区。 |
 | $PSUICULTURE | 表示操作系统中当前使用的用户界面 (UI) 区域性的名称。 |
 | $PSVERSIONTABLE | 表示一个只读哈希表，显示有关当前会话中运行的 PowerShell 版本的详细信息。 |
@@ -304,7 +306,6 @@ $hash.GetEnumerator() | Sort-Object -Property key # 根据key排序
 | $SHELLID | 表示当前shell的标识符。 |
 | $STACKTRACE | 表示最近错误的堆栈跟踪。 |
 | $THIS | 在定义脚本属性或脚本方法的脚本块中，$This 变量引用正在扩展的对象。 |
-| $TRUE | 代表 TRUE。 您可以使用此变量在命令和脚本中表示 TRUE。 |
 
 #### 泛型列表
 
@@ -407,6 +408,67 @@ do {
 } while ($counter -lt $array.length)
 ```
 
+### 函数
+
+```pwsh
+function Func_Name {
+    # function content
+}
+```
+
+#### 参数
+
+```pwsh
+function Func_Name {
+    param (
+        $param_one # 自定义参数
+        [string] $param_str # 指定类型参数
+        [List[int]] $list = @(1,2,3)
+    )
+    # function content
+}
+```
+
+#### 高级函数
+
+```pwsh
+function Func_Name {
+    # 绑定pwsh通用的参数，需要param块，但可以为空
+    [CmdletBinding()]
+    param ()
+
+    # function content
+}
+```
+
+```pwsh
+fucntion Func_Name {
+    param (
+        [Parameter(Mandatory)] # 强制要求给定参数
+        [Parameter(Mandatory=$true)] # 兼容pwsh2的写法
+        [ValidateNotNullOrEmpty()] # 允许默认值
+        [Parameter(Mandatory,ValueFromPipeline)] # 接受管道输入
+        [Parameter(Mandatory,ValueFromPipelineByPropertyName)] # 按属性名称接受管道输入
+        [string] $ComputerName
+    )
+
+    # 不接受管道输入时，直接写函数内容
+
+    begin {
+        # 可选，在从管道接收项之前执行任何初始工作
+        # 无法访问参数
+    }
+    process {
+        # 若启用接受管道输入，需要添加process块
+    }
+    end {
+        # 可选，在处理完所有管道输入的项目后进行清理
+    }
+}
+```
+
+
+
 ### 其他
 
 ```pwsh
@@ -414,7 +476,43 @@ commands `
  | commands # 反引号换行
 ```
 
+```pwsh
+. .\FILE.ps1 # 导入其他脚本文件
+. C:\...\FILE.ps1 # 完整路径
+```
+
 ## 常见用法
+
+### 获取工作路径
+
+```pwsh
+Get-Location
+```
+
+### 获取路径下特定文件
+
+```pwsh
+Get-ChildItem -Path $path -Filter *.mp4
+```
+
+### 用户输入输出
+
+```pwsh
+# 输出
+Write-Host "text"
+# 输出到管道
+Write-Output "text"
+# 等同于 Write-Output
+$key
+# 输出警告信息（黄色）
+Write-Warning "text
+# 输出错误信息（红色），并记录到错误流
+Write-Error "text"
+```
+
+```pwsh
+Read-Host "text"
+```
 
 ### 路径
 
@@ -441,4 +539,33 @@ commands `
 test-NetConnection -ComputerName <IP> -Port <PORT>
 ```
 
-### 
+### 别名
+
+```pwsh
+# 设置别名
+Set-Alias -Name ALIAS_NAME -Value COMMAND
+# 查看所有别名
+Get-Alias
+# 指定别名的内容
+Get-Alias -Definition COMMAND
+# 指定别名名称
+Get-Alias -Name ALIAS_NAME
+```
+
+#### 原生兼容性别名
+
+|Windows 命令行界面 | Unix 命令 | PowerShell cmdlet | PowerShell 别名 |
+| --- | --- | --- | --- |
+| cd、chdir | cd | Set-Location | sl、cd、chdir |
+| cls | clear | Clear-Host | cls clear |
+| copy | cp | Copy-Item | cpi、cp、copy |
+| del、erase、rd、rmdir | rm | Remove-Item | ri、del、erase、rd、rm、rmdir |
+| dir | ls | Get-ChildItem | gci、dir、ls |
+| echo | echo | Write-Output | write、echo |
+| md | mkdir | New-Item | ni |
+| move | mv | Move-Item | mi、move、mi |
+| popd | popd | Pop-Location | popd |
+| pwd |  Get-Location | gl、pwd |
+| pushd | pushd | Push-Location | pushd |
+| ren | mv | Rename-Item | rni、ren |
+| type | cat | Get-Content | gc、cat、type |
