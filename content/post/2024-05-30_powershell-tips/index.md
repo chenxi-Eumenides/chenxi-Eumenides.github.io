@@ -505,7 +505,7 @@ Write-Output "text"
 # 等同于 Write-Output
 $key
 # 输出警告信息（黄色）
-Write-Warning "text
+Write-Warning "text"
 # 输出错误信息（红色），并记录到错误流
 Write-Error "text"
 ```
