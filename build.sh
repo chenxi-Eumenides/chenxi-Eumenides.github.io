@@ -13,7 +13,12 @@ config() {
 
     hugo_arg_local="--config hugo-local.yaml"
     hugo_arg_github="--config hugo-github.yaml --buildDrafts"
-    arg_quiet="--quiet"
+#    arg_quiet="--quiet"
+}
+
+check_git() {
+    l=$(git status --porcelain | grep "content" | wc -l)
+    return $l
 }
 
 get_commit() {
@@ -38,7 +43,7 @@ build_local() {
 build_github() {
     log 1 "start build github"
     local hugo_log_level=1
-    [[ -d docs ]] && rm -r docs
+    [[ -d github ]] && rm -r github
     if $enable_log_file ; then
         hugo ${hugo_arg_github} $( (( $hugo_log_level >= $log_level )) || echo $arg_quiet)  >> $log_file 2>&1
     else
@@ -67,18 +72,18 @@ update_git() {
     # 判断是否有提交改动
     [[ $(git status -s | grep "^M") != "" ]] && local change=true || local no_change=false
 
-    # 是否修改了docs
-    [[ $(git status -s | grep -E "^ M \"?docs/") != "" ]] && local build=true || local build=false
+    # 是否修改了github
+    [[ $(git status -s | grep -E "^ M \"?github/") != "" ]] && local build=true || local build=false
 
     log 1 "add:${skip_add_all}, change:${change}, build:${build}, start commit"
     # 有改动就commit
     if $enable_log_file ; then
         $skip_add_all && git add ./ >> $( (( $git_log_level >= $log_level )) && echo "$log_file" || echo "/dev/null" ) 2>&1
-        ! $skip_add_all && $build && git add docs/ >> $( (( $git_log_level >= $log_level )) && echo "$log_file" || echo "/dev/null" ) 2>&1
+        ! $skip_add_all && $build && git add github/ >> $( (( $git_log_level >= $log_level )) && echo "$log_file" || echo "/dev/null" ) 2>&1
         $change && git commit -m "${content}" $( (( $git_log_level >= $log_level )) || echo \-$arg-quiet ) >> $log_file 2>&1
     else
         $skip_add_all && git add ./
-        ! $skip_add_all && $build && git add docs/
+        ! $skip_add_all && $build && git add github/
         $change && git commit -m "${content}" $( (( $git_log_level >= $log_level )) || echo \-$arg-quiet )
     fi
 }
@@ -106,7 +111,8 @@ main() {
             update_git $input || return 1
             push_git || return 1
             ;;
-        "-a"|"--all"|"all")
+        "-a"|"--all"|"all"|"--auto"|"auto")
+            check_git || git add content
             build_local || return 1
             build_github || return 1
             get_commit ${@:2} || return 1

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="将小米9扩容system分区，并刷入flyme10系统。">
+<title>小米9扩容刷机</title>
+
+<link rel='canonical' href='https://chenxi-Eumenides.github.io/p/%E5%B0%8F%E7%B1%B39%E6%89%A9%E5%AE%B9%E5%88%B7%E6%9C%BA/'>
+
+<link rel="stylesheet" href="/scss/style.min.32fee57655dcce91bc3c3d3eda65b6173114b3b4f2172bb73bccb01c7ca4559d.css"><meta property='og:title' content="小米9扩容刷机">
+<meta property='og:description' content="将小米9扩容system分区，并刷入flyme10系统。">
+<meta property='og:url' content='https://chenxi-Eumenides.github.io/p/%E5%B0%8F%E7%B1%B39%E6%89%A9%E5%AE%B9%E5%88%B7%E6%9C%BA/'>
+<meta property='og:site_name' content='chenxi的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='笔记' /><meta property='article:tag' content='安卓' /><meta property='article:tag' content='刷机' /><meta property='article:published_time' content='2023-10-10T22:25:15&#43;08:00'/><meta property='article:modified_time' content='2025-03-27T15:29:41&#43;08:00'/>
+<meta name="twitter:title" content="小米9扩容刷机">
+<meta name="twitter:description" content="将小米9扩容system分区，并刷入flyme10系统。">
+    <link rel="shortcut icon" href="/web_icon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/user_head_hu_6fe97d037a8b714b.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌞</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">chenxi的个人博客</a></h1>
+            <h2 class="site-description">我总在看这个世界。美好那么多，回忆那么远。</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                <form action="/search/" class="search-form widget" >
+        <p>
+            <label>搜索</label>
+            <input name="keyword" required placeholder="输入关键词..." />
+        
+            <button title="搜索">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+            
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#0-准备">0 准备</a>
+      <ol>
+        <li><a href="#软件">软件</a></li>
+        <li><a href="#硬件">硬件</a></li>
+        <li><a href="#命令格式说明">命令格式说明</a></li>
+      </ol>
+    </li>
+    <li><a href="#05-开始usb调试可跳过">0.5 开始usb调试（可跳过）</a></li>
+    <li><a href="#1-刷rec">1 刷rec</a></li>
+    <li><a href="#2-扩容">2 扩容</a></li>
+    <li><a href="#31-刷入卡刷包">3.1 刷入卡刷包</a></li>
+    <li><a href="#32-刷入线刷包">3.2 刷入线刷包</a></li>
+    <li><a href="#4-结束">4 结束</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+            
+                <section class="widget tagCloud">
+    <div class="widget-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+    </div>
+    <h2 class="widget-title section-title">分类</h2>
+
+    <div class="tagCloud-tags">
+        
+            <a href="/categories/%E8%BD%AF%E4%BB%B6/" class="font_size_8">
+                软件
+            </a>
+        
+            <a href="/categories/%E5%BC%80%E5%8F%91/" class="font_size_6">
+                开发
+            </a>
+        
+            <a href="/categories/%E6%B8%B8%E6%88%8F/" class="font_size_5">
+                游戏
+            </a>
+        
+            <a href="/categories/%E7%8E%A9%E6%9C%BA/" class="font_size_3">
+                玩机
+            </a>
+        
+            <a href="/categories/%E4%B8%AA%E4%BA%BA/" class="font_size_1">
+                个人
+            </a>
+        
+            <a href="/categories/%E7%AC%94%E8%AE%B0/" class="font_size_1">
+                笔记
+            </a>
+        
+    </div>
+</section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E7%8E%A9%E6%9C%BA/" >
+                玩机
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E5%B0%8F%E7%B1%B39%E6%89%A9%E5%AE%B9%E5%88%B7%E6%9C%BA/">小米9扩容刷机</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            将小米9扩容system分区，并刷入flyme10系统。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023.10.10</time>
+            </div>
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--lastmod">2025.03.27</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 5 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="前言">前言
+</h2><p>其实是打算卖了米9，所以把扩容的flyeme10刷回来miui12.5。</p>
+<p>但我这篇为扩容过程，刷回来自行反过来操作就行。</p>
+<p>主要内容来自于<a class="link" href="https://blog.csdn.net/qq_66424312/article/details/131675279"  target="_blank" rel="noopener"
+    >酷安-忆昔以西</a>（虽然是csdn的链接，但是是原作者嘛）</p>
+<h2 id="0-准备">0 准备
+</h2><h3 id="软件">软件
+</h3><ul>
+<li>
+<p>parted软件，我使用的是3.2版本，其他版本有可能出错，以下文件名<code>parted</code>，没有后缀名的。</p>
+</li>
+<li>
+<p>flyme10的卡刷包（我的来自酷安-wwrrj，请自行搜索），卡刷包与线刷包的区别在最后一步中</p>
+<ul>
+<li>不用解压</li>
+</ul>
+</li>
+<li>
+<p>miui12.5官方线刷包</p>
+<ul>
+<li>请将压缩包解压</li>
+<li>通常官方线刷包解压后会有很多bat与sh文件，还有一个image文件夹，里面是非常多文件</li>
+<li>其他包大概率只有必要的几个包，如<code>vendor.img</code>，<code>boot.img</code>等</li>
+</ul>
+</li>
+<li>
+<p>第三方rec，我是用的twrp和orangefox，两个都行反正</p>
+<ul>
+<li>文件名为<code>recovery.img</code>或者其他名字，请注意和线刷包里的rec文件区分，下面用<code>twrp.img</code>指代此文件。</li>
+</ul>
+</li>
+<li>
+<p>adb工具</p>
+</li>
+</ul>
+<h3 id="硬件">硬件
+</h3><ul>
+<li>
+<p>能正常使用的数据线</p>
+</li>
+<li>
+<p>米9一部（注意需要解锁bl，不懂请百度）</p>
+</li>
+<li>
+<p>电脑（win系统，linux也可以，反正没有本质区别）</p>
+</li>
+</ul>
+<h3 id="命令格式说明">命令格式说明
+</h3><p>看得懂的可跳过该部分</p>
+<p>以下出现的命令，分为两种</p>
+<ul>
+<li><code>adb</code>或者<code>fastboot</code>开头的，为电脑命令行中的命令</li>
+<li><code>#</code>开头的，为shell命令，在输入<code>adb shell</code>后输入该命令，退出该模式需要输入<code>exit</code></li>
+</ul>
+<h2 id="05-开始usb调试可跳过">0.5 开始usb调试（可跳过）
+</h2><p>其实理论上，是不用这步的。</p>
+<ol>
+<li>手机连接电脑</li>
+<li>打开手机设置-我的设备-全部参数</li>
+<li>连点5下<code>miui版本</code>，直到跳出处于开发者模式的横条</li>
+<li>进入设置-更多设置-开发者选项</li>
+<li>打开<code>usb调试</code>和<code>usb安全设置</code>（实际上安全设置没啥用，应该）</li>
+<li>输入命令<code>adb devices</code>，在<code>List of devices attached</code>下方出现一个设备，左边为设备id，右边的单词是<code>unauthorized</code></li>
+<li>此时手机上应该有个弹窗，点击、确定</li>
+<li>此时输入命令<code>adb devices</code>，在<code>List of devices attached</code>下方出现一个设备，左边为设备id，右边的单词是<code>device</code></li>
+</ol>
+<p>此时完成usb调试的打开。</p>
+<h2 id="1-刷rec">1 刷rec
+</h2><p>扩容操作主要在第三方rec的shell中进行，所以需要刷rec。</p>
+<p>从此步开始，你的原系统就没用了</p>
+<ol>
+<li>手机关机（或重启，请注意下一步）</li>
+<li>同时按住音量减和电源键开机，此时屏幕出现安卓机器人为正确步骤。</li>
+<li>手机连接电脑</li>
+<li>电脑命令行输入（之后就直接写命令了）<code>fastboot flash recovery </code> ，从文件夹中拖入<code>twrp.img</code>，回车运行</li>
+<li>等待<code>Finished</code>文字出现，出现其他文字请百度如何解决</li>
+</ol>
+<p>刷入完成。</p>
+<h2 id="2-扩容">2 扩容
+</h2><p>由于flyme10的system分区大于米9原生的system分区，所以需要对system分区扩容</p>
+<p><em><strong>请注意！！一定要注意拼写，我前面把<code>vendor</code>打成<code>vender</code>导致一连串的问题，所以一定要注意拼写。</strong></em></p>
+<ol>
+<li>关机或重启</li>
+<li>同时按住音量加贺电源键开机
+<ul>
+<li>刷入twrp的为蓝色屏幕，刷入orangefox为橙色屏幕</li>
+<li>虽然rec不同，但功能是一样的</li>
+</ul>
+</li>
+<li>电脑上输入<code>adb push </code>拖入<code>parted</code>文件，再输入<code>/sbin/parted</code>，回车
+<ul>
+<li>例如 <code>adb push D:\files\parted /sbin/parted</code></li>
+</ul>
+</li>
+<li>此时应当出现<code>xxxxx: 1 file pushed, 0 skipped.</code>，此时为成功</li>
+<li>输入<code>adb shell</code>回车，此时命令行为<code>~ #</code>开头</li>
+<li>输入<code>parted /dev/block/sda</code>，回车，行首变为<code>(parted)</code>
+<ul>
+<li>注意，不同设备应该输入的不同，但同为小米9，输入的应当一致</li>
+<li>有不懂请看最开始的链接</li>
+<li>出现的字不对，行首仍为<code>~ #</code>，说明步骤3出错，请重试，或百度</li>
+</ul>
+</li>
+<li>输入<code>p</code>回车，出现一大串字，最后两行：
+<ul>
+<li><code>53      1007MB  2617MB  1611MB  ext4         vendor</code></li>
+<li><code>54      2617MB  6375MB  3758MB  ext2         system</code></li>
+<li>这是vendor和system分区，由于要扩容system分区，其后方没有空间可以给它了，所以要从前面vendor分区抢空间</li>
+<li>接下来如果问你是或者否，或者其他选择，一律选第一项</li>
+</ul>
+</li>
+<li><code>rm 53</code>，这里的53就是前面vendor这一行最前面的序号</li>
+<li><code>rm 54</code>，54为system分区的序号</li>
+<li><code>mkpart system ext4 1007 6375</code></li>
+</ol>
+<ul>
+<li>不用创建vendor分区，因为没空间了，所以在userdata分区中分出去一部分当作vendor分区</li>
+<li>此时输入<code>p</code>，最后一行如下</li>
+<li><code>53      1007MB  6375MB  5368MB ext4         system</code></li>
+<li>system分区为5368MB，一般的刷机包足够了，若需要更多，请将system分区创建在下面的部分（下面的剩余空间足够大）</li>
+</ul>
+<ol start="11">
+<li><code>q</code>退出parted，此时行首为<code>~ #</code></li>
+</ol>
+<p>完成一半了</p>
+<ol>
+<li>输入<code>parted /dev/block/sde</code>，回车，行首变为<code>(parted)</code></li>
+<li>输入<code>p</code>回车，出现一大串字，最后一行：
+<ul>
+<li><code>31      2080MB  121GB   119GB   ext4         userdata</code></li>
+<li>这是userdata分区</li>
+</ul>
+</li>
+<li><code>rm 31</code>，这里的31是userdata分区的序号</li>
+<li><code>mkpart vendor ext4 2080 4000</code>，创建vendor分区</li>
+<li><code>mkpart userdata ext4 4000 121GB</code>，创建userdata分区
+<ul>
+<li>此时输入<code>p</code>，最后两行应当为</li>
+<li><code>31      2080MB  4000MB   1920MB   ext4         vendor</code></li>
+<li><code>32      4000MB  121GB    119GB    ext4         userdata</code></li>
+</ul>
+</li>
+<li>输入<code>q</code>退出parted，输入<code>exit</code>，退出adb shell</li>
+</ol>
+<p>分区的事就到这里了，但扩容还未完成，接下来要格式化刚才新建的分区</p>
+<p>重启手机至fastboot模式（比如在电脑终端中输入<code>adb reboot fastboot</code>）</p>
+<ol>
+<li><code>fastboot erase vendor</code></li>
+<li><code>fastboot erase system</code></li>
+<li><code>fastboot erase userdata</code></li>
+</ol>
+<p>此时手机已经扩容完毕，若是线刷包，可以直接在fastboot模式下线刷了。但我是卡刷包，所以重启至recovery</p>
+<p><code>fastboot reboot recovery</code></p>
+<h2 id="31-刷入卡刷包">3.1 刷入卡刷包
+</h2><p>卡刷包为zip压缩包，里面有多个img文件，及META文件等</p>
+<ol>
+<li>在rec模式下，将zip压缩包复制到手机存储内
+<ul>
+<li>如果rec中文件显示为乱码，请百度如何解密，或者百度如何刷入防止自动解密补丁</li>
+</ul>
+</li>
+<li>在rec内，选择该zip文件，确认刷入，等待进度条结束即可。</li>
+</ol>
+<h2 id="32-刷入线刷包">3.2 刷入线刷包
+</h2><p>将手机重启至fastboot模式。</p>
+<p>线刷包需要解压，文件夹内通常有多个img文件，也可能有bat后缀的文件</p>
+<p>如果有bat后缀的文件，直接将这个文件拖入命令行，等待即可。</p>
+<p>如果没有，或者bat运行失败，可以手动操作。</p>
+<ul>
+<li><code>fastboot flash boot </code>，拖入<code>boot.img</code>文件回车</li>
+<li><code>fastboot flash system </code>，拖入<code>system.img</code>文件回车</li>
+<li><code>fastboot flash vendor </code>，拖入<code>vendor.img</code>文件回车</li>
+<li>。。。。。。</li>
+</ul>
+<p>文件与分区名大多为相同的，少数为不同，可以下载一个官方线刷包，查看其bat文件的内容。</p>
+<h2 id="4-结束">4 结束
+</h2><p>到这里，系统就刷好了，重启手机。</p>
+<p>卡住可以强制重启一次，一般来说，第二次就能正常开机了。</p>
+<p>如果前面步骤有任何报错，请百度，或者酷安。当然如果没有报错，那我也不知道了，也许是你的刷机包有问题，换一个吧。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+        
+            <a href="/tags/%E5%AE%89%E5%8D%93/">安卓</a>
+        
+            <a href="/tags/%E5%88%B7%E6%9C%BA/">刷机</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2025.03.27 15:29 CST
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/%E7%AC%94%E8%AE%B0%E6%9C%AC%E6%94%B9nas/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">笔记本改nas</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/kindle%E8%B6%8A%E7%8B%B1/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Kindle越狱</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2025 chenxi的个人博客
+    </section>
+    
+    <section class="powerby">
+        
+            记录我所经历的。 <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

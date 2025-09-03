@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="包含了一些shell的基本规则和常见用法，用于写sh脚本时查询">
+<title>Shell 脚本基本规则及常见用法</title>
+
+<link rel='canonical' href='https://chenxi-Eumenides.github.io/p/shell-%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%A7%84%E5%88%99%E5%8F%8A%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/'>
+
+<link rel="stylesheet" href="/scss/style.min.32fee57655dcce91bc3c3d3eda65b6173114b3b4f2172bb73bccb01c7ca4559d.css"><meta property='og:title' content="Shell 脚本基本规则及常见用法">
+<meta property='og:description' content="包含了一些shell的基本规则和常见用法，用于写sh脚本时查询">
+<meta property='og:url' content='https://chenxi-Eumenides.github.io/p/shell-%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%A7%84%E5%88%99%E5%8F%8A%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/'>
+<meta property='og:site_name' content='chenxi的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='shell' /><meta property='article:tag' content='笔记' /><meta property='article:tag' content='脚本' /><meta property='article:tag' content='linux' /><meta property='article:tag' content='bash' /><meta property='article:tag' content='zsh' /><meta property='article:published_time' content='2023-08-11T14:00:49&#43;08:00'/><meta property='article:modified_time' content='2025-07-24T14:55:26&#43;08:00'/>
+<meta name="twitter:title" content="Shell 脚本基本规则及常见用法">
+<meta name="twitter:description" content="包含了一些shell的基本规则和常见用法，用于写sh脚本时查询">
+    <link rel="shortcut icon" href="/web_icon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/user_head_hu_6fe97d037a8b714b.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌞</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">chenxi的个人博客</a></h1>
+            <h2 class="site-description">我总在看这个世界。美好那么多，回忆那么远。</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                <form action="/search/" class="search-form widget" >
+        <p>
+            <label>搜索</label>
+            <input name="keyword" required placeholder="输入关键词..." />
+        
+            <button title="搜索">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+            
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#适用范围">适用范围</a>
+      <ol>
+        <li><a href="#推荐">推荐</a></li>
+      </ol>
+    </li>
+    <li><a href="#基本">基本</a>
+      <ol>
+        <li><a href="#变量">变量</a>
+          <ol>
+            <li><a href="#普通变量">普通变量</a></li>
+            <li><a href="#字符串变量">字符串变量</a></li>
+            <li><a href="#变量匹配">变量匹配</a></li>
+            <li><a href="#变量的变量">变量的变量</a></li>
+          </ol>
+        </li>
+        <li><a href="#数组">数组</a>
+          <ol>
+            <li><a href="#普通数组">普通数组</a></li>
+            <li><a href="#关联数组">关联数组</a></li>
+          </ol>
+        </li>
+        <li><a href="#字符串值">字符串值</a>
+          <ol>
+            <li><a href="#打印字符串">打印字符串</a></li>
+          </ol>
+        </li>
+        <li><a href="#函数">函数</a></li>
+        <li><a href="#控制">控制</a>
+          <ol>
+            <li><a href="#判断">判断</a></li>
+            <li><a href="#循环">循环</a></li>
+          </ol>
+        </li>
+        <li><a href="#参数">参数</a></li>
+        <li><a href="#获取命令输出">获取命令输出</a></li>
+        <li><a href="#管道">管道</a></li>
+        <li><a href="#合并执行">合并执行</a></li>
+        <li><a href="#判断条件">判断条件</a></li>
+        <li><a href="#数值计算">数值计算</a></li>
+        <li><a href="#重定向">重定向</a>
+          <ol>
+            <li><a href="#常用">常用</a></li>
+          </ol>
+        </li>
+        <li><a href="#c语言规则">C语言规则</a></li>
+        <li><a href="#其他">其他</a></li>
+      </ol>
+    </li>
+    <li><a href="#常用方法">常用方法</a>
+      <ol>
+        <li><a href="#获取后缀名">获取后缀名</a></li>
+        <li><a href="#判断变量是否存在">判断变量是否存在</a></li>
+        <li><a href="#去除字符串后n位">去除字符串后n位</a></li>
+        <li><a href="#工作路径切换">工作路径切换</a></li>
+        <li><a href="#获取带空格的文件名">获取带空格的文件名</a></li>
+        <li><a href="#判断语句的简单写法">判断语句的简单写法</a></li>
+        <li><a href="#判断字符串是否在数组中">判断字符串是否在数组中</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+            
+                <section class="widget tagCloud">
+    <div class="widget-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+    </div>
+    <h2 class="widget-title section-title">分类</h2>
+
+    <div class="tagCloud-tags">
+        
+            <a href="/categories/%E8%BD%AF%E4%BB%B6/" class="font_size_8">
+                软件
+            </a>
+        
+            <a href="/categories/%E5%BC%80%E5%8F%91/" class="font_size_6">
+                开发
+            </a>
+        
+            <a href="/categories/%E6%B8%B8%E6%88%8F/" class="font_size_5">
+                游戏
+            </a>
+        
+            <a href="/categories/%E7%8E%A9%E6%9C%BA/" class="font_size_3">
+                玩机
+            </a>
+        
+            <a href="/categories/%E4%B8%AA%E4%BA%BA/" class="font_size_1">
+                个人
+            </a>
+        
+            <a href="/categories/%E7%AC%94%E8%AE%B0/" class="font_size_1">
+                笔记
+            </a>
+        
+    </div>
+</section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E5%BC%80%E5%8F%91/" >
+                开发
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/shell-%E8%84%9A%E6%9C%AC%E5%9F%BA%E6%9C%AC%E8%A7%84%E5%88%99%E5%8F%8A%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/">Shell 脚本基本规则及常见用法</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            包含了一些shell的基本规则和常见用法，用于写sh脚本时查询
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023.08.11</time>
+            </div>
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--lastmod">2025.07.24</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 6 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="适用范围">适用范围
+</h2><p>适用于<code>bash</code>，<code>zsh</code>等shell的sh脚本文件</p>
+<h3 id="推荐">推荐
+</h3><p>使用shellcheck检查脚本的错误</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">shellcheck SCRIPT.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="基本">基本
+</h2><h3 id="变量">变量
+</h3><h4 id="普通变量">普通变量
+</h4><p>定义变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">key</span><span class="o">=</span><span class="s2">&#34;str&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># or</span>
+</span></span><span class="line"><span class="cl"><span class="nv">key</span><span class="o">=</span>str
+</span></span><span class="line"><span class="cl"><span class="c1"># 建议用第一种</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">$key</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># or</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">key</span><span class="si">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>变量判断</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 若值未定义，则以default字符串或者变量${var}作为其值</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">key</span><span class="p">-default</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 若值未定义，或者为空，则以default字符串或者变量${var}作为其值</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">key</span><span class="k">:-</span><span class="nv">default</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 若值已定义，则以default字符串或者变量${var}作为其值</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">key</span><span class="p">+default</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 若值已定义，并且不为空，则以default字符串或者变量${var}作为其值</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">key</span><span class="p">:+default</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 若值未定义，报错error_msg并退出</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">key</span><span class="p">?error_msg</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 若值未定义，或者为空，报错error_msg并退出</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">key</span><span class="p">:?error_msg</span><span class="si">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="字符串变量">字符串变量
+</h4><p>字符串长度</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="si">${#</span><span class="nv">str</span><span class="si">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>字符串截取</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 按位数截取</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">str</span><span class="p">:</span><span class="nv">5</span><span class="si">}</span> <span class="c1"># 从左侧第6个字符(0是第1个，1是第2个)开始，截取到末尾</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">str</span><span class="p">:</span><span class="nv">0</span><span class="p">-7:</span><span class="nv">3</span><span class="si">}</span> <span class="c1"># 从右侧第7个字符开始，截取3个字符</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 从右往左正则截取(配合通配符)</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">str</span><span class="p">%regex</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 从右往左贪婪正则截取</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">str</span><span class="p">%%regex</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 从左往右正则截取</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">str</span><span class="p">#regex</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 从左往右贪婪正则截取</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">str</span><span class="p">##regex</span><span class="si">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>字符串替换</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">str</span><span class="o">=</span><span class="s2">&#34;old_string&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">str</span><span class="p">/#old/new</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># new_string</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>字符串大小写</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 大写</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">str</span><span class="p">^^</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 小写</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">str</span><span class="p">,,</span><span class="si">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="变量匹配">变量匹配
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 匹配所有以char开头的变量名</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 得到的是变量名，不是变量值</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="p">!char*</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="p">!char@</span><span class="si">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="变量的变量">变量的变量
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">var_name</span><span class="o">=</span><span class="s2">&#34;name&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">name</span><span class="o">=</span><span class="s2">&#34;var_value&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="p">!ver_name</span><span class="si">}</span> <span class="c1"># 得到 &#34;var_value&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="数组">数组
+</h3><h4 id="普通数组">普通数组
+</h4><p>定义数组</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">key</span><span class="o">=(</span><span class="s2">&#34;value1&#34;</span> <span class="s2">&#34;value2&#34;</span> <span class="s2">&#34;value3&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># or</span>
+</span></span><span class="line"><span class="cl"><span class="nv">key</span><span class="o">=</span><span class="s2">&#34;value1 value2 value3&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 建议用第一种</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用数组</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="si">${</span><span class="nv">key</span><span class="p">[index]</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 从0开始</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="关联数组">关联数组
+</h4><p>定义关联数组</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">declare</span> -A <span class="nv">dic</span><span class="o">=([</span><span class="s2">&#34;key1&#34;</span><span class="o">]=</span><span class="s2">&#34;value1&#34;</span> <span class="o">[</span><span class="s2">&#34;key2&#34;</span><span class="o">]=</span><span class="s2">&#34;value2&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># or</span>
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -A dic
+</span></span><span class="line"><span class="cl">dic<span class="o">[</span><span class="s2">&#34;key1&#34;</span><span class="o">]=</span><span class="s2">&#34;value1&#34;</span>
+</span></span><span class="line"><span class="cl">dic<span class="o">[</span><span class="s2">&#34;key2&#34;</span><span class="o">]=</span><span class="s2">&#34;value2&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用关联数组</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 获取key对应的value</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">dic</span><span class="p">[key]</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取所有的key（倒序）</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="p">!dic[*]</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取所有的value（倒序）</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">dic</span><span class="p">[*]</span><span class="si">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="字符串值">字符串值
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="s2">&#34;str&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ${value} 变量 $(command) 函数 等</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># \n 换行 \r 回到行首</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;str&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 字面值</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="打印字符串">打印字符串
+</h4><p>echo</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;str1&#34;</span> <span class="s2">&#34;str2&#34;</span> <span class="c1"># str1 str2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -ne <span class="s2">&#34;12345\r67\n&#34;</span> <span class="c1"># 67345</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -n 结尾不换行</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -e 允许\r操作符回到行首</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 与printf默认行为一致</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>printf</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">printf</span> <span class="s2">&#34;string\n&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">printf</span> <span class="s2">&#34;num:%d float:%f char:%c str:%s\n&#34;</span> <span class="nv">$num</span> <span class="nv">$float</span> <span class="nv">$char</span> <span class="nv">$str</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># % 转义符</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># %2d 2宽 %.2d 2宽，用0补充</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># %.2f 小数点后两位，四舍五入</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># %2c 2宽</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># %x 十六进制数 %o 八进制数 %e 二进制数</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="函数">函数
+</h3><p>定义函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">func_name<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    commands
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># or</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> func_name<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    commands
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">func_name args
+</span></span><span class="line"><span class="cl"><span class="c1"># 多个参数 空格分隔</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>函数返回值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">return</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 0-255</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 0为正常运行 1-255为报错</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="控制">控制
+</h3><h4 id="判断">判断
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> condition <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#statements</span>
+</span></span><span class="line"><span class="cl"><span class="k">elif</span> <span class="o">[[</span> condition <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#statements</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#statements</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 简易写法</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 与</span>
+</span></span><span class="line"><span class="cl">command1 <span class="o">&amp;&amp;</span> command2
+</span></span><span class="line"><span class="cl"><span class="c1"># 左边返回真（$?==0），右边才执行</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 或</span>
+</span></span><span class="line"><span class="cl">command1 <span class="o">||</span> command2
+</span></span><span class="line"><span class="cl"><span class="c1"># 左边返回假（$?==1），右边才执行</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="循环">循环
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 条件循环</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="o">[[</span> -z <span class="nv">$key</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#statements</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="o">((</span> <span class="nv">i</span> <span class="o">=</span> 0<span class="p">;</span> i &lt; 10<span class="p">;</span> i++ <span class="o">))</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#statements</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 等价于</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> i in <span class="sb">`</span>seq <span class="m">0</span> 9<span class="sb">`</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#statements</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 等价于</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> i in <span class="o">{</span>0..9<span class="o">}</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#statements</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 枚举循环</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> i in word1 word2 word3<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#statements</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 等价于</span>
+</span></span><span class="line"><span class="cl"><span class="nv">words</span><span class="o">=(</span>word1 word2 word3<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> i in <span class="si">${</span><span class="nv">words</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#statements</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="参数">参数
+</h3><p>获取参数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">$1</span> <span class="nv">$2</span> <span class="c1">#......</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 最多9个</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>特殊参数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 文件名(相对路径)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$0</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 所有参数(单字符串)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$*</span> <span class="c1"># &#34;$1 $2 $3...&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 所有参数(多字符串)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$@</span> <span class="c1"># &#34;$1&#34; &#34;$2&#34; &#34;$3&#34; ...</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 参数个数</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 脚本的进程ID</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$$</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 后台运行的最后一个进程ID</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$!</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># shell使用的当前选项</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$-</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 最后一个命令的退出值，一般0为正常运行无错误，范围是0~255(-1)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$?</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="获取命令输出">获取命令输出
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">$(</span><span class="nb">command</span><span class="k">)</span> <span class="c1"># 支持嵌套，推荐</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者</span>
+</span></span><span class="line"><span class="cl"><span class="sb">`</span><span class="nb">command</span><span class="sb">`</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="管道">管道
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">command1 <span class="p">|</span> command2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="合并执行">合并执行
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在当前shell中执行</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>command1<span class="p">;</span> command2<span class="p">;</span> command3<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在子shell中执行</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span> command1<span class="p">;</span> command2<span class="p">;</span> command3 <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># {}与命令间有空格</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="判断条件">判断条件
+</h3><p>双中括号（字符串比较）(推荐)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 字符串匹配</span>
+</span></span><span class="line"><span class="cl"><span class="o">[[</span> <span class="nv">string</span> <span class="o">==</span> str* <span class="o">]]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 右侧可以为模式，*等通配符无需引号</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># *任意字符</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 相等 ==</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 不等于 !=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 正则匹配 =~ 左侧为被搜索内容，右侧为正则内容</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ascii码比较 &lt; &gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>单中括号</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 字符串比较</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span> a !<span class="o">=</span> b <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 支持 ==相等, !=不等</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 整数比较</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span> <span class="m">1</span> -eq <span class="m">2</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 支持 -eq等于 -ne不等于 -lt小于 -le小于等于 -gt大于 -ge大于等于</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 逻辑计算</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span> <span class="nb">true</span> -a <span class="nb">true</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 支持 -a逻辑与 -o逻辑或</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 文件判断</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span> -d file <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 支持 -d为目录 -e存在 -f文件 -r可读 -w可写 -x可执行 -O拥有 -G同组</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span> file1 -nt file2 <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 支持 -nt新于 -ot旧于</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>双小括号（数学比较）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 计算数学表达式</span>
+</span></span><span class="line"><span class="cl"><span class="o">((</span> <span class="m">2</span> + <span class="m">2</span> &gt; <span class="m">3</span> <span class="o">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 支持 + - * / % ** ++ -- (整数运算)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 支持 &amp;&amp; || ! ~ &gt;&gt; &lt;&lt; &amp; |</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果非0或为真，返回真（1）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果为0或为假，返回假（0）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 优先级同C语言</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="数值计算">数值计算
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用bash内置计算方式</span>
+</span></span><span class="line"><span class="cl"><span class="nv">res</span><span class="o">=</span>$<span class="o">[</span><span class="nv">$num1</span> + <span class="nv">$num2</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 支持 + - * /</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 只能整数计算，除法向下取整</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用expr计算</span>
+</span></span><span class="line"><span class="cl"><span class="nv">res</span><span class="o">=</span><span class="k">$(</span>expr <span class="nv">$num1</span> <span class="se">\*</span> <span class="nv">$num2</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 支持 + - \* / % （请注意乘法需要加转义符\）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 只能整数计算，除法向下取整</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 bc 命令行工具计算</span>
+</span></span><span class="line"><span class="cl"><span class="nv">res</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">&#34;scale=3;(</span><span class="nv">$num1</span><span class="s2"> + </span><span class="nv">$num2</span><span class="s2">) * </span><span class="nv">$num3</span><span class="s2"> / </span><span class="nv">$num4</span><span class="s2">&#34;</span> <span class="p">|</span> bc<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># scale=3 精度为小数点3位</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="重定向">重定向
+</h3><p>输入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 将输入重定向到 file。</span>
+</span></span><span class="line"><span class="cl"><span class="nb">command</span> &lt; file
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将开始标记 tag 和结束标记 tag 之间的内容作为输入。</span>
+</span></span><span class="line"><span class="cl"><span class="nb">command</span> <span class="s">&lt;&lt; tag
+</span></span></span><span class="line"><span class="cl"><span class="s">    CONTENT
+</span></span></span><span class="line"><span class="cl"><span class="s">tag</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结束tag顶格且后面不能有空格</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 将输出重定向到 file。</span>
+</span></span><span class="line"><span class="cl"><span class="nb">command</span> &gt; file
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将输出以追加的方式重定向到 file。</span>
+</span></span><span class="line"><span class="cl"><span class="nb">command</span> &gt;&gt; file
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>标准流</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 将描述符为 n 的流重定向到 file。</span>
+</span></span><span class="line"><span class="cl">n &gt; file
+</span></span><span class="line"><span class="cl"><span class="c1"># 将描述符为 n 的流以追加的方式重定向到 file。</span>
+</span></span><span class="line"><span class="cl">n &gt;&gt; file
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将输出流 m 和 n 合并。</span>
+</span></span><span class="line"><span class="cl">n &gt;<span class="p">&amp;</span> m
+</span></span><span class="line"><span class="cl"><span class="c1"># 将输入流 m 和 n 合并。</span>
+</span></span><span class="line"><span class="cl">n &lt;<span class="p">&amp;</span> m
+</span></span><span class="line"><span class="cl"><span class="c1"># 0: stdin</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 1: stdout</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2: stderr</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="常用">常用
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 从文件中输入</span>
+</span></span><span class="line"><span class="cl"><span class="nb">command</span> &lt; file
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 合并std到标准输出</span>
+</span></span><span class="line"><span class="cl"><span class="nb">command</span> 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 合并输出并写入文件</span>
+</span></span><span class="line"><span class="cl"><span class="nb">command</span> &gt; file 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="c语言规则">C语言规则
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">$((</span>exp<span class="k">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 只要符合C语言运算规则</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 正常的计算</span>
+</span></span><span class="line"><span class="cl"><span class="k">$((</span> <span class="o">(</span><span class="m">1</span><span class="o">*(</span><span class="m">1</span><span class="o">+</span><span class="m">1</span><span class="o">)-</span><span class="m">1</span><span class="o">)/</span><span class="m">1</span><span class="o">%</span><span class="m">1</span> <span class="k">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 只支持整数计算</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 三目运算符</span>
+</span></span><span class="line"><span class="cl"><span class="k">$((</span> <span class="m">1</span> !<span class="o">=</span> <span class="m">2</span> ? <span class="m">1</span> : <span class="m">2</span> <span class="k">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 不同进制</span>
+</span></span><span class="line"><span class="cl"><span class="k">$((</span> <span class="m">16#2</span>a <span class="k">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果为 42（转成十进制）</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="其他">其他
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 命令替换</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>cmd<span class="o">)</span> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 等同 `cmd`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重定义变量</span>
+</span></span><span class="line"><span class="cl"><span class="o">((</span> a++ <span class="o">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 文件名扩展</span>
+</span></span><span class="line"><span class="cl">ls <span class="o">{</span>file1,file<span class="o">{</span>2..3<span class="o">}</span>,file<span class="o">[</span>4-5<span class="o">]}</span>.sh
+</span></span><span class="line"><span class="cl"><span class="c1"># 等同于</span>
+</span></span><span class="line"><span class="cl">ls file1.sh file2.sh file3.sh file4.sh file5.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="常用方法">常用方法
+</h2><h3 id="获取后缀名">获取后缀名
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 截取文件后缀名</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">url</span><span class="p">##*.</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 截取文件名</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">url</span><span class="p">##*/</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 截取文件夹路径</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">url</span><span class="p">%/*</span><span class="si">}</span>/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="判断变量是否存在">判断变量是否存在
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> -z <span class="s2">&#34;</span><span class="si">${</span><span class="nv">key</span><span class="p">=</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 未定义</span>
+</span></span><span class="line"><span class="cl"><span class="k">elif</span> <span class="o">[[</span> -z <span class="s2">&#34;</span><span class="si">${</span><span class="nv">key</span><span class="p">:=</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 定义但为空</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 存在</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="去除字符串后n位">去除字符串后n位
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">string</span><span class="o">=</span><span class="s2">&#34;012345&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">string</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span>$<span class="p">[</span><span class="si">${#</span><span class="nv">string</span><span class="si">}</span><span class="p">-n]</span><span class="si">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="工作路径切换">工作路径切换
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">work_url</span><span class="o">=</span><span class="k">$(</span><span class="nb">cd</span> <span class="k">$(</span>dirname <span class="nv">$0</span><span class="k">)</span><span class="p">;</span><span class="nb">pwd</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">work_url</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 切换到父文件夹</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">work_url</span><span class="p">%/*</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="获取带空格的文件名">获取带空格的文件名
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 方法一(推荐)</span>
+</span></span><span class="line"><span class="cl">readarray -t files <span class="o">&lt;&lt;&lt;</span> <span class="s2">&#34;</span><span class="k">$(</span>ls<span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> file in <span class="s2">&#34;</span><span class="si">${</span><span class="nv">files</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$file</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 方法二</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SAVEIFS</span><span class="o">=</span><span class="nv">$IFS</span>
+</span></span><span class="line"><span class="cl"><span class="nv">IFS</span><span class="o">=</span><span class="s1">$&#39;\n&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> file in ./* <span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="nv">$file</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl"><span class="nv">IFS</span><span class="o">=</span><span class="nv">$SAVEIFS</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 方法三</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SAVEIFS</span><span class="o">=</span><span class="nv">$IFS</span>
+</span></span><span class="line"><span class="cl"><span class="nv">IFS</span><span class="o">=</span><span class="s1">$&#39;\n&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">fileArray</span><span class="o">=(</span><span class="k">$(</span>find . -type f<span class="k">)</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">IFS</span><span class="o">=</span><span class="nv">$SAVEIFS</span>
+</span></span><span class="line"><span class="cl"><span class="nv">tLen</span><span class="o">=</span><span class="si">${#</span><span class="nv">fileArray</span><span class="p">[@]</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="o">((</span> <span class="nv">i</span><span class="o">=</span>0<span class="p">;</span> i&lt;<span class="si">${</span><span class="nv">tLen</span><span class="si">}</span><span class="p">;</span> i++ <span class="o">))</span> <span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">fileArray</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="判断语句的简单写法">判断语句的简单写法
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[[</span> -z <span class="nv">$1</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="nb">true</span> <span class="o">||</span> <span class="nb">echo</span> <span class="nb">false</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="判断字符串是否在数组中">判断字符串是否在数组中
+</h3><p>简单判断(可能部分匹配)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">array</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">=</span>~ <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="nb">true</span> <span class="o">||</span> <span class="nb">echo</span> <span class="nb">false</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>完整判断</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">for</span> str in <span class="s2">&#34;</span><span class="si">${</span><span class="nv">array</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="nv">$str</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> True
+</span></span><span class="line"><span class="cl">        <span class="nb">break</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/shell/">Shell</a>
+        
+            <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+        
+            <a href="/tags/%E8%84%9A%E6%9C%AC/">脚本</a>
+        
+            <a href="/tags/linux/">Linux</a>
+        
+            <a href="/tags/bash/">Bash</a>
+        
+            <a href="/tags/zsh/">Zsh</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2025.07.24 14:55 CST
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/docker%E7%9A%84%E7%94%A8%E6%B3%95%E4%B8%8E%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Docker的用法，与创建一个开发环境</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/linux%E7%9A%84%E4%B8%80%E4%BA%9Btips/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Linux的一些tips</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/oh-my-zsh%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">oh-my-zsh安装及配置</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/python%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">python环境管理</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AC%94%E8%AE%B0/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">git常用命令笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2025 chenxi的个人博客
+    </section>
+    
+    <section class="powerby">
+        
+            记录我所经历的。 <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

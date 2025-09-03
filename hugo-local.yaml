@@ -1,7 +1,7 @@
 # basic config
 baseurl: http://blog.chenxi-eumenides.top:81
 title: chenxi的个人博客
-#publicDir: public-local
+publishDir: public
 
 enableEmoji: true
 enableGitInfo: true
@@ -63,7 +63,7 @@ params:
     avatar:
       enabled: true
       local: true
-      src: img/avatar-3.jpg
+      src: user_head.jpg
 
   article:
     math: false
