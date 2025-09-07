@@ -199,6 +199,8 @@ $list[0,2,5] # 第一、三、六个
 $list[1..3] # 第二、三、四个
 $list[-1] # 倒数第一个
 
+"$($list[1])" # 在字符串中使用数组
+
 $list1 + $list2
 $list += new_value
 $list * 2 # $list + $list

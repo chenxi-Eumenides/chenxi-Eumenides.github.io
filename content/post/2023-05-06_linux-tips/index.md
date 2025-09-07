@@ -67,6 +67,17 @@ yay -Qqen
 # -n 忽略外部AUR包
 yay -Qqd # 列出所有依赖安装的包
 yay -Qqdt # 列出所有孤立的包
+
+yay -Qi <PKG> # 获取包的详细信息
+```
+
+#### 修改包的元信息
+
+```bash
+pacman -D --asexplicit <PKG>
+# -D 修改包的元数据
+# --asexplicit 显示安装
+# --asdeps 依赖安装
 ```
 
 #### 报错

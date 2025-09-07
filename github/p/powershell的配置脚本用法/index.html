@@ -670,20 +670,24 @@
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-pwsh" data-lang="pwsh"><span class="line"><span class="cl"><span class="nv">$list</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span> <span class="c"># 第一个</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$list</span><span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">5</span><span class="p">]</span> <span class="c"># 第一、三、六个</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$list</span><span class="p">[</span><span class="mf">1</span><span class="p">.</span><span class="mf">.3</span><span class="p">]</span> <span class="c"># 第二、三、四个</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$list</span><span class="p">[</span><span class="mf">-1</span><span class="p">]</span> <span class="c"># 倒数第一个</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$list</span><span class="p">[</span><span class="mf">1</span><span class="p">])</span><span class="s2">&#34;</span> <span class="c"># 在字符串中使用数组</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nv">$list1</span> <span class="p">+</span> <span class="nv">$list2</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$list</span> <span class="p">+=</span> <span class="n">new_value</span>
