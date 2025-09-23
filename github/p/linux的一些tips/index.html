@@ -10,7 +10,7 @@
 <meta property='og:description' content="在Linux下遇到各种问题的解决方式与过程记录。">
 <meta property='og:url' content='https://chenxi-Eumenides.github.io/p/linux%E7%9A%84%E4%B8%80%E4%BA%9Btips/'>
 <meta property='og:site_name' content='chenxi的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='linux' /><meta property='article:tag' content='笔记' /><meta property='article:published_time' content='2023-05-06T00:34:45&#43;08:00'/><meta property='article:modified_time' content='2025-09-08T00:43:10&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='linux' /><meta property='article:tag' content='笔记' /><meta property='article:published_time' content='2023-05-06T00:34:45&#43;08:00'/><meta property='article:modified_time' content='2025-09-24T01:45:49&#43;08:00'/>
 <meta name="twitter:title" content="Linux的一些tips">
 <meta name="twitter:description" content="在Linux下遇到各种问题的解决方式与过程记录。">
     <link rel="shortcut icon" href="/web_icon.ico" />
@@ -443,7 +443,7 @@
 
 
 
-                <time class="article-time--lastmod">2025.09.08</time>
+                <time class="article-time--lastmod">2025.09.24</time>
             </div>
         
 
@@ -458,7 +458,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 11 分钟
+                    阅读时长: 12 分钟
                 </time>
             </div>
         
@@ -1287,13 +1287,20 @@ END{} 结束后运行的命令
 </div><h3 id="获取时间">获取时间
 </h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">date
@@ -1301,6 +1308,13 @@ END{} 结束后运行的命令
 </span></span><span class="line"><span class="cl">date +%s
 </span></span><span class="line"><span class="cl"><span class="c1"># 获取时间戳对应的时间</span>
 </span></span><span class="line"><span class="cl">date -d @<span class="s2">&#34;TIMENUM&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取时间戳转为指定格式的字符串</span>
+</span></span><span class="line"><span class="cl">date -d @<span class="s2">&#34;TIMENUM&#34;</span> +<span class="s2">&#34;%Y/%m/%d %H:%M:%S&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取日期字符串转为时间戳</span>
+</span></span><span class="line"><span class="cl">date -d <span class="s2">&#34;TIMESTRING&#34;</span> +<span class="s2">&#34;%s&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 偏移量</span>
+</span></span><span class="line"><span class="cl">date +<span class="s2">&#34;%Y/%m/%d %H:%M:%S&#34;</span> --date<span class="o">=</span><span class="s2">&#34;+1 day&#34;</span> <span class="c1"># 明天</span>
+</span></span><span class="line"><span class="cl">date +<span class="s2">&#34;%Y/%m/%d %H:%M:%S&#34;</span> --date<span class="o">=</span><span class="s2">&#34;-1 year&#34;</span> <span class="c1"># 去年</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 格式化输出</span>
 </span></span><span class="line"><span class="cl">date +<span class="s2">&#34;%F&#34;</span>
 </span></span></code></pre></td></tr></table>
@@ -2058,7 +2072,7 @@ END{} 结束后运行的命令
 
 
         <span>
-            最后更新于 2025.09.08 00:43 CST
+            最后更新于 2025.09.24 01:45 CST
         </span>
     </section></footer>
 

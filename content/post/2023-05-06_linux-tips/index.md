@@ -484,6 +484,13 @@ date
 date +%s
 # 获取时间戳对应的时间
 date -d @"TIMENUM"
+# 获取时间戳转为指定格式的字符串
+date -d @"TIMENUM" +"%Y/%m/%d %H:%M:%S"
+# 获取日期字符串转为时间戳
+date -d "TIMESTRING" +"%s"
+# 偏移量
+date +"%Y/%m/%d %H:%M:%S" --date="+1 day" # 明天
+date +"%Y/%m/%d %H:%M:%S" --date="-1 year" # 去年
 # 格式化输出
 date +"%F"
 ```
