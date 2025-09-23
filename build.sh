@@ -16,6 +16,17 @@ config() {
 #    arg_quiet="--quiet"
 }
 
+new_content() {
+    name=$1
+    hugo new content content/post/$(date +%F)_$name/index.md
+}
+
+edit_content() {
+    name=$1
+    nano content/post/*$1/index.md
+}
+
+
 check_git() {
     l=$(git status --porcelain | grep "content" | wc -l)
     return $l
