@@ -2,7 +2,7 @@
 
 config() {
     name="blog" # 必填
-    desc="我自己的blog网站，用hugo搭建，主题为stack。\n构建两个版本：本地、github.io\n应当先手动add文件，再使用该脚本。" # 描述
+    desc="我自己的blog网站，用hugo搭建，主题为stack。构建两个版本：本地、github.io。应当先手动add文件，再使用该脚本。" # 描述
 
     # 0:verbose 1:info 2:warning 3:error 4:panic 5:quiet
     log_level=1 # 输出日志等级
