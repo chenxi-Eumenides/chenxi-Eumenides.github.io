@@ -200,6 +200,10 @@ printf "num:%d float:%f char:%c str:%s\n" $num $float $char $str
 # %.2f 小数点后两位，四舍五入
 # %2c 2宽
 # %x 十六进制数 %o 八进制数 %e 二进制数
+
+printf "%10s %-10s" $str1 $str2
+# %10s 右对齐
+# %-10s 左对齐
 ```
 
 ### 函数
