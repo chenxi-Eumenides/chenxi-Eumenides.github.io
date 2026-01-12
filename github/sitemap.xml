@@ -3,13 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://chenxi-Eumenides.github.io/categories/</loc>
-    <lastmod>2025-12-16T16:55:07+08:00</lastmod>
+    <lastmod>2026-01-12T15:43:52+08:00</lastmod>
   </url><url>
     <loc>https://chenxi-Eumenides.github.io/post/</loc>
-    <lastmod>2025-12-16T16:55:07+08:00</lastmod>
+    <lastmod>2026-01-12T15:43:52+08:00</lastmod>
+  </url><url>
+    <loc>https://chenxi-Eumenides.github.io/categories/python/</loc>
+    <lastmod>2026-01-12T15:43:52+08:00</lastmod>
+  </url><url>
+    <loc>https://chenxi-Eumenides.github.io/tags/python/</loc>
+    <lastmod>2026-01-12T15:43:52+08:00</lastmod>
+  </url><url>
+    <loc>https://chenxi-Eumenides.github.io/p/python%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E8%AE%B0%E5%BD%95/</loc>
+    <lastmod>2026-01-12T15:43:52+08:00</lastmod>
   </url><url>
     <loc>https://chenxi-Eumenides.github.io/tags/</loc>
-    <lastmod>2025-12-16T16:55:07+08:00</lastmod>
+    <lastmod>2026-01-12T15:43:52+08:00</lastmod>
+  </url><url>
+    <loc>https://chenxi-Eumenides.github.io/tags/tips/</loc>
+    <lastmod>2026-01-12T15:43:52+08:00</lastmod>
+  </url><url>
+    <loc>https://chenxi-Eumenides.github.io/tags/%E4%BB%A3%E7%A0%81/</loc>
+    <lastmod>2026-01-12T15:43:52+08:00</lastmod>
+  </url><url>
+    <loc>https://chenxi-Eumenides.github.io/tags/%E8%AE%B0%E5%BD%95/</loc>
+    <lastmod>2026-01-12T15:43:52+08:00</lastmod>
   </url><url>
     <loc>https://chenxi-Eumenides.github.io/tags/windows/</loc>
     <lastmod>2025-09-01T17:18:08+08:00</lastmod>
@@ -29,14 +47,11 @@
     <loc>https://chenxi-Eumenides.github.io/p/b%E7%AB%99%E7%9B%B4%E6%92%AD%E5%BC%80%E6%92%AD%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2025-08-11T14:34:12+08:00</lastmod>
   </url><url>
-    <loc>https://chenxi-Eumenides.github.io/tags/python/</loc>
-    <lastmod>2025-08-11T14:34:12+08:00</lastmod>
-  </url><url>
     <loc>https://chenxi-Eumenides.github.io/tags/%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2025-08-11T14:34:12+08:00</lastmod>
   </url><url>
     <loc>https://chenxi-Eumenides.github.io/categories/%E8%BD%AF%E4%BB%B6/</loc>
-    <lastmod>2025-09-08T00:43:10+08:00</lastmod>
+    <lastmod>2026-01-12T15:09:54+08:00</lastmod>
   </url><url>
     <loc>https://chenxi-Eumenides.github.io/tags/%E7%9B%B4%E6%92%AD/</loc>
     <lastmod>2025-08-11T14:34:12+08:00</lastmod>
@@ -102,19 +117,19 @@
     <lastmod>2025-03-27T15:29:41+08:00</lastmod>
   </url><url>
     <loc>https://chenxi-Eumenides.github.io/p/powershell%E7%9A%84%E9%85%8D%E7%BD%AE%E8%84%9A%E6%9C%AC%E7%94%A8%E6%B3%95/</loc>
-    <lastmod>2025-09-08T00:43:10+08:00</lastmod>
+    <lastmod>2026-01-12T15:09:54+08:00</lastmod>
   </url><url>
     <loc>https://chenxi-Eumenides.github.io/tags/shell/</loc>
-    <lastmod>2025-12-16T16:55:07+08:00</lastmod>
+    <lastmod>2026-01-12T15:09:54+08:00</lastmod>
   </url><url>
     <loc>https://chenxi-Eumenides.github.io/tags/win/</loc>
-    <lastmod>2025-09-08T00:43:10+08:00</lastmod>
+    <lastmod>2026-01-12T15:09:54+08:00</lastmod>
   </url><url>
     <loc>https://chenxi-Eumenides.github.io/tags/%E5%AE%89%E8%A3%85/</loc>
-    <lastmod>2025-09-08T00:43:10+08:00</lastmod>
+    <lastmod>2026-01-12T15:09:54+08:00</lastmod>
   </url><url>
     <loc>https://chenxi-Eumenides.github.io/tags/%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2025-09-08T00:43:10+08:00</lastmod>
+    <lastmod>2026-01-12T15:09:54+08:00</lastmod>
   </url><url>
     <loc>https://chenxi-Eumenides.github.io/tags/secrets-of-grindea/</loc>
     <lastmod>2025-03-27T15:29:41+08:00</lastmod>
@@ -198,9 +213,6 @@
     <lastmod>2025-03-27T15:29:41+08:00</lastmod>
   </url><url>
     <loc>https://chenxi-Eumenides.github.io/p/ranger%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2025-03-27T15:29:41+08:00</lastmod>
-  </url><url>
-    <loc>https://chenxi-Eumenides.github.io/tags/tips/</loc>
     <lastmod>2025-03-27T15:29:41+08:00</lastmod>
   </url><url>
     <loc>https://chenxi-Eumenides.github.io/p/linux%E7%9A%84%E4%B8%80%E4%BA%9Btips/</loc>
