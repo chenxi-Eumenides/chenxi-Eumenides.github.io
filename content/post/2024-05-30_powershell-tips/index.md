@@ -497,6 +497,15 @@ Get-Location
 Get-ChildItem -Path $path -Filter *.mp4
 ```
 
+### 管理员权限运行脚本
+
+```pwsh
+if(!([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
+ Start-Process -FilePath PowerShell.exe -Verb Runas -ArgumentList "-File `"$($MyInvocation.MyCommand.Path)`"  `"$($MyInvocation.MyCommand.UnboundArguments)`""
+ Exit
+}
+```
+
 ### 用户输入输出
 
 ```pwsh
@@ -571,3 +580,10 @@ Get-Alias -Name ALIAS_NAME
 | pushd | pushd | Push-Location | pushd |
 | ren | mv | Rename-Item | rni、ren |
 | type | cat | Get-Content | gc、cat、type |
+
+### 重启远程桌面服务
+
+```pwsh
+# Restart-Service -Name UmRdpService
+Restart-Service -Name TermService -Force # 强制重启
+```

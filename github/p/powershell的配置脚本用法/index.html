@@ -305,6 +305,7 @@
       <ol>
         <li><a href="#获取工作路径">获取工作路径</a></li>
         <li><a href="#获取路径下特定文件">获取路径下特定文件</a></li>
+        <li><a href="#管理员权限运行脚本">管理员权限运行脚本</a></li>
         <li><a href="#用户输入输出">用户输入输出</a></li>
         <li><a href="#路径">路径</a></li>
         <li><a href="#测试远程端口">测试远程端口</a></li>
@@ -313,6 +314,7 @@
             <li><a href="#原生兼容性别名">原生兼容性别名</a></li>
           </ol>
         </li>
+        <li><a href="#重启远程桌面服务">重启远程桌面服务</a></li>
       </ol>
     </li>
   </ol>
@@ -1294,6 +1296,21 @@
 <pre tabindex="0" class="chroma"><code class="language-pwsh" data-lang="pwsh"><span class="line"><span class="cl"><span class="nb">Get-ChildItem</span> <span class="n">-Path</span> <span class="nv">$path</span> <span class="n">-Filter</span> <span class="p">*.</span><span class="n">mp4</span>
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h3 id="管理员权限运行脚本">管理员权限运行脚本
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-pwsh" data-lang="pwsh"><span class="line"><span class="cl"><span class="k">if</span><span class="p">(!([</span><span class="no">Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity</span><span class="p">]::</span><span class="n">GetCurrent</span><span class="p">()).</span><span class="py">IsInRole</span><span class="p">([</span><span class="no">Security.Principal.WindowsBuiltInRole</span><span class="p">]</span> <span class="s1">&#39;Administrator&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nb">Start-Process</span> <span class="n">-FilePath</span> <span class="n">PowerShell</span><span class="p">.</span><span class="py">exe</span> <span class="n">-Verb</span> <span class="n">Runas</span> <span class="n">-ArgumentList</span> <span class="s2">&#34;-File </span><span class="se">`&#34;</span><span class="p">$(</span><span class="nv">$MyInvocation</span><span class="p">.</span><span class="py">MyCommand</span><span class="p">.</span><span class="n">Path</span><span class="p">)</span><span class="se">`&#34;</span><span class="s2">  </span><span class="se">`&#34;</span><span class="p">$(</span><span class="nv">$MyInvocation</span><span class="p">.</span><span class="py">MyCommand</span><span class="p">.</span><span class="n">UnboundArguments</span><span class="p">)</span><span class="se">`&#34;</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Exit</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
 </div><h3 id="用户输入输出">用户输入输出
 </h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1484,7 +1501,18 @@
       </tr>
   </tbody>
 </table></div>
-
+<h3 id="重启远程桌面服务">重启远程桌面服务
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-pwsh" data-lang="pwsh"><span class="line"><span class="cl"><span class="c"># Restart-Service -Name UmRdpService</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Restart-Service</span> <span class="n">-Name</span> <span class="n">TermService</span> <span class="n">-Force</span> <span class="c"># 强制重启</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
@@ -1620,7 +1648,7 @@
         
             2023 - 
         
-        2025 chenxi的个人博客
+        2026 chenxi的个人博客
     </section>
     
     <section class="powerby">
