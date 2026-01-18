@@ -183,6 +183,24 @@ ifconfig
 ip addr show
 ```
 
+### 文本处理
+
+使用sed
+```bash
+sed [option] 'command' file
+```
+
+替换字符串
+```bash
+sed 's/old/new/g' file
+```
+
+正则替换字符串
+```bash
+sed 's/^old_\(.*\)_string_\(.*\)$/\1 - \2/g' file
+# 将 old_111_string_222 替换为 111 - 222
+```
+
 ### 文件格式化处理
 
 使用awk

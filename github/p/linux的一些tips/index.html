@@ -262,6 +262,7 @@
         <li><a href="#清楚占用端口的进程">清楚占用端口的进程</a></li>
         <li><a href="#linux同步时间">linux同步时间</a></li>
         <li><a href="#查看ip信息">查看ip信息</a></li>
+        <li><a href="#文本处理">文本处理</a></li>
         <li><a href="#文件格式化处理">文件格式化处理</a>
           <ol>
             <li><a href="#匹配模式">匹配模式</a></li>
@@ -798,6 +799,36 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hostname -I
 </span></span><span class="line"><span class="cl">ifconfig
 </span></span><span class="line"><span class="cl">ip addr show
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="文本处理">文本处理
+</h3><p>使用sed</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sed <span class="o">[</span>option<span class="o">]</span> <span class="s1">&#39;command&#39;</span> file
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>替换字符串</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sed <span class="s1">&#39;s/old/new/g&#39;</span> file
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>正则替换字符串</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sed <span class="s1">&#39;s/^old_\(.*\)_string_\(.*\)$/\1 - \2/g&#39;</span> file
+</span></span><span class="line"><span class="cl"><span class="c1"># 将 old_111_string_222 替换为 111 - 222</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="文件格式化处理">文件格式化处理
