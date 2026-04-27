@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://chenxi-Eumenides.github.io/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/'>
 
-<link rel="stylesheet" href="/scss/style.min.32fee57655dcce91bc3c3d3eda65b6173114b3b4f2172bb73bccb01c7ca4559d.css"><meta property='og:title' content="hugo安装、配置、命令与markdown语法">
+<link rel="stylesheet" href="/scss/style.min.ea6874761b78dc61bec6efb0c2c4f8439d3b3997a21b6379f78be9b4926203b1.css"><meta property='og:title' content="hugo安装、配置、命令与markdown语法">
 <meta property='og:description' content="hugo是一个轻量级的使用markdown语法的静态博客网站。本文记录了我安装，配置过程中的一些笔记，也包括hugo中可以使用的markdown语法。">
 <meta property='og:url' content='https://chenxi-Eumenides.github.io/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/'>
 <meta property='og:site_name' content='chenxi的个人博客'>
@@ -58,7 +58,7 @@
                     
                     
                         
-                        <img src="/user_head_hu_6fe97d037a8b714b.jpg" width="300"
+                        <img src="/user_head_hu_64b31e6bd71e2b48.jpg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -329,6 +329,10 @@
         
             <a href="/categories/%E7%8E%A9%E6%9C%BA/" class="font_size_3">
                 玩机
+            </a>
+        
+            <a href="/categories/ai/" class="font_size_1">
+                AI
             </a>
         
             <a href="/categories/python/" class="font_size_1">
@@ -663,29 +667,29 @@ any other hosting provider.</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># 全局配置</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">baseurl</span><span class="p">:</span><span class="w"> </span><span class="l">http://0.0.0.0:1313  </span><span class="w"> </span><span class="c"># 绑定的url，测试服务器会无视该项。</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l">hugo-theme-stack       </span><span class="w"> </span><span class="c"># 主题，要在themes文件夹中</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">xxxx                   </span><span class="w"> </span><span class="c"># 默认标题栏</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">enableEmoji</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">              </span><span class="c"># 开启emoji表情支持</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">baseurl</span><span class="p">:</span><span class="w"> </span><span class="l">http://0.0.0.0:1313  </span><span class="w"> </span><span class="c"># 绑定的url，测试服务器会无视该项。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l">hugo-theme-stack       </span><span class="w"> </span><span class="c"># 主题，要在themes文件夹中</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">xxxx                   </span><span class="w"> </span><span class="c"># 默认标题栏</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">enableEmoji</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">              </span><span class="c"># 开启emoji表情支持</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 语言配置</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">DefaultContentLanguage</span><span class="p">:</span><span class="w"> </span><span class="l">zh-cn </span><span class="w"> </span><span class="c"># 默认语言</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">languageCode</span><span class="p">:</span><span class="w"> </span><span class="l">zh-cn           </span><span class="w"> </span><span class="c"># 不知道有啥用</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">hasCJKLanguage</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">           </span><span class="c"># 启用CJK，有中日韩语的要打开。</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">languages</span><span class="p">:</span><span class="w">                     </span><span class="c"># 若只有一个语言，就不显示切换语言的按钮。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 语言配置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">DefaultContentLanguage</span><span class="p">:</span><span class="w"> </span><span class="l">zh-cn </span><span class="w"> </span><span class="c"># 默认语言</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">languageCode</span><span class="p">:</span><span class="w"> </span><span class="l">zh-cn           </span><span class="w"> </span><span class="c"># 不知道有啥用</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">hasCJKLanguage</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">           </span><span class="c"># 启用CJK，有中日韩语的要打开。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">languages</span><span class="p">:</span><span class="w">                     </span><span class="c"># 若只有一个语言，就不显示切换语言的按钮。</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">zh-cn</span><span class="p">:</span><span class="w">                     </span><span class="c"># 启用的语言</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">languageName</span><span class="p">:</span><span class="w"> </span><span class="l">中文    </span><span class="w"> </span><span class="c"># 语言名字，显示在切换语言中</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">xxx            </span><span class="w"> </span><span class="c"># 标题</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l">xxx      </span><span class="w"> </span><span class="c"># 描述</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">weight</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">              </span><span class="c"># 语言的显示顺序</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#    en:                       # </span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#        languageName: English # 同上</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#        title: xxx</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#        description: xxx</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#        weight: 2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">#    en:                       # </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">#        languageName: English # 同上</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">#        title: xxx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">#        description: xxx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">#        weight: 2</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 外观配置</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 外观配置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">params</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">mainSections</span><span class="p">:</span><span class="w">              </span><span class="c"># 主页显示哪个</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">post</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">featuredImageField</span><span class="p">:</span><span class="w"> </span><span class="l">image</span><span class="w">
@@ -804,7 +808,7 @@ any other hosting provider.</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gh"># H1 (不显示在目录中，建议全文只用一个)
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span><span class="gu">## H2
+</span></span></span><span class="line"><span class="cl"><span class="gu">## H2
 </span></span></span><span class="line"><span class="cl"><span class="gu">### H3
 </span></span></span><span class="line"><span class="cl"><span class="gu">#### H4
 </span></span></span></code></pre></td></tr></table>
@@ -873,7 +877,8 @@ any other hosting provider.</p>
 </h3><blockquote>
 <p>content  # 后面要有两个空格<br>
 content<br>
-&hellip;</p></blockquote>
+&hellip;</p>
+</blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -882,8 +887,8 @@ content<br>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">content  # 后面要有两个空格
-</span></span></span><span class="line"><span class="cl"><span class="ge"></span><span class="k">&gt; </span><span class="ge">content  
-</span></span></span><span class="line"><span class="cl"><span class="ge"></span><span class="k">&gt; </span><span class="ge">...  
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">content  
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">...  
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>嵌套引用</p>
@@ -891,7 +896,7 @@ content<br>
 </h3><p><img src="/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-1.jpg"
 	width="1000"
 	height="750"
-	srcset="/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-1_hu_503c0ebcc5245e10.jpg 480w, /p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-1_hu_48c98de55fb3c999.jpg 1024w"
+	srcset="/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-1_hu_dfbb0c559c3df461.jpg 480w, /p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-1_hu_212d0718b8e99eaa.jpg 1024w"
 	loading="lazy"
 	
 		alt="图片说明1"
@@ -904,7 +909,7 @@ content<br>
 > <img src="/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-2.jpg"
 	width="667"
 	height="1000"
-	srcset="/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-2_hu_e98fca2b4272416e.jpg 480w, /p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-2_hu_e3d37c9ded115b12.jpg 1024w"
+	srcset="/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-2_hu_7b8a06820e6d5c.jpg 480w, /p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-2_hu_a347f10e565b40ff.jpg 1024w"
 	loading="lazy"
 	
 		alt="图片说明2"
@@ -918,7 +923,7 @@ content<br>
 <img src="/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-3.jpg"
 	width="1000"
 	height="667"
-	srcset="/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-3_hu_e13c58d5189f892c.jpg 480w, /p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-3_hu_8fc948b7ee525251.jpg 1024w"
+	srcset="/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-3_hu_258fc4da0cfc7de9.jpg 480w, /p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-3_hu_d415bcea096fe061.jpg 1024w"
 	loading="lazy"
 	
 		alt="图片说明3"
@@ -931,7 +936,7 @@ content<br>
 > <img src="/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-4.jpg"
 	width="667"
 	height="1000"
-	srcset="/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-4_hu_f81a3588c5c4a663.jpg 480w, /p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-4_hu_1c52ba2a4ad7b9a0.jpg 1024w"
+	srcset="/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-4_hu_41819e288bf4a8c0.jpg 480w, /p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/pic-4_hu_1277885c87f69490.jpg 1024w"
 	loading="lazy"
 	
 		alt="图片说明4"
@@ -945,7 +950,7 @@ content<br>
 <p><img src="/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/avatar-1.jpg"
 	width="1080"
 	height="1080"
-	srcset="/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/avatar-1_hu_2adf4fa10f558691.jpg 480w, /p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/avatar-1_hu_fd3d6be8c72c35c.jpg 1024w"
+	srcset="/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/avatar-1_hu_ea76db836423cc94.jpg 480w, /p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/avatar-1_hu_96d656fe8c2f833c.jpg 1024w"
 	loading="lazy"
 	
 		alt="图片说明1"
@@ -958,7 +963,7 @@ content<br>
 > <img src="/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/avatar-2.jpg"
 	width="1080"
 	height="1080"
-	srcset="/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/avatar-2_hu_9f628e974cbdfc0f.jpg 480w, /p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/avatar-2_hu_c6b50e554e5521cd.jpg 1024w"
+	srcset="/p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/avatar-2_hu_463510f009e8baeb.jpg 480w, /p/hugo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E4%B8%8Emarkdown%E8%AF%AD%E6%B3%95/avatar-2_hu_18c7e4ab3cca9fa5.jpg 1024w"
 	loading="lazy"
 	
 		alt="图片说明2"
@@ -1026,8 +1031,8 @@ content<br>
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">chenxi</span><span class="ni">@test</span><span class="nt">.com</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">http:</span><span class="err">//</span><span class="na">blog</span><span class="err">.</span><span class="na">chenxi-eumenides</span><span class="err">.</span><span class="na">top:81</span><span class="p">/&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">&lt;chenxi<span class="ni">@test</span>.com&gt;
+</span></span><span class="line"><span class="cl">&lt;http://blog.chenxi-eumenides.top:81/&gt;
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="上下分隔线">上下分隔线
@@ -1253,42 +1258,42 @@ $$</p>
 </span><span class="lnt">37
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">{ {<span class="p">&lt;</span> <span class="nt">CODE_NAME</span> <span class="na">ARGS</span> <span class="p">&gt;</span>}}
+<pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">{ {&lt; CODE_NAME ARGS &gt;}}
 </span></span><span class="line"><span class="cl"><span class="gh"># 我不知道为什么hugo一定要把代码块内部的短代码
 </span></span></span><span class="line"><span class="cl"><span class="gh"># 渲染出来，导致我构建时一直出问题。所以我在两
 </span></span></span><span class="line"><span class="cl"><span class="gh"># 个{中间加了一个空格，使用时请删除这个空格。
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="gh"># 二维码
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span>{ {<span class="p">&lt;</span> <span class="nt">qr</span> <span class="na">text</span><span class="o">=</span><span class="s">&#34;CONTENT&#34;</span> <span class="p">/&gt;</span>}}
+</span></span></span><span class="line"><span class="cl">{ {&lt; qr text=&#34;CONTENT&#34; /&gt;}}
 </span></span><span class="line"><span class="cl"><span class="gh"># e.t. text=&#34;blog.chenxi-eumenides.top:81&#34;
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="gh"># 本地、远程视频文件
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span>{ {<span class="p">&lt;</span> <span class="nt">video</span> <span class="na">src</span><span class="o">=</span><span class="s">VIDEO_URL</span> <span class="na">autoplay</span><span class="o">=</span><span class="s">&#34;true&#34;</span> <span class="na">poster</span><span class="o">=</span><span class="s">COVER_URL</span> <span class="p">&gt;</span>}}
+</span></span></span><span class="line"><span class="cl">{ {&lt; video src=VIDEO_URL autoplay=&#34;true&#34; poster=COVER_URL &gt;}}
 </span></span><span class="line"><span class="cl"><span class="gh"># video file
 </span></span></span><span class="line"><span class="cl"><span class="gh"># src=&#34;VIDEO_URL&#34; autoplay=&#34;true&#34; poster=&#34;COVER_URL&#34;
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="gh"># B站视频
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span>{ {<span class="p">&lt;</span> <span class="nt">bilibili</span> <span class="na">VIDEO_ID</span> <span class="na">PART_NUMBER</span> <span class="p">&gt;</span>}}
+</span></span></span><span class="line"><span class="cl">{ {&lt; bilibili VIDEO_ID PART_NUMBER &gt;}}
 </span></span><span class="line"><span class="cl"><span class="gh"># https://www.bilibili.com/video/VIDEO_ID?p=PART_NUMBER
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="gh"># 腾讯视频
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span>{ {<span class="p">&lt;</span> <span class="nt">tencent</span> <span class="na">VIDEO_ID</span> <span class="p">&gt;</span>}}
+</span></span></span><span class="line"><span class="cl">{ {&lt; tencent VIDEO_ID &gt;}}
 </span></span><span class="line"><span class="cl"># 
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="gh"># 油管视频
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span>{ {<span class="p">&lt;</span> <span class="nt">youtube</span> <span class="na">VIDEO_ID</span> <span class="p">&gt;</span>}}
+</span></span></span><span class="line"><span class="cl">{ {&lt; youtube VIDEO_ID &gt;}}
 </span></span><span class="line"><span class="cl"><span class="gh"># https://www.youtube.com/watch?v=VIDEO_ID
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="gh"># Vimeo视频
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span>{ {<span class="p">&lt;</span> <span class="nt">vimeo_simple</span> <span class="na">VIDEO_ID</span> <span class="p">&gt;</span>}}
+</span></span></span><span class="line"><span class="cl">{ {&lt; vimeo_simple VIDEO_ID &gt;}}
 </span></span><span class="line"><span class="cl"># 
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="gh"># X推文
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span>{ {<span class="p">&lt;</span> <span class="nt">x</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;USER_NAME&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;POST_ID&#34;</span> <span class="p">&gt;</span>}}
+</span></span></span><span class="line"><span class="cl">{ {&lt; x user=&#34;USER_NAME&#34; id=&#34;POST_ID&#34; &gt;}}
 </span></span><span class="line"><span class="cl"># 
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="gh"># Gitlab代码片段
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span>{ {<span class="p">&lt;</span> <span class="nt">gitlab</span> <span class="na">CODE_ID</span> <span class="p">&gt;</span>}}
+</span></span></span><span class="line"><span class="cl">{ {&lt; gitlab CODE_ID &gt;}}
 </span></span><span class="line"><span class="cl"># 
 </span></span></code></pre></td></tr></table>
 </div>

@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Skill on chenxi的个人博客</title>
+        <link>https://chenxi-Eumenides.github.io/tags/skill/</link>
+        <description>Recent content in Skill on chenxi的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Mon, 27 Apr 2026 23:01:41 +0800</lastBuildDate><atom:link href="https://chenxi-Eumenides.github.io/tags/skill/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>AI Agent Skill 系统设计——从Google、Anthropic、OpenAI的实践中提炼最佳实践</title>
+        <link>https://chenxi-Eumenides.github.io/p/ai-agent-skill-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E4%BB%8Egoogleanthropicopenai%E7%9A%84%E5%AE%9E%E8%B7%B5%E4%B8%AD%E6%8F%90%E7%82%BC%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</link>
+        <pubDate>Mon, 27 Apr 2026 14:00:00 +0800</pubDate>
+        
+        <guid>https://chenxi-Eumenides.github.io/p/ai-agent-skill-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E4%BB%8Egoogleanthropicopenai%E7%9A%84%E5%AE%9E%E8%B7%B5%E4%B8%AD%E6%8F%90%E7%82%BC%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</guid>
+        <description>&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;2025-2026年，AI Agent Skill系统经历了从概念到工程化的关键转变。Google、Anthropic、OpenAI三大巨头几乎同时推出了各自的Skill体系，虽然命名和具体实现各有差异，但在核心理念上呈现出惊人的趋同性。&lt;/p&gt;
+&lt;p&gt;本文综合了多家来源的研究与报告，试图为开发者提供一个关于Agent Skill系统设计的全景视角，涵盖设计模式、Skill分类、最佳实践、测试评估以及治理策略。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文编撰过程中参考了大量一手资料，原始文章链接见文末&lt;a class=&#34;link&#34; href=&#34;#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99&#34; &gt;参考资料&lt;/a&gt;部分。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;一什么是skill从工具到认知的跃迁&#34;&gt;一、什么是Skill？——从工具到认知的跃迁
+&lt;/h2&gt;&lt;p&gt;要理解Skill体系，首先要区分 &lt;strong&gt;工具(Tool)&lt;/strong&gt; 和 &lt;strong&gt;Skill&lt;/strong&gt; 的本质差异。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;工具是机械的，Skill是认知的&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;工具：无状态 + 具体——&amp;ldquo;调用这个API，返回这个schema&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Skill：携带指令、约定、内部逻辑——知道&amp;quot;什么时候该做什么、怎么做、为什么这么做&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;判断标准很简单：&lt;/strong&gt; 如果是一个单一函数调用，那就是工具；如果需要推理排序、决策判断、错误处理、多步骤执行、升级策略——那就是Skill。&lt;/p&gt;
+&lt;p&gt;Google将Skill定义为 &lt;strong&gt;&amp;ldquo;Docker for Prompts&amp;rdquo;&lt;/strong&gt; ——认知的可移植容器。从端侧(Gemma 4)到云端(Gemini Enterprise)，同一个SKILL.md格式，实现了跨平台的技能迁移。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;二五大skill设计模式&#34;&gt;二、五大Skill设计模式
+&lt;/h2&gt;&lt;p&gt;Google Cloud Tech在其技术博客中系统性地梳理了5种Agent Skill设计模式&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;，以下是它们的概况：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;模式&lt;/th&gt;
+          &lt;th&gt;适用场景&lt;/th&gt;
+          &lt;th&gt;核心机制&lt;/th&gt;
+          &lt;th&gt;框架保障&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Tool Wrapper&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;按需注入库/框架约定&lt;/td&gt;
+          &lt;td&gt;LoadSkillResourceTool&lt;/td&gt;
+          &lt;td&gt;✅ 原生支持&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Generator&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;模板化稳定输出(API文档、commit)&lt;/td&gt;
+          &lt;td&gt;LoadSkillResourceTool + LLM填充&lt;/td&gt;
+          &lt;td&gt;⚠️ 不校验完整性&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Reviewer&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;检查清单+评分(代码质量、安全)&lt;/td&gt;
+          &lt;td&gt;与Tool Wrapper共享代码层&lt;/td&gt;
+          &lt;td&gt;⚠️ 语义由SKILL.md赋予&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Inversion&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;先访谈再行动，阶段门控&lt;/td&gt;
+          &lt;td&gt;&amp;ldquo;DO NOT start building until…&amp;rdquo;&lt;/td&gt;
+          &lt;td&gt;❌ 无状态机&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Pipeline&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;多步检查点防跳步&lt;/td&gt;
+          &lt;td&gt;步骤顺序+用户确认&lt;/td&gt;
+          &lt;td&gt;❌ 无checkpoint/状态机&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;1-tool-wrapper工具包装器&#34;&gt;1. Tool Wrapper（工具包装器）
+&lt;/h3&gt;&lt;p&gt;将某个工具、库、CLI的正确用法封装进Skill。Agent不需要记住所有参数和约定，读Skill就知道怎么用。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;典型结构：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;references/conventions.md  — 详细用法约定
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;references/api.md          — 完整的API/CLI参考
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;2-generator生成器&#34;&gt;2. Generator（生成器）
+&lt;/h3&gt;&lt;p&gt;让Agent按照稳定模板生成结构化输出。关键是在SKILL.md中嵌入输出模板和示例。适用于API文档、commit消息、项目模板等场景。&lt;/p&gt;
+&lt;h3 id=&#34;3-reviewer审查器&#34;&gt;3. Reviewer（审查器）
+&lt;/h3&gt;&lt;p&gt;将检查标准与执行逻辑分离。Agent加载检查清单，逐项审查并打分。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;严重级别分级：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🔴 阻断级（必须修复）&lt;/li&gt;
+&lt;li&gt;🟡 警告级（建议修复）&lt;/li&gt;
+&lt;li&gt;🟢 建议级（可选优化）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-inversion反转模式&#34;&gt;4. Inversion（反转模式）
+&lt;/h3&gt;&lt;p&gt;传统模式是&amp;quot;用户提问 → Agent回答&amp;quot;。反转模式是&amp;quot;用户提问 → Agent反问确认 → Agent回答&amp;quot;。这一模式非常适用于需要收集上下文才能执行的复杂任务。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;实测经验：&lt;/strong&gt; GPT-4级别模型在3-5轮内通常能遵守反转约束，但5-10轮后注意力稀释可能跳过阶段。企业落地时建议使用 &lt;code&gt;before_tool_callback&lt;/code&gt; 实现显式状态机。&lt;/p&gt;
+&lt;h3 id=&#34;5-pipeline管道模式&#34;&gt;5. Pipeline（管道模式）
+&lt;/h3&gt;&lt;p&gt;多步骤操作强制执行顺序，每步完成后再进入下一步。SkillToolset本身没有checkpoint机制，因此框架层面保障最弱。&lt;/p&gt;
+&lt;h3 id=&#34;设计模式的组合运用&#34;&gt;设计模式的组合运用
+&lt;/h3&gt;&lt;p&gt;五种模式不是孤立的，可以灵活组合：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;组合&lt;/th&gt;
+          &lt;th&gt;场景&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Inversion + Generator&lt;/td&gt;
+          &lt;td&gt;先收集参数，再按模板生成&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Pipeline + Reviewer&lt;/td&gt;
+          &lt;td&gt;每个阶段完成后自动审查&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Generator + Reviewer&lt;/td&gt;
+          &lt;td&gt;生成后自动检查输出质量&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Tool Wrapper + Pipeline&lt;/td&gt;
+          &lt;td&gt;按正确顺序调用多个工具&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;三skill的9大分类&#34;&gt;三、Skill的9大分类
+&lt;/h2&gt;&lt;p&gt;Anthropic团队基于Claude Code中数百个活跃使用的Skill&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;，将其归纳为9类：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;#&lt;/th&gt;
+          &lt;th&gt;类型&lt;/th&gt;
+          &lt;th&gt;说明&lt;/th&gt;
+          &lt;th&gt;示例&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Library &amp;amp; API Reference&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;库/CLI/SDK用法&lt;/td&gt;
+          &lt;td&gt;billing-lib, internal-platform-cli&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Product Verification&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;代码验证测试&lt;/td&gt;
+          &lt;td&gt;signup-flow-driver, checkout-verifier&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Data Fetching &amp;amp; Analysis&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;数据获取与分析&lt;/td&gt;
+          &lt;td&gt;funnel-query, cohort-compare, grafana&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Business Process &amp;amp; Automation&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;业务流程自动化&lt;/td&gt;
+          &lt;td&gt;standup-post, create-ticket, weekly-recap&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;5&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Code Scaffolding &amp;amp; Templates&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;代码脚手架&lt;/td&gt;
+          &lt;td&gt;new-framework-workflow, create-app&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;6&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Code Quality &amp;amp; Review&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;代码质量审查&lt;/td&gt;
+          &lt;td&gt;adversarial-review, code-style&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;7&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;CI/CD &amp;amp; Deployment&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;CI/CD部署&lt;/td&gt;
+          &lt;td&gt;babysit-pr, deploy-service&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;8&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Runbooks&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;运维手册&lt;/td&gt;
+          &lt;td&gt;service-debugging, oncall-runner&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;9&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Infrastructure Operations&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;基础设施运维&lt;/td&gt;
+          &lt;td&gt;resource-orphans, cost-investigation&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;最佳实践表明，最优秀的Skill往往清晰归属于一个类别；而那些&amp;quot;写起来很拧巴&amp;quot;的Skill，通常是因为试图同时涵盖多个类别。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;四skill编写9个来自anthropic的最佳实践&#34;&gt;四、Skill编写：9个来自Anthropic的最佳实践
+&lt;/h2&gt;&lt;p&gt;以下是Anthropic在Claude Code中积累的实战经验&lt;sup id=&#34;fnref1:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;，是目前最一线的Skill编写指南：&lt;/p&gt;
+&lt;h3 id=&#34;1-dont-state-the-obvious&#34;&gt;1. Don&amp;rsquo;t State the Obvious
+&lt;/h3&gt;&lt;p&gt;Claude已经知道大量编程知识和通用约定。Skill应该聚焦于&lt;strong&gt;改变模型默认行为&lt;/strong&gt;的信息——那些&amp;quot;模型不知道的特殊约定&amp;quot;。&lt;/p&gt;
+&lt;h3 id=&#34;2-build-a-gotchas-section&#34;&gt;2. Build a Gotchas Section
+&lt;/h3&gt;&lt;p&gt;Gotchas是Skill中&lt;strong&gt;信号密度最高的部分&lt;/strong&gt;。记录Claude在这个任务上常见的失败点，随着使用持续更新。一条好的Gotcha胜过十句正面说明。&lt;/p&gt;
+&lt;h3 id=&#34;3-use-the-file-system--progressive-disclosure&#34;&gt;3. Use the File System &amp;amp; Progressive Disclosure
+&lt;/h3&gt;&lt;p&gt;Skill是一个文件夹，不只是一个Markdown文件。利用 &lt;code&gt;references/&lt;/code&gt;、&lt;code&gt;scripts/&lt;/code&gt;、&lt;code&gt;examples/&lt;/code&gt; 子目录实现渐进式披露——Agent在需要时才加载更深层的内容。&lt;/p&gt;
+&lt;h3 id=&#34;4-avoid-railroading-claude&#34;&gt;4. Avoid Railroading Claude
+&lt;/h3&gt;&lt;p&gt;给出&lt;strong&gt;目标和约束&lt;/strong&gt;，而不是逐条指令。给Agent灵活性去适应不同的具体场景。&lt;/p&gt;
+&lt;h3 id=&#34;5-think-through-the-setup&#34;&gt;5. Think through the Setup
+&lt;/h3&gt;&lt;p&gt;有些Skill需要用户提供上下文。用 &lt;code&gt;config.json&lt;/code&gt; 存储配置，让Agent在未配置时主动询问。使用结构化问题而非自由文本。&lt;/p&gt;
+&lt;h3 id=&#34;6-description-field-is-for-the-model&#34;&gt;6. Description Field Is For the Model
+&lt;/h3&gt;&lt;p&gt;Description是Claude扫描时判断&amp;quot;是否有匹配的Skill&amp;quot;的依据。它的角色是&lt;strong&gt;触发条件&lt;/strong&gt;，不是功能摘要。&amp;ldquo;何时触发&amp;quot;比&amp;quot;做什么&amp;quot;重要得多。&lt;/p&gt;
+&lt;h3 id=&#34;7-memory--storing-data&#34;&gt;7. Memory &amp;amp; Storing Data
+&lt;/h3&gt;&lt;p&gt;使用 &lt;code&gt;${CLAUDE_PLUGIN_DATA}&lt;/code&gt; 环境变量指向的目录存储持久数据，防止Skill升级时数据丢失。适合存储append-only log、JSON、SQLite等。&lt;/p&gt;
+&lt;h3 id=&#34;8-store-scripts--generate-code&#34;&gt;8. Store Scripts &amp;amp; Generate Code
+&lt;/h3&gt;&lt;p&gt;给Agent脚本和库，让它把时间花在&lt;strong&gt;组合&lt;/strong&gt;上，而不是重建样板代码。&lt;/p&gt;
+&lt;h3 id=&#34;9-on-demand-hooks&#34;&gt;9. On Demand Hooks
+&lt;/h3&gt;&lt;p&gt;Skill可以注册仅在调用时激活的钩子。例如 &lt;code&gt;/careful&lt;/code&gt; 阻止 &lt;code&gt;rm -rf&lt;/code&gt; 等危险操作，&lt;code&gt;/freeze&lt;/code&gt; 阻止指定目录外的编辑。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;五如何系统地测试和评估skill&#34;&gt;五、如何系统地测试和评估Skill
+&lt;/h2&gt;&lt;p&gt;OpenAI在其开发者博客中详细介绍了如何用Evals系统地测试Agent Skill&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;。核心思路是把Skill从&amp;quot;感觉变好了&amp;quot;提升到&amp;quot;有证据证明变好了&amp;rdquo;。&lt;/p&gt;
+&lt;h3 id=&#34;完整流程&#34;&gt;完整流程
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;定义成功 → 创建Skill → 手动触发 → 小批量prompt集 → 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;确定性评分器 → 定性检查+评分卡 → 随Skill成熟扩展
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;四维评估体系&#34;&gt;四维评估体系
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;维度&lt;/th&gt;
+          &lt;th&gt;要回答的问题&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Outcome goals&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;任务完成了吗？应用能跑吗？&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Process goals&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;调用了预期的工具/步骤吗？&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Style goals&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;输出符合约定的风格吗？&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Efficiency goals&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;有没有不必要的命令或token浪费？&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;关键技术实现&#34;&gt;关键技术实现
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;确定性检查&lt;/strong&gt;——通过 &lt;code&gt;codex exec --json&lt;/code&gt; 捕获JSONL事件流，检查关键行为是否发生：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;checkRanNpmInstall&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;events&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;events&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;some&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;e&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;item.started&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;||&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;item.completed&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;item&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;command_execution&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;command&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;includes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;npm install&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;结构化评分卡：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;overall_pass&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;boolean&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;score&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0-100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;checks&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;npm_install_performed&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;&amp;#34;pass&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;&amp;#34;notes&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;prompt集设计&#34;&gt;Prompt集设计
+&lt;/h3&gt;&lt;p&gt;一个小型但有效的prompt集（10-20个）应包含：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;显式调用&lt;/strong&gt;：直接命名Skill&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;隐式调用&lt;/strong&gt;：描述场景但不提Skill名&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;上下文干扰&lt;/strong&gt;：噪音prompt但需要Skill&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;负向控制&lt;/strong&gt;：明确不应该触发&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;六skill的渐进式披露与目录结构&#34;&gt;六、Skill的渐进式披露与目录结构
+&lt;/h2&gt;&lt;p&gt;Anthropic在skill-creator项目中提出的三层渐进式披露模型&lt;sup id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;已成为事实标准：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;L1: Metadata (name + description)  ~100词     → Always in context
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;L2: SKILL.md body                              → &amp;lt;500行, 触发时加载
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;L3: Bundled resources (references/scripts/)    → 按需加载, 无限制
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;标准化目录结构&#34;&gt;标准化目录结构
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;skill-name/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── SKILL.md (required)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── YAML frontmatter (name, description required)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   └── Markdown instructions
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└── Bundled Resources (optional)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ├── scripts/    - 可执行代码
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ├── references/ - 按需加载的文档
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ├── examples/   - 使用示例
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    └── assets/     - 模板、图标等资源文件
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;json-schema体系&#34;&gt;JSON Schema体系
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;文件&lt;/th&gt;
+          &lt;th&gt;用途&lt;/th&gt;
+          &lt;th&gt;关键字段&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;evals.json&lt;/td&gt;
+          &lt;td&gt;测试用例定义&lt;/td&gt;
+          &lt;td&gt;skill_name, evals[].prompt, expectations&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;grading.json&lt;/td&gt;
+          &lt;td&gt;评分结果&lt;/td&gt;
+          &lt;td&gt;expectations[].text/passed/evidence, summary&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;benchmark.json&lt;/td&gt;
+          &lt;td&gt;基准测试&lt;/td&gt;
+          &lt;td&gt;run_summary, delta (with_skill vs without_skill)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;timing.json&lt;/td&gt;
+          &lt;td&gt;计时数据&lt;/td&gt;
+          &lt;td&gt;total_tokens, duration_ms&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;history.json&lt;/td&gt;
+          &lt;td&gt;版本追踪&lt;/td&gt;
+          &lt;td&gt;iterations[].version/pass_rate&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;七skill的分发与治理&#34;&gt;七、Skill的分发与治理
+&lt;/h2&gt;&lt;h3 id=&#34;三层分发模型&#34;&gt;三层分发模型
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;仓库级别&lt;/strong&gt;（&lt;code&gt;.claude/skills/&lt;/code&gt; 或 &lt;code&gt;.opencode/skills/&lt;/code&gt;）——适合小团队&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;插件市场&lt;/strong&gt;（Plugin Marketplace）——适合组织级分发&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;个人级别&lt;/strong&gt;——个人试验和本地化hack&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;三层治理模型&#34;&gt;三层治理模型&lt;sup id=&#34;fnref:5&#34;&gt;&lt;a href=&#34;#fn:5&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;组织级&lt;/strong&gt;：全局标准、品牌语音、合规规则&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;项目级&lt;/strong&gt;：客户端约定和工作流模式&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;个人级&lt;/strong&gt;：个人试验和本地化hack&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;待解决的挑战&#34;&gt;待解决的挑战
+&lt;/h3&gt;&lt;p&gt;虽然Skill体系已经相当完善，但仍有一些未解决的问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;模型版本变更时如何版本化Skill？&lt;/strong&gt;——&amp;ldquo;Pinned Skills&amp;quot;成为企业需求&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;50+ Skill后的描述冲突问题&lt;/strong&gt;——Skill Leaderboard追踪成功率&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;谁拥有Skill库？&lt;/strong&gt;——基础Skill→平台团队，工作流Skill→领域Owner，个人Skill→个人&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;八综合发现设计原则总结&#34;&gt;八、综合发现：设计原则总结
+&lt;/h2&gt;&lt;h3 id=&#34;格式规范已趋同&#34;&gt;格式规范（已趋同）
+&lt;/h3&gt;&lt;p&gt;各家的SKILL.md规范已经高度一致：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SKILL.md + YAML frontmatter (name, description)&lt;/li&gt;
+&lt;li&gt;子目录：references/, scripts/, assets/, examples/&lt;/li&gt;
+&lt;li&gt;渐进式披露：L1元数据 → L2 body → L3资源&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;内容设计真正的差异化&#34;&gt;内容设计（真正的差异化）
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;五类设计模式：Tool Wrapper / Generator / Reviewer / Inversion / Pipeline&lt;/li&gt;
+&lt;li&gt;九类Skill类型，每一类有清晰的定位&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Gotchas &amp;gt; 正面说明&lt;/strong&gt;——错误案例比正确用法更有价值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;测试评估&#34;&gt;测试评估
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;确定性检查（JSONL事件）+ 定性评分卡&lt;/li&gt;
+&lt;li&gt;with-skill vs without-skill 对比基准测试&lt;/li&gt;
+&lt;li&gt;小批量迭代（10-20 prompts）→ 持续扩大&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;编写法则&#34;&gt;编写法则
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Description = Trigger，写对描述比写好内容更重要&lt;/li&gt;
+&lt;li&gt;用祈使语气写指令&lt;/li&gt;
+&lt;li&gt;解释&amp;quot;为什么&amp;quot;比写 MUST/NEVER 更有效&lt;/li&gt;
+&lt;li&gt;保持精炼——移除不产生价值的指令&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;九对我们opencode的启发&#34;&gt;九、对我们（Opencode）的启发
+&lt;/h2&gt;&lt;p&gt;回到我们自己的Opencode Skill系统，可以从这次调研中获得以下启发：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Skill组合策略&lt;/strong&gt;：鼓励Tool Wrapper + Pipeline + Generator的组合模式，让Skill既有工具性又有流程性&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;重视Gotchas&lt;/strong&gt;：在Skill中单独设立Gotchas章节，持续记录Agent在该任务上的常见失败点&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;渐进式披露落地&lt;/strong&gt;：利用Opencode已有的 &lt;code&gt;references/&lt;/code&gt;、&lt;code&gt;scripts/&lt;/code&gt; 目录结构，实现按需加载&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;测试先行&lt;/strong&gt;：为每个关键Skill编写至少10-20个测试prompt，定期运行对比基准&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Description优化&lt;/strong&gt;：Description应该更像&amp;quot;触发器描述&amp;quot;而非&amp;quot;功能摘要&amp;rdquo;，从用户可能如何表述需求的角度去写&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;参考资料&#34;&gt;参考资料
+&lt;/h2&gt;&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;Google: &lt;a class=&#34;link&#34; href=&#34;https://cloud.google.com/blog&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;5 Agent Skill Design Patterns Every ADK Developer Should Know&lt;/a&gt; — Google Cloud Tech, 2026-03-18&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;
+&lt;p&gt;Anthropic / @trq212: &lt;a class=&#34;link&#34; href=&#34;https://x.com/trq212/status/2033949937936085378&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Lessons from Building Claude Code: How We Use Skills&lt;/a&gt; — 2026-03-17&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref1:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:3&#34;&gt;
+&lt;p&gt;OpenAI: &lt;a class=&#34;link&#34; href=&#34;https://developers.openai.com/blog/eval-skills&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Testing Agent Skills Systematically with Evals&lt;/a&gt; — 2026-01-22&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:4&#34;&gt;
+&lt;p&gt;Anthropic: &lt;a class=&#34;link&#34; href=&#34;https://github.com/anthropics/skills/tree/main/skills/skill-creator&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Skill Creator&lt;/a&gt; — github.com/anthropics/skills&amp;#160;&lt;a href=&#34;#fnref:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:5&#34;&gt;
+&lt;p&gt;Google Agent Stack全景 — Google Developer Experts (Sonika Janagill)&amp;#160;&lt;a href=&#34;#fnref:5&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
