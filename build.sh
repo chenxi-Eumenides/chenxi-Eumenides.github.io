@@ -2,7 +2,7 @@
 
 config() {
     name="blog" # 必填
-    desc="我自己的blog网站，用hugo搭建，主题为stack。构建两个版本：本地、github.io。应当先手动add文件，再使用该脚本。" # 描述
+    desc="我自己的blog网站，用hugo搭建，主题为stack。支持新建文章、构建、git推送。" # 描述
 
     # 0:verbose 1:info 2:warning 3:error 4:panic 5:quiet
     log_level=1 # 输出日志等级
@@ -13,161 +13,96 @@ config() {
 
     hugo_arg_local="--config hugo-local.yaml"
     hugo_arg_github="--config hugo-github.yaml --buildDrafts"
-#    arg_quiet="--quiet"
+    arg_quiet="--quiet"
 }
 
+# 新建文章: -n <title>
 new_content() {
-    name=$1
-    hugo new content content/post/$(date +%F)_$name/index.md
+    local title=$1
+    [[ -z "$title" ]] && log 3 "post title required" && return 1
+    log 1 "creating new post: $title"
+    hugo new content "content/post/$(date +%F)_${title}/index.md"
 }
 
-edit_content() {
-    name=$1
-    nano content/post/*$1/index.md
-}
-
-
-check_git() {
-    l=$(git status --porcelain | grep "content" | wc -l)
-    return $l
-}
-
-get_commit() {
-    log 1 "start get commit"
-    [[ -z $1 ]] && read -p "input commit info: " input && {
-        [[ -z "$input" ]] && log 3 "input empty, exit" && return 1
-    }
-    [[ -z "$input" ]] && input=$*
-}
-
+# 构建
 build_local() {
-    local hugo_log_level=1
     log 1 "start build local"
     [[ -d public ]] && rm -r public
     if $enable_log_file ; then
-        hugo ${hugo_arg_local} $( (( $hugo_log_level >= $log_level )) || echo $arg_quiet) >> $log_file 2>&1
+        hugo ${hugo_arg_local} ${arg_quiet} >> $log_file 2>&1
     else
-        hugo ${hugo_arg_local} $( (( $hugo_log_level >= $log_level )) || echo $arg_quiet)
+        hugo ${hugo_arg_local} ${arg_quiet}
     fi
 }
 
 build_github() {
     log 1 "start build github"
-    local hugo_log_level=1
     [[ -d github ]] && rm -r github
     if $enable_log_file ; then
-        hugo ${hugo_arg_github} $( (( $hugo_log_level >= $log_level )) || echo $arg_quiet)  >> $log_file 2>&1
+        hugo ${hugo_arg_github} ${arg_quiet} >> $log_file 2>&1
     else
-        hugo ${hugo_arg_github} $( (( $hugo_log_level >= $log_level )) || echo $arg_quiet)
+        hugo ${hugo_arg_github} ${arg_quiet}
     fi
 }
 
-update_git() {
-    log 1 "start git update"
-    local git_log_level=1
-    if [[ $1 == "-f" ]] ; then
-        local skip_add_all=true
-        log 2 "dont use -f option, you need add file manual and use `git status` to check."
-    else
-        local skip_add_all=false
-    fi
-    shift
-
-    # commit补充时间
-    if [[ -z $1 ]] ; then
-        local content="auto: no commit info. auto build at $(date +%F_%T)"
-    else
-        local content="$* at $(date +%F_%T)"
-    fi
-
-    # 判断是否有提交改动
-    [[ $(git status -s | grep "^M") != "" ]] && local change=true || local no_change=false
-
-    # 是否修改了github
-    [[ $(git status -s | grep -E "^ M \"?github/") != "" ]] && local build=true || local build=false
-
-    log 1 "add:${skip_add_all}, change:${change}, build:${build}, start commit"
-    # 有改动就commit
-    if $enable_log_file ; then
-        $skip_add_all && git add ./ >> $( (( $git_log_level >= $log_level )) && echo "$log_file" || echo "/dev/null" ) 2>&1
-        ! $skip_add_all && $build && git add github/ >> $( (( $git_log_level >= $log_level )) && echo "$log_file" || echo "/dev/null" ) 2>&1
-        $change && git commit -m "${content}" $( (( $git_log_level >= $log_level )) || echo \-$arg-quiet ) >> $log_file 2>&1
-    else
-        $skip_add_all && git add ./
-        ! $skip_add_all && $build && git add github/
-        $change && git commit -m "${content}" $( (( $git_log_level >= $log_level )) || echo \-$arg-quiet )
-    fi
+build_all() {
+    build_local || { log 3 "local build failed"; return 1; }
+    build_github || { log 3 "github build failed"; return 1; }
 }
 
-push_git() {
-    log 1 "start git push to github"
-    local git_log_level=1
+# git add all + commit + push (不做构建)
+git_push() {
+    local commit_msg=$1
+    log 1 "start git push"
+
+    # 追加时间戳
+    local content="${commit_msg} at $(date +%F_%T)"
+
     if $enable_log_file ; then
-        git push github master:main $( (( $git_log_level >= $log_level )) || echo \-$arg-quiet ) >> $log_file 2>&1
+        git add --all >> $log_file 2>&1
+        git commit -m "${content}" >> $log_file 2>&1
+        git push github master:main >> $log_file 2>&1
     else
-        git push github master:main $( (( $git_log_level >= $log_level )) || echo \-$arg-quiet )
+        git add --all
+        git commit -m "${content}"
+        git push github master:main
     fi
+
+    log 1 "git push done"
 }
 
 main() {
     case $1 in
-        "-l"|"--local"|"local")
-            build_local || return 1
-            get_commit ${@:2} || return 1
-            update_git $input || return 1
+        "-n"|"--new"|"new")
+            new_content "${@:2}" || return 1
             ;;
-        "-g"|"--github"|"github")
-            build_github || return 1
-            get_commit ${@:2} || return 1
-            update_git $input || return 1
-            push_git || return 1
+        "-b"|"--build"|"build")
+            build_all || return 1
             ;;
-        "-a"|"--all"|"all"|"--auto"|"auto")
-            check_git || git add content
-            build_local || return 1
-            build_github || return 1
-            get_commit ${@:2} || return 1
-            update_git $input || return 1
-            push_git || return 1
+        "-g"|"git")
+            local commit_msg="${@:2}"
+            [[ -z "$commit_msg" ]] && log 3 "commit message required" && return 1
+            git_push "$commit_msg" || return 1
             ;;
-        "-f"|"--force"|"force")
-            build_local || return 1
-            build_github || return 1
-            get_commit ${@:2} || return 1
-            update_git -f $input || return 1
-            push_git || return 1
+        "-a"|"--all"|"all")
+            local commit_msg="${@:2}"
+            [[ -z "$commit_msg" ]] && log 3 "commit message required" && return 1
+            build_all || return 1
+            git_push "$commit_msg" || return 1
             ;;
-        "-n"|"--no"|"no")
-            case $2 in
-                "l"|"local")
-                    build_local || return 1
-                    ;;
-                "g"|"github")
-                    build_github || return 1
-                    ;;
-                *)
-                    build_local || return 1
-                    build_github || return 1
-                    ;;
-            esac
-            return 0
-            ;;
-        *)
+        "-h"|"--help"|"help"|*)
             print_help && return 0
             ;;
     esac
 }
 
 init() {
-    cd $(dirname $0)
-    file_name=$(basename $0)
+    cd "$(dirname "$0")"
+    file_name=$(basename "$0")
     path=$(pwd)
     config && config_check || return 1
     echo "" >> $log_file
     log 1 "start init"
-    # 其他初始化操作
-
-
 }
 
 close() {
@@ -188,61 +123,62 @@ close() {
 
 print_help() {
     echo "desc: ${desc}"
-    echo "args: -l | --local COMMIT    : build local"
-    echo "      -g | --github COMMIT   : build github"
-    echo "      -a | --all COMMIT      : build both"
-    echo "      -n | --no local/github : build but not git"
-    echo "      *                      : print help"
-    echo "commit:  TYPE: content"
-    echo "   e.t.  init: init git info."
-    echo "          new: add new file or new feature info."
-    echo "          fix: fix bug or fix wrong thing info."
-    echo "         feat: new feature or new method info."
-    echo "        merge: merge code or file info."
-    echo "       update: update something info."
-    echo "     *   test: add test info."
-    echo "     *   perf: improve performance or experience info."
-    echo "     *   docs: add test info."
-    echo "     *   sync: sync main or master branch info."
+    echo ""
+    echo "用法: ./build.sh <模式> [参数]"
+    echo ""
+    echo "模式:"
+    echo "  -n POST_TITLE  新建文章"
+    echo "  -b             构建（本地 + github）"
+    echo "  -g COMMIT_MSG  git: add all → commit → push"
+    echo "  -a COMMIT_MSG  构建 + git 推送（一步到位）"
+    echo "  -h             输出帮助信息"
+    echo ""
+    echo "示例:"
+    echo "  ./build.sh -n my-new-post"
+    echo "  ./build.sh -b"
+    echo "  ./build.sh -g \"new: add new blog post\""
+    echo "  ./build.sh -a \"new: add new blog post\""
+    echo ""
+    echo "commit 类型:"
+    echo "   init:  初始化"
+    echo "   new:   新增文章/文件"
+    echo "   fix:   修复"
+    echo "   feat:  新功能/特性"
+    echo "   update: 更新内容"
+    echo "   merge:  合并代码"
+    echo "   test:   测试"
+    echo "   perf:   性能优化"
+    echo "   docs:   文档"
+    echo "   sync:   同步分支"
 }
 
 config_check() {
     return_code=0
-    # 名称
     [[ -z "${name}" ]] && log 3 "empty name, disable to run" && return_code=1
-    # 日志
     ! [[ $log_level =~ ^[0-5]$ ]] && log_level=2 && log 2 "log level wrong, set default. ($log_level)"
     $enable_log_file && ! [[ -f $log_file ]] && enable_log_file=false && log 2 "log file ${log_file} not exist, disable log file."
-    $enable_log_file && ! [[ $log_file_max_line =~ ^[0-9]+$ ]] && log_file_max_line=2 && log 2 "log file max line wrong, set default. ($log_file_max line)"
-    #
-
-
+    $enable_log_file && ! [[ $log_file_max_line =~ ^[0-9]+$ ]] && log_file_max_line=2 && log 2 "log file max line wrong, set default. ($log_file_max_line line)"
     return $return_code
 }
 
 log() {
     # 0:verbose 1:info 2:warning 3:error 4:panic 5:output
-    local level=$1 # 打印的日志等级
-    local msg=${@:2} # 日志内容
-    local func=${FUNCNAME[1]} # 调用log的函数
+    local level=$1
+    local msg=${@:2}
+    local func=${FUNCNAME[1]}
     local log_level_name=("VERBOSE" "INFO" "WARN" "ERROR" "PANIC")
     local log_color=("\e[37m" "\e[97m" "\e[33m" "\e[31m" "\e[91m")
 
-    # 检查传入的日志等级是否正确
     ! [[ $level =~ ^[0-5]$ ]] && level=3 && msg="args error ( \$1 : $1 )"
-    # 如果上级是log_return，就再上层函数
     [[ $func == "log_return" ]] && func=${FUNCNAME[2]}
 
-    # 构造并输出
     if $enable_log_file ; then
         local log_content="[${log_level_name[${level}]}] (${func}) : ${msg}"
-        # 日志等级 >= 设定的日志等级，写入日志
         if (( $level >= $log_level )) ; then
             echo "$log_content" >> $log_file 2>&1
         fi
     else
         local log_content="[${log_color[${level}]}${log_level_name[${level}]}\e[0m] (${func}) : ${msg}"
-        # 日志等级 >= 设定的日志等级，输出日志
         if [[ $level = 5 ]] || (( $level >= $log_level )) ; then
             echo -e "$log_content"
         fi

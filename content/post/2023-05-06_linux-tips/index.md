@@ -201,125 +201,287 @@ sed 's/^old_\(.*\)_string_\(.*\)$/\1 - \2/g' file
 # 将 old_111_string_222 替换为 111 - 222
 ```
 
-### 文件格式化处理
+### awk — 文本处理神器
 
-使用awk
+> awk 按行读取、按列分割，适合处理结构化文本（日志、CSV、表格等）。
+
+#### 命令格式
+
 ```bash
-awk 'BEGIN{commands} pattern {commands} END{commands}' file
+awk [选项] 'pattern { action }' 文件...
+awk [选项] -f 脚本文件 文件...
 ```
-BEGIN{} 开始前运行的命令
-pattern 匹配模式
-{} 处理命令
-END{} 结束后运行的命令
-命令间用 ; 分隔
+
+##### 常用选项
+
+| 选项 | 作用 |
+|------|------|
+| `-F fs` | 指定输入分隔符，如 `-F:`、`-F'[,\t]'` |
+| `-v var=val` | 传入外部变量 |
+| `-f file` | 从文件读取 awk 脚本 |
+| `--lint` | 检查语法警告（gawk） |
 
 -v 引入外部变量
 ```bash
-awk -v var1="$num1" -v var2="$num2" '' file
+awk -v var1="$num1" -v var2="$num2" '{print var1, var2}' file
 ```
 
 -f 指定脚本
 ```bash
-awk -f file.awk '' file
+awk -f script.awk file
 ```
 
 -F 指定分隔符
 ```bash
-awk -F, '' file
+awk -F: '{print $1, $6}' /etc/passwd
 ```
 
-#### 匹配模式
+#### 内置变量速查
 
-正则匹配
-```bash
-awk '/pattern/ {commands}'
-```
+##### 行/列相关
 
-关系匹配
-```bash
-awk '$1>10 {commandss}'
-```
+| 变量 | 含义 | 示例 |
+|------|------|------|
+| `$0` | 当前整行 | `"root:x:0:0:root:/root:/bin/bash"` |
+| `$1` ~ `$NF` | 第 N 列 | `$1="root"` |
+| `NF` | 当前行字段数（列数） | `NF=7` |
+| `NR` | 当前行号（总计数） | `NR=3` |
+| `FNR` | 当前行号（文件独立计数） | 多文件时每个文件从 1 开始 |
+| `FILENAME` | 当前文件名 | `"passwd"` |
 
-关系运算符
+##### 分隔符相关
+
+| 变量 | 含义 | 默认值 |
+|------|------|--------|
+| `FS` | 输入字段分隔符 | 空格/Tab |
+| `OFS` | 输出字段分隔符 | 空格 |
+| `RS` | 输入行分隔符 | `\n` |
+| `ORS` | 输出行分隔符 | `\n` |
+| `FIELDWIDTHS` | 按固定宽度分割（gawk） | — |
+
+##### 其他
+
+| 变量 | 含义 |
+|------|------|
+| `ARGC` / `ARGV` | 命令行参数数量/数组 |
+| `ENVIRON` | 环境变量数组，如 `ENVIRON["HOME"]` |
+| `OFMT` | 数字输出格式（默认 `%.6g`） |
+| `RSTART` / `RLENGTH` | `match()` 匹配到的起始位置和长度 |
+
+#### 操作符
+
+##### 算术
 ```awk
-<  小于
->  大于
-<= 小于等于
->= 大于等于
-== 等于
-!= 不等于
-~  匹配正则表达式
-!~ 不匹配正则表达式
++  -  *  /  ^(幂)  %(取余)  ++  --
 ```
 
-布尔运算符
+##### 比较
 ```awk
-|| 或
-&& 与
-!  非
+<  <=  >  >=  ==  !=  ~(匹配)  !~(不匹配)
+```
+示例：
+```awk
+$2 > 100
+$1 ~ /^192\.168/
+$3 !~ /error/
 ```
 
-#### 内置变量
+##### 逻辑
+```awk
+&&  ||  !
+```
+
+##### 赋值
+```awk
+=  +=  -=  *=  /=  %=  ^=
+```
+
+##### 三元
+```awk
+条件 ? 真值 : 假值
+```
+
+#### pattern（匹配模式）
+
+| 模式类型 | 写法 | 示例 |
+|----------|------|------|
+| **无 pattern** | — | `{print $1}` 处理所有行 |
+| **正则** | `/regex/` | `/^ERROR/` |
+| **行号** | `NR > n` | `NR == 1` |
+| **表达式** | 布尔条件 | `$3 >= 50 && $3 <= 100` |
+| **范围** | `pat1,pat2` | `/start/,/end/` |
+| **BEGIN** | `BEGIN { }` | 读文件前执行一次 |
+| **END** | `END { }` | 所有行处理完后执行一次 |
+
+#### 控制结构
+
+if/else
+```awk
+{
+    if ($3 > 100)
+        print $1, "high"
+    else if ($3 > 50)
+        print $1, "medium"
+    else
+        print $1, "low"
+}
+```
+
+while
+```awk
+{
+    i = 1
+    while (i <= NF) {
+        printf "%s ", $i
+        i++
+    }
+    print ""
+}
+```
+
+do-while / for
+```awk
+{
+    i = 1
+    do { print $i; i++ } while (i <= NF)
+
+    for (i = 1; i <= NF; i++) print $i
+}
+```
+
+遍历数组
+```awk
+END {
+    for (key in arr)
+        print key, arr[key]
+}
+```
+
+流程控制语句
+
+| 语句 | 作用 |
+|------|------|
+| `break` | 跳出循环 |
+| `continue` | 跳到下次循环 |
+| `next` | 跳过当前行，处理下一行 |
+| `nextfile` | 跳过当前文件，开始下一个文件 |
+| `exit` | 退出 awk |
+
+#### 内置函数
+
+##### 字符串函数
+
+| 函数 | 说明 | 示例 |
+|------|------|------|
+| `length([s])` | 字符串长度 | `length($1)` |
+| `index(s, t)` | t 在 s 中的位置 | `index("abc","b")` → 2 |
+| `substr(s, p [, n])` | 从 p 起截取 n 个字符 | `substr($1,1,3)` |
+| `split(s, a [, sep])` | 按分隔符拆到数组 | `split($1, a, ":")` |
+| `gsub(r, t [, s])` | 全局替换（返回次数） | `gsub(/old/, "new")` |
+| `sub(r, t [, s])` | 第一个替换 | `sub(/foo/, "bar")` |
+| `match(s, r [, a])` | 匹配正则，设置 RSTART/RLENGTH | `match($0, /[0-9]+/)` |
+| `tolower(s)` | 转小写 | `tolower($1)` |
+| `toupper(s)` | 转大写 | `toupper($1)` |
+| `sprintf(fmt, ...)` | 格式化字符串（不打印） | `sprintf("%.2f", x)` |
+| `gensub(r, t, h [, s])` | 通用替换（gawk） | `gensub(/(a)/,"\\1b","g")` |
+
+##### 数学函数
+
+| 函数 | 说明 |
+|------|------|
+| `int(x)` | 取整 |
+| `sqrt(x)` / `exp(x)` / `log(x)` | 平方根 / e^x / 自然对数 |
+| `sin(x)` / `cos(x)` / `atan2(y,x)` | 三角函数 |
+| `rand()` | 随机数 [0,1) |
+| `srand([x])` | 设置随机种子 |
+
+##### 时间函数（gawk）
+
+| 函数 | 说明 |
+|------|------|
+| `systime()` | 当前时间戳（秒） |
+| `strftime(fmt [, ts])` | 格式化时间，格式同 `date` 命令 |
+| `mktime(datespec)` | 日期字符串转时间戳 |
+
+#### printf 格式化输出
 
 ```awk
-$0 整行内容
-$n 第n个内容
-NF 当前行总列数
-NR 当前行行数，从1开始
-FNR 当前行在当前文件的行数，从0开始
-FS 字段分隔符，默认空格及tab
-RS 行分隔符，默认回车
-OFS 输出字段分隔符
-ORS 输出行分隔符
-FILENAME 当前输入文件名字
-ARGC 命令行参数个数
-ARGV 命令行参数数组
+printf "格式符", 参数列表
 ```
 
-#### 内置命令
+| 格式符 | 说明 | 示例 |
+|--------|------|------|
+| `%s` | 字符串 | `%10s` 右对齐 10 位，`%-10s` 左对齐 |
+| `%d` / `%i` | 整数 | `%5d` |
+| `%f` | 浮点数 | `%.2f` 保留两位小数，`%8.2f` 总宽 8 |
+| `%e` / `%E` | 科学计数 | `%10.2e` |
+| `%x` / `%X` | 十六进制 | `%x` |
+| `%%` | 百分号本身 | |
 
-表达式
-```awk
-+ - * / % ^ **
-++x x++ --x x--
-```
+> 格式：`%[标志][宽度][.精度]格式符`；标志 `-` 左对齐，`+` 显示正负号，`0` 补零
 
-输出
-```awk
-print $1 $2
-printf "%4s %-4s","string","string"
-```
-%s字符串 %c字符的ascll码 %d整数 %f浮点数 %x十六进制 %o八进制 %e科学计数法
-%-N 左对齐 %+N 右对齐 %# 8进制前加0，16进制前加0x
-%.2f 小数点后两位
+#### 数组
+
+awk 只有关联数组（类似字典），下标可以是字符串或数字。
 
 ```awk
-length(str) # 字符串长度
-index(str1,str2) # 在str1中找str2的位置
-substr(str,m,n) # 从str的m个字符开始，截取n位
-split(str,arr,fs) # 按fs切割字符串并保存在arr中，返回切割后的子串个数
-match(str,RE) # 在str中按照RE查找，返回索引位置
-sub(RE,RepStr,str) # 在str中替换第一个符合RE的子串为RepStr，返回替换的个数
-gsub(RE,RepStr,str) # 在str中替换所有符合RE的子串为RepStr，返回替换的个数
+arr["key"] = "value"      # 赋值
+for (k in arr) print k, arr[k]  # 遍历
+if ("key" in arr) print "存在"   # 判断存在
+delete arr["key"]          # 删除元素
+delete arr                 # 删除所有元素（gawk）
 ```
 
-条件语句
+#### 自定义函数
+
 ```awk
-if(){}else if(){}else{}
+function 函数名(参数列表) {
+    语句
+    return 值
+}
+
+function max(a, b) {
+    return a > b ? a : b
+}
+
+{ print max($1, $2) }
 ```
 
-循环语句
-```bash
-while(){}
-do{}while()
-for(;;){}
+> 函数定义必须在 BEGIN 块之前或在独立的 `-f` 文件中。
+
+#### 输入输出重定向与管道
+
+```awk
+# 输出到文件
+print $0 > "output.txt"
+
+# 追加
+print $0 >> "output.txt"
+
+# 管道到 shell
+print $0 | "sort -rn"
+
+# 从命令读入
+"date" | getline now
+close("date")
 ```
 
-#### 常用例子
+#### getline 的四种用法
+
+```awk
+getline                        # 读取文件下一行到 $0
+getline var                    # 读取文件下一行到 var
+getline < "file"               # 从指定文件读取
+"cmd" | getline var            # 从命令输出读取
+
+# 返回值：1=成功  0=文件尾  -1=错误
+```
+
+#### 实用示例
 
 打印每行第一项和第五项
 ```bash
-cat file | awk '{print $1 $5}'
+cat file | awk '{print $1, $5}'
 ```
 
 正则匹配行并打印第一项
@@ -327,9 +489,9 @@ cat file | awk '{print $1 $5}'
 cat file | awk '/pattern/ {print $1}'
 ```
 
-以“,”为分隔，打印行号和文字
+以","为分隔，打印行号和文字
 ```bash
-cat file | awk 'BEGIN{FS=","} {print NR "TEXT"}'
+cat file | awk 'BEGIN{FS=","} {print NR, $0}'
 ```
 
 匹配文件中第3个字段小于50并且第7个字段匹配pattern的所有行信息
@@ -344,7 +506,7 @@ cat file | awk '/^$/ {sum++} END{print sum}'
 
 报表形式统计文件
 ```bash
-cat stu.txt |awk 'BEGIN{printf "%-8s%-5s%-5s%-5s%-5s%-5s%-8s\n","姓名","语文","数学","英语","物理","总分","平均分"} {total=$2+$3+$4+$5;avg=total/4;printf "%-8s%-8d%-6d%-8d%-7d%-5d%0.2f\n",$1,$2,$3,$4,$5,total,avg}'
+cat stu.txt | awk 'BEGIN{printf "%-8s%-5s%-5s%-5s%-5s%-5s%-8s\n","姓名","语文","数学","英语","物理","总分","平均分"} {total=$2+$3+$4+$5;avg=total/4;printf "%-8s%-8d%-6d%-8d%-7d%-5d%0.2f\n",$1,$2,$3,$4,$5,total,avg}'
 ```
 输出：
 ```bash
@@ -353,10 +515,48 @@ cat stu.txt |awk 'BEGIN{printf "%-8s%-5s%-5s%-5s%-5s%-5s%-8s\n","姓名","语文
 李四      85      65    80      75     305  76.25
 ```
 
-计算1+2+3+...+100的和。
+计算1+2+3+...+100的和
 ```bash
 awk 'BEGIN{while(i<100){i++;sum+=i;}} {print sum}'
 awk 'BEGIN{for(i=0;i<=100;i++){sum+=i;}} {print sum}'
+```
+
+统计日志中每个 IP 的访问次数
+```bash
+awk '{count[$1]++} END {for (ip in count) print ip, count[ip]}' access.log | sort -k2 -rn
+```
+
+计算某列平均值
+```bash
+awk '{sum += $3; n++} END {print n > 0 ? sum/n : 0}' scores.txt
+```
+
+删除重复行（保持顺序）
+```bash
+awk '!seen[$0]++' file.txt
+```
+
+打印前 N 行 / 跳过前 N 行
+```bash
+awk 'NR <= 10' file.txt
+awk 'NR > 5' file.txt
+```
+
+去重（按某列）
+```bash
+awk '!seen[$2]++' file.txt
+```
+
+分组求和
+```bash
+awk '{sum[$1] += $2} END {for (k in sum) print k, sum[k]}' file.txt
+```
+
+多文件关联处理（类似 join）
+```bash
+awk 'NR==FNR {a[$1]=$2; next} {print $1, a[$1]}' map.txt data.txt
+# NR==FNR: 只在第一个文件成立，加载映射表
+# 第二个文件：查表输出
 ```
 
 ### 判断linux桌面环境是xorg还是wayland

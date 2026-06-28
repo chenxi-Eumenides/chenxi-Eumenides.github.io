@@ -263,12 +263,20 @@
         <li><a href="#linux同步时间">linux同步时间</a></li>
         <li><a href="#查看ip信息">查看ip信息</a></li>
         <li><a href="#文本处理">文本处理</a></li>
-        <li><a href="#文件格式化处理">文件格式化处理</a>
+        <li><a href="#awk--文本处理神器">awk — 文本处理神器</a>
           <ol>
-            <li><a href="#匹配模式">匹配模式</a></li>
-            <li><a href="#内置变量">内置变量</a></li>
-            <li><a href="#内置命令">内置命令</a></li>
-            <li><a href="#常用例子">常用例子</a></li>
+            <li><a href="#命令格式">命令格式</a></li>
+            <li><a href="#内置变量速查">内置变量速查</a></li>
+            <li><a href="#操作符">操作符</a></li>
+            <li><a href="#pattern匹配模式">pattern（匹配模式）</a></li>
+            <li><a href="#控制结构">控制结构</a></li>
+            <li><a href="#内置函数">内置函数</a></li>
+            <li><a href="#printf-格式化输出">printf 格式化输出</a></li>
+            <li><a href="#数组">数组</a></li>
+            <li><a href="#自定义函数">自定义函数</a></li>
+            <li><a href="#输入输出重定向与管道">输入输出重定向与管道</a></li>
+            <li><a href="#getline-的四种用法">getline 的四种用法</a></li>
+            <li><a href="#实用示例">实用示例</a></li>
           </ol>
         </li>
         <li><a href="#判断linux桌面环境是xorg还是wayland">判断linux桌面环境是xorg还是wayland</a></li>
@@ -469,7 +477,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 11 分钟
+                    阅读时长: 13 分钟
                 </time>
             </div>
         
@@ -835,28 +843,55 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 将 old_111_string_222 替换为 111 - 222</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="文件格式化处理">文件格式化处理
-</h3><p>使用awk</p>
-<div class="highlight"><div class="chroma">
+</div><h3 id="awk--文本处理神器">awk — 文本处理神器
+</h3><blockquote>
+<p>awk 按行读取、按列分割，适合处理结构化文本（日志、CSV、表格等）。</p>
+</blockquote>
+<h4 id="命令格式">命令格式
+</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">awk <span class="s1">&#39;BEGIN{commands} pattern {commands} END{commands}&#39;</span> file
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">awk <span class="o">[</span>选项<span class="o">]</span> <span class="s1">&#39;pattern { action }&#39;</span> 文件...
+</span></span><span class="line"><span class="cl">awk <span class="o">[</span>选项<span class="o">]</span> -f 脚本文件 文件...
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>BEGIN{} 开始前运行的命令
-pattern 匹配模式
-{} 处理命令
-END{} 结束后运行的命令
-命令间用 ; 分隔</p>
+</div><h5 id="常用选项">常用选项
+</h5><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>选项</th>
+          <th>作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>-F fs</code></td>
+          <td>指定输入分隔符，如 <code>-F:</code>、<code>-F'[,\t]'</code></td>
+      </tr>
+      <tr>
+          <td><code>-v var=val</code></td>
+          <td>传入外部变量</td>
+      </tr>
+      <tr>
+          <td><code>-f file</code></td>
+          <td>从文件读取 awk 脚本</td>
+      </tr>
+      <tr>
+          <td><code>--lint</code></td>
+          <td>检查语法警告（gawk）</td>
+      </tr>
+  </tbody>
+</table></div>
 <p>-v 引入外部变量</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">awk -v <span class="nv">var1</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$num1</span><span class="s2">&#34;</span> -v <span class="nv">var2</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$num2</span><span class="s2">&#34;</span> <span class="s1">&#39;&#39;</span> file
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">awk -v <span class="nv">var1</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$num1</span><span class="s2">&#34;</span> -v <span class="nv">var2</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$num2</span><span class="s2">&#34;</span> <span class="s1">&#39;{print var1, var2}&#39;</span> file
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>-f 指定脚本</p>
@@ -865,7 +900,7 @@ END{} 结束后运行的命令
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">awk -f file.awk <span class="s1">&#39;&#39;</span> file
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">awk -f script.awk file
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>-F 指定分隔符</p>
@@ -874,29 +909,224 @@ END{} 结束后运行的命令
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">awk -F, <span class="s1">&#39;&#39;</span> file
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">awk -F: <span class="s1">&#39;{print $1, $6}&#39;</span> /etc/passwd
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="匹配模式">匹配模式
-</h4><p>正则匹配</p>
-<div class="highlight"><div class="chroma">
+</div><h4 id="内置变量速查">内置变量速查
+</h4><h5 id="行列相关">行/列相关
+</h5><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>变量</th>
+          <th>含义</th>
+          <th>示例</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>$0</code></td>
+          <td>当前整行</td>
+          <td><code>&quot;root:x:0:0:root:/root:/bin/bash&quot;</code></td>
+      </tr>
+      <tr>
+          <td><code>$1</code> ~ <code>$NF</code></td>
+          <td>第 N 列</td>
+          <td><code>$1=&quot;root&quot;</code></td>
+      </tr>
+      <tr>
+          <td><code>NF</code></td>
+          <td>当前行字段数（列数）</td>
+          <td><code>NF=7</code></td>
+      </tr>
+      <tr>
+          <td><code>NR</code></td>
+          <td>当前行号（总计数）</td>
+          <td><code>NR=3</code></td>
+      </tr>
+      <tr>
+          <td><code>FNR</code></td>
+          <td>当前行号（文件独立计数）</td>
+          <td>多文件时每个文件从 1 开始</td>
+      </tr>
+      <tr>
+          <td><code>FILENAME</code></td>
+          <td>当前文件名</td>
+          <td><code>&quot;passwd&quot;</code></td>
+      </tr>
+  </tbody>
+</table></div>
+<h5 id="分隔符相关">分隔符相关
+</h5><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>变量</th>
+          <th>含义</th>
+          <th>默认值</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>FS</code></td>
+          <td>输入字段分隔符</td>
+          <td>空格/Tab</td>
+      </tr>
+      <tr>
+          <td><code>OFS</code></td>
+          <td>输出字段分隔符</td>
+          <td>空格</td>
+      </tr>
+      <tr>
+          <td><code>RS</code></td>
+          <td>输入行分隔符</td>
+          <td><code>\n</code></td>
+      </tr>
+      <tr>
+          <td><code>ORS</code></td>
+          <td>输出行分隔符</td>
+          <td><code>\n</code></td>
+      </tr>
+      <tr>
+          <td><code>FIELDWIDTHS</code></td>
+          <td>按固定宽度分割（gawk）</td>
+          <td>—</td>
+      </tr>
+  </tbody>
+</table></div>
+<h5 id="其他">其他
+</h5><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>变量</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>ARGC</code> / <code>ARGV</code></td>
+          <td>命令行参数数量/数组</td>
+      </tr>
+      <tr>
+          <td><code>ENVIRON</code></td>
+          <td>环境变量数组，如 <code>ENVIRON[&quot;HOME&quot;]</code></td>
+      </tr>
+      <tr>
+          <td><code>OFMT</code></td>
+          <td>数字输出格式（默认 <code>%.6g</code>）</td>
+      </tr>
+      <tr>
+          <td><code>RSTART</code> / <code>RLENGTH</code></td>
+          <td><code>match()</code> 匹配到的起始位置和长度</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="操作符">操作符
+</h4><h5 id="算术">算术
+</h5><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">awk <span class="s1">&#39;/pattern/ {commands}&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="o">+</span>  <span class="o">-</span>  <span class="o">*</span>  <span class="err">/  ^(幂)  %(取余)  ++  --</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>关系匹配</p>
-<div class="highlight"><div class="chroma">
+</div><h5 id="比较">比较
+</h5><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">awk <span class="s1">&#39;$1&gt;10 {commandss}&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="o">&lt;</span>  <span class="o">&lt;=</span>  <span class="o">&gt;</span>  <span class="o">&gt;=</span>  <span class="o">==</span>  <span class="o">!=</span>  <span class="o">~</span><span class="p">(</span><span class="err">匹配</span><span class="p">)</span>  <span class="o">!~</span><span class="p">(</span><span class="err">不匹配</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>关系运算符</p>
+</div><p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="o">$</span><span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl"><span class="o">$</span><span class="mi">1</span> <span class="o">~</span> <span class="sr">/^192\.168/</span>
+</span></span><span class="line"><span class="cl"><span class="o">$</span><span class="mi">3</span> <span class="o">!~</span> <span class="sr">/error/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="逻辑">逻辑
+</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="o">&amp;&amp;</span>  <span class="o">||</span>  <span class="o">!</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="赋值">赋值
+</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="o">=</span>  <span class="o">+=</span>  <span class="o">-=</span>  <span class="o">*=</span>  <span class="err">/=  %=  ^=</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="三元">三元
+</h5><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="err">条件</span> <span class="err">?</span> <span class="err">真值</span> <span class="err">:</span> <span class="err">假值</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="pattern匹配模式">pattern（匹配模式）
+</h4><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>模式类型</th>
+          <th>写法</th>
+          <th>示例</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>无 pattern</strong></td>
+          <td>—</td>
+          <td><code>{print $1}</code> 处理所有行</td>
+      </tr>
+      <tr>
+          <td><strong>正则</strong></td>
+          <td><code>/regex/</code></td>
+          <td><code>/^ERROR/</code></td>
+      </tr>
+      <tr>
+          <td><strong>行号</strong></td>
+          <td><code>NR &gt; n</code></td>
+          <td><code>NR == 1</code></td>
+      </tr>
+      <tr>
+          <td><strong>表达式</strong></td>
+          <td>布尔条件</td>
+          <td><code>$3 &gt;= 50 &amp;&amp; $3 &lt;= 100</code></td>
+      </tr>
+      <tr>
+          <td><strong>范围</strong></td>
+          <td><code>pat1,pat2</code></td>
+          <td><code>/start/,/end/</code></td>
+      </tr>
+      <tr>
+          <td><strong>BEGIN</strong></td>
+          <td><code>BEGIN { }</code></td>
+          <td>读文件前执行一次</td>
+      </tr>
+      <tr>
+          <td><strong>END</strong></td>
+          <td><code>END { }</code></td>
+          <td>所有行处理完后执行一次</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="控制结构">控制结构
+</h4><p>if/else</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -909,30 +1139,328 @@ END{} 结束后运行的命令
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="o">&lt;</span>  <span class="err">小于</span>
-</span></span><span class="line"><span class="cl"><span class="o">&gt;</span>  <span class="err">大于</span>
-</span></span><span class="line"><span class="cl"><span class="o">&lt;=</span> <span class="err">小于等于</span>
-</span></span><span class="line"><span class="cl"><span class="o">&gt;=</span> <span class="err">大于等于</span>
-</span></span><span class="line"><span class="cl"><span class="o">==</span> <span class="err">等于</span>
-</span></span><span class="line"><span class="cl"><span class="o">!=</span> <span class="err">不等于</span>
-</span></span><span class="line"><span class="cl"><span class="o">~</span>  <span class="err">匹配正则表达式</span>
-</span></span><span class="line"><span class="cl"><span class="o">!~</span> <span class="err">不匹配正则表达式</span>
+<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">$</span><span class="mi">3</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">print</span> <span class="o">$</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;high&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">$</span><span class="mi">3</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">print</span> <span class="o">$</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;medium&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">print</span> <span class="o">$</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;low&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>布尔运算符</p>
+</div><p>while</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="o">||</span> <span class="err">或</span>
-</span></span><span class="line"><span class="cl"><span class="o">&amp;&amp;</span> <span class="err">与</span>
-</span></span><span class="line"><span class="cl"><span class="o">!</span>  <span class="err">非</span>
+<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;=</span> <span class="nb">NF</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">printf</span> <span class="s2">&#34;%s &#34;</span><span class="p">,</span> <span class="o">$</span><span class="nx">i</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">i</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">print</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="内置变量">内置变量
+</div><p>do-while / for</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">do</span> <span class="p">{</span> <span class="kr">print</span> <span class="o">$</span><span class="nx">i</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;=</span> <span class="nb">NF</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nb">NF</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="kr">print</span> <span class="o">$</span><span class="nx">i</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>遍历数组</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="nb">END</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="nx">key</span> <span class="o">in</span> <span class="nx">arr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">print</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>流程控制语句</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>语句</th>
+          <th>作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>break</code></td>
+          <td>跳出循环</td>
+      </tr>
+      <tr>
+          <td><code>continue</code></td>
+          <td>跳到下次循环</td>
+      </tr>
+      <tr>
+          <td><code>next</code></td>
+          <td>跳过当前行，处理下一行</td>
+      </tr>
+      <tr>
+          <td><code>nextfile</code></td>
+          <td>跳过当前文件，开始下一个文件</td>
+      </tr>
+      <tr>
+          <td><code>exit</code></td>
+          <td>退出 awk</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="内置函数">内置函数
+</h4><h5 id="字符串函数">字符串函数
+</h5><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>函数</th>
+          <th>说明</th>
+          <th>示例</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>length([s])</code></td>
+          <td>字符串长度</td>
+          <td><code>length($1)</code></td>
+      </tr>
+      <tr>
+          <td><code>index(s, t)</code></td>
+          <td>t 在 s 中的位置</td>
+          <td><code>index(&quot;abc&quot;,&quot;b&quot;)</code> → 2</td>
+      </tr>
+      <tr>
+          <td><code>substr(s, p [, n])</code></td>
+          <td>从 p 起截取 n 个字符</td>
+          <td><code>substr($1,1,3)</code></td>
+      </tr>
+      <tr>
+          <td><code>split(s, a [, sep])</code></td>
+          <td>按分隔符拆到数组</td>
+          <td><code>split($1, a, &quot;:&quot;)</code></td>
+      </tr>
+      <tr>
+          <td><code>gsub(r, t [, s])</code></td>
+          <td>全局替换（返回次数）</td>
+          <td><code>gsub(/old/, &quot;new&quot;)</code></td>
+      </tr>
+      <tr>
+          <td><code>sub(r, t [, s])</code></td>
+          <td>第一个替换</td>
+          <td><code>sub(/foo/, &quot;bar&quot;)</code></td>
+      </tr>
+      <tr>
+          <td><code>match(s, r [, a])</code></td>
+          <td>匹配正则，设置 RSTART/RLENGTH</td>
+          <td><code>match($0, /[0-9]+/)</code></td>
+      </tr>
+      <tr>
+          <td><code>tolower(s)</code></td>
+          <td>转小写</td>
+          <td><code>tolower($1)</code></td>
+      </tr>
+      <tr>
+          <td><code>toupper(s)</code></td>
+          <td>转大写</td>
+          <td><code>toupper($1)</code></td>
+      </tr>
+      <tr>
+          <td><code>sprintf(fmt, ...)</code></td>
+          <td>格式化字符串（不打印）</td>
+          <td><code>sprintf(&quot;%.2f&quot;, x)</code></td>
+      </tr>
+      <tr>
+          <td><code>gensub(r, t, h [, s])</code></td>
+          <td>通用替换（gawk）</td>
+          <td><code>gensub(/(a)/,&quot;\\1b&quot;,&quot;g&quot;)</code></td>
+      </tr>
+  </tbody>
+</table></div>
+<h5 id="数学函数">数学函数
+</h5><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>函数</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>int(x)</code></td>
+          <td>取整</td>
+      </tr>
+      <tr>
+          <td><code>sqrt(x)</code> / <code>exp(x)</code> / <code>log(x)</code></td>
+          <td>平方根 / e^x / 自然对数</td>
+      </tr>
+      <tr>
+          <td><code>sin(x)</code> / <code>cos(x)</code> / <code>atan2(y,x)</code></td>
+          <td>三角函数</td>
+      </tr>
+      <tr>
+          <td><code>rand()</code></td>
+          <td>随机数 [0,1)</td>
+      </tr>
+      <tr>
+          <td><code>srand([x])</code></td>
+          <td>设置随机种子</td>
+      </tr>
+  </tbody>
+</table></div>
+<h5 id="时间函数gawk">时间函数（gawk）
+</h5><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>函数</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>systime()</code></td>
+          <td>当前时间戳（秒）</td>
+      </tr>
+      <tr>
+          <td><code>strftime(fmt [, ts])</code></td>
+          <td>格式化时间，格式同 <code>date</code> 命令</td>
+      </tr>
+      <tr>
+          <td><code>mktime(datespec)</code></td>
+          <td>日期字符串转时间戳</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="printf-格式化输出">printf 格式化输出
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="kr">printf</span> <span class="s2">&#34;格式符&#34;</span><span class="p">,</span> <span class="err">参数列表</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>格式符</th>
+          <th>说明</th>
+          <th>示例</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>%s</code></td>
+          <td>字符串</td>
+          <td><code>%10s</code> 右对齐 10 位，<code>%-10s</code> 左对齐</td>
+      </tr>
+      <tr>
+          <td><code>%d</code> / <code>%i</code></td>
+          <td>整数</td>
+          <td><code>%5d</code></td>
+      </tr>
+      <tr>
+          <td><code>%f</code></td>
+          <td>浮点数</td>
+          <td><code>%.2f</code> 保留两位小数，<code>%8.2f</code> 总宽 8</td>
+      </tr>
+      <tr>
+          <td><code>%e</code> / <code>%E</code></td>
+          <td>科学计数</td>
+          <td><code>%10.2e</code></td>
+      </tr>
+      <tr>
+          <td><code>%x</code> / <code>%X</code></td>
+          <td>十六进制</td>
+          <td><code>%x</code></td>
+      </tr>
+      <tr>
+          <td><code>%%</code></td>
+          <td>百分号本身</td>
+          <td></td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p>格式：<code>%[标志][宽度][.精度]格式符</code>；标志 <code>-</code> 左对齐，<code>+</code> 显示正负号，<code>0</code> 补零</p>
+</blockquote>
+<h4 id="数组">数组
+</h4><p>awk 只有关联数组（类似字典），下标可以是字符串或数字。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="nx">arr</span><span class="p">[</span><span class="s2">&#34;key&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;value&#34;</span>      <span class="c1"># 赋值</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="nx">k</span> <span class="o">in</span> <span class="nx">arr</span><span class="p">)</span> <span class="kr">print</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span>  <span class="c1"># 遍历</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="s2">&#34;key&#34;</span> <span class="o">in</span> <span class="nx">arr</span><span class="p">)</span> <span class="kr">print</span> <span class="s2">&#34;存在&#34;</span>   <span class="c1"># 判断存在</span>
+</span></span><span class="line"><span class="cl"><span class="kr">delete</span> <span class="nx">arr</span><span class="p">[</span><span class="s2">&#34;key&#34;</span><span class="p">]</span>          <span class="c1"># 删除元素</span>
+</span></span><span class="line"><span class="cl"><span class="kr">delete</span> <span class="nx">arr</span>                 <span class="c1"># 删除所有元素（gawk）</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="自定义函数">自定义函数
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="kd">function</span> <span class="err">函数名</span><span class="p">(</span><span class="err">参数列表</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">语句</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="err">值</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">max</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">a</span> <span class="o">&gt;</span> <span class="nx">b</span> <span class="err">?</span> <span class="nx">a</span> <span class="err">:</span> <span class="nx">b</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="kr">print</span> <span class="nx">max</span><span class="p">(</span><span class="o">$</span><span class="mi">1</span><span class="p">,</span> <span class="o">$</span><span class="mi">2</span><span class="p">)</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>函数定义必须在 BEGIN 块之前或在独立的 <code>-f</code> 文件中。</p>
+</blockquote>
+<h4 id="输入输出重定向与管道">输入输出重定向与管道
 </h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -949,47 +1477,22 @@ END{} 结束后运行的命令
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="o">$</span><span class="mi">0</span> <span class="err">整行内容</span>
-</span></span><span class="line"><span class="cl"><span class="o">$</span><span class="nx">n</span> <span class="err">第</span><span class="nx">n个内容</span>
-</span></span><span class="line"><span class="cl"><span class="nb">NF</span> <span class="err">当前行总列数</span>
-</span></span><span class="line"><span class="cl"><span class="nb">NR</span> <span class="err">当前行行数，从</span><span class="mi">1</span><span class="err">开始</span>
-</span></span><span class="line"><span class="cl"><span class="nb">FNR</span> <span class="err">当前行在当前文件的行数，从</span><span class="mi">0</span><span class="err">开始</span>
-</span></span><span class="line"><span class="cl"><span class="nb">FS</span> <span class="err">字段分隔符，默认空格及</span><span class="nx">tab</span>
-</span></span><span class="line"><span class="cl"><span class="nb">RS</span> <span class="err">行分隔符，默认回车</span>
-</span></span><span class="line"><span class="cl"><span class="nb">OFS</span> <span class="err">输出字段分隔符</span>
-</span></span><span class="line"><span class="cl"><span class="nb">ORS</span> <span class="err">输出行分隔符</span>
-</span></span><span class="line"><span class="cl"><span class="nb">FILENAME</span> <span class="err">当前输入文件名字</span>
-</span></span><span class="line"><span class="cl"><span class="nb">ARGC</span> <span class="err">命令行参数个数</span>
-</span></span><span class="line"><span class="cl"><span class="nb">ARGV</span> <span class="err">命令行参数数组</span>
+<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="c1"># 输出到文件</span>
+</span></span><span class="line"><span class="cl"><span class="kr">print</span> <span class="o">$</span><span class="mi">0</span> <span class="o">&gt;</span> <span class="s2">&#34;output.txt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 追加</span>
+</span></span><span class="line"><span class="cl"><span class="kr">print</span> <span class="o">$</span><span class="mi">0</span> <span class="o">&gt;&gt;</span> <span class="s2">&#34;output.txt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 管道到 shell</span>
+</span></span><span class="line"><span class="cl"><span class="kr">print</span> <span class="o">$</span><span class="mi">0</span> <span class="o">|</span> <span class="s2">&#34;sort -rn&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 从命令读入</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;date&#34;</span> <span class="o">|</span> <span class="kr">getline</span> <span class="nx">now</span>
+</span></span><span class="line"><span class="cl"><span class="kr">close</span><span class="p">(</span><span class="s2">&#34;date&#34;</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="内置命令">内置命令
-</h4><p>表达式</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="o">+</span> <span class="o">-</span> <span class="o">*</span> <span class="err">/ % ^ **</span>
-</span></span><span class="line"><span class="cl"><span class="o">++</span><span class="nx">x</span> <span class="nx">x</span><span class="o">++</span> <span class="o">--</span><span class="nx">x</span> <span class="nx">x</span><span class="o">--</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>输出</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="kr">print</span> <span class="o">$</span><span class="mi">1</span> <span class="o">$</span><span class="mi">2</span>
-</span></span><span class="line"><span class="cl"><span class="kr">printf</span> <span class="s2">&#34;%4s %-4s&#34;</span><span class="p">,</span><span class="s2">&#34;string&#34;</span><span class="p">,</span><span class="s2">&#34;string&#34;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>%s字符串 %c字符的ascll码 %d整数 %f浮点数 %x十六进制 %o八进制 %e科学计数法
-%-N 左对齐 %+N 右对齐 %# 8进制前加0，16进制前加0x
-%.2f 小数点后两位</p>
-<div class="highlight"><div class="chroma">
+</div><h4 id="getline-的四种用法">getline 的四种用法
+</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -997,48 +1500,24 @@ END{} 结束后运行的命令
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
-</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="kr">length</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="c1"># 字符串长度</span>
-</span></span><span class="line"><span class="cl"><span class="kr">index</span><span class="p">(</span><span class="nx">str1</span><span class="p">,</span><span class="nx">str2</span><span class="p">)</span> <span class="c1"># 在str1中找str2的位置</span>
-</span></span><span class="line"><span class="cl"><span class="kr">substr</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span><span class="nx">m</span><span class="p">,</span><span class="nx">n</span><span class="p">)</span> <span class="c1"># 从str的m个字符开始，截取n位</span>
-</span></span><span class="line"><span class="cl"><span class="kr">split</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span><span class="nx">arr</span><span class="p">,</span><span class="nx">fs</span><span class="p">)</span> <span class="c1"># 按fs切割字符串并保存在arr中，返回切割后的子串个数</span>
-</span></span><span class="line"><span class="cl"><span class="kr">match</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span><span class="nx">RE</span><span class="p">)</span> <span class="c1"># 在str中按照RE查找，返回索引位置</span>
-</span></span><span class="line"><span class="cl"><span class="kr">sub</span><span class="p">(</span><span class="nx">RE</span><span class="p">,</span><span class="nx">RepStr</span><span class="p">,</span><span class="nx">str</span><span class="p">)</span> <span class="c1"># 在str中替换第一个符合RE的子串为RepStr，返回替换的个数</span>
-</span></span><span class="line"><span class="cl"><span class="kr">gsub</span><span class="p">(</span><span class="nx">RE</span><span class="p">,</span><span class="nx">RepStr</span><span class="p">,</span><span class="nx">str</span><span class="p">)</span> <span class="c1"># 在str中替换所有符合RE的子串为RepStr，返回替换的个数</span>
+<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="kr">getline</span>                        <span class="c1"># 读取文件下一行到 $0</span>
+</span></span><span class="line"><span class="cl"><span class="kr">getline</span> <span class="nx">var</span>                    <span class="c1"># 读取文件下一行到 var</span>
+</span></span><span class="line"><span class="cl"><span class="kr">getline</span> <span class="o">&lt;</span> <span class="s2">&#34;file&#34;</span>               <span class="c1"># 从指定文件读取</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;cmd&#34;</span> <span class="o">|</span> <span class="kr">getline</span> <span class="nx">var</span>            <span class="c1"># 从命令输出读取</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 返回值：1=成功  0=文件尾  -1=错误</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>条件语句</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-awk" data-lang="awk"><span class="line"><span class="cl"><span class="k">if</span><span class="p">(){}</span><span class="k">else</span> <span class="k">if</span><span class="p">(){}</span><span class="k">else</span><span class="p">{}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>循环语句</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">while</span><span class="o">(){}</span>
-</span></span><span class="line"><span class="cl"><span class="k">do</span><span class="o">{}</span><span class="k">while</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="o">(</span><span class="p">;;</span><span class="o">){}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="常用例子">常用例子
+</div><h4 id="实用示例">实用示例
 </h4><p>打印每行第一项和第五项</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat file <span class="p">|</span> awk <span class="s1">&#39;{print $1 $5}&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat file <span class="p">|</span> awk <span class="s1">&#39;{print $1, $5}&#39;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>正则匹配行并打印第一项</p>
@@ -1050,13 +1529,13 @@ END{} 结束后运行的命令
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat file <span class="p">|</span> awk <span class="s1">&#39;/pattern/ {print $1}&#39;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>以“,”为分隔，打印行号和文字</p>
+</div><p>以&quot;,&ldquo;为分隔，打印行号和文字</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat file <span class="p">|</span> awk <span class="s1">&#39;BEGIN{FS=&#34;,&#34;} {print NR &#34;TEXT&#34;}&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat file <span class="p">|</span> awk <span class="s1">&#39;BEGIN{FS=&#34;,&#34;} {print NR, $0}&#39;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>匹配文件中第3个字段小于50并且第7个字段匹配pattern的所有行信息</p>
@@ -1083,7 +1562,7 @@ END{} 结束后运行的命令
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat stu.txt <span class="p">|</span>awk <span class="s1">&#39;BEGIN{printf &#34;%-8s%-5s%-5s%-5s%-5s%-5s%-8s\n&#34;,&#34;姓名&#34;,&#34;语文&#34;,&#34;数学&#34;,&#34;英语&#34;,&#34;物理&#34;,&#34;总分&#34;,&#34;平均分&#34;} {total=$2+$3+$4+$5;avg=total/4;printf &#34;%-8s%-8d%-6d%-8d%-7d%-5d%0.2f\n&#34;,$1,$2,$3,$4,$5,total,avg}&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat stu.txt <span class="p">|</span> awk <span class="s1">&#39;BEGIN{printf &#34;%-8s%-5s%-5s%-5s%-5s%-5s%-8s\n&#34;,&#34;姓名&#34;,&#34;语文&#34;,&#34;数学&#34;,&#34;英语&#34;,&#34;物理&#34;,&#34;总分&#34;,&#34;平均分&#34;} {total=$2+$3+$4+$5;avg=total/4;printf &#34;%-8s%-8d%-6d%-8d%-7d%-5d%0.2f\n&#34;,$1,$2,$3,$4,$5,total,avg}&#39;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>输出：</p>
@@ -1099,7 +1578,7 @@ END{} 结束后运行的命令
 </span></span><span class="line"><span class="cl">李四      <span class="m">85</span>      <span class="m">65</span>    <span class="m">80</span>      <span class="m">75</span>     <span class="m">305</span>  76.25
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>计算1+2+3+&hellip;+100的和。</p>
+</div><p>计算1+2+3+&hellip;+100的和</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1108,6 +1587,75 @@ END{} 结束后运行的命令
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">awk <span class="s1">&#39;BEGIN{while(i&lt;100){i++;sum+=i;}} {print sum}&#39;</span>
 </span></span><span class="line"><span class="cl">awk <span class="s1">&#39;BEGIN{for(i=0;i&lt;=100;i++){sum+=i;}} {print sum}&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>统计日志中每个 IP 的访问次数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">awk <span class="s1">&#39;{count[$1]++} END {for (ip in count) print ip, count[ip]}&#39;</span> access.log <span class="p">|</span> sort -k2 -rn
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>计算某列平均值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">awk <span class="s1">&#39;{sum += $3; n++} END {print n &gt; 0 ? sum/n : 0}&#39;</span> scores.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>删除重复行（保持顺序）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">awk <span class="s1">&#39;!seen[$0]++&#39;</span> file.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>打印前 N 行 / 跳过前 N 行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">awk <span class="s1">&#39;NR &lt;= 10&#39;</span> file.txt
+</span></span><span class="line"><span class="cl">awk <span class="s1">&#39;NR &gt; 5&#39;</span> file.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>去重（按某列）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">awk <span class="s1">&#39;!seen[$2]++&#39;</span> file.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>分组求和</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">awk <span class="s1">&#39;{sum[$1] += $2} END {for (k in sum) print k, sum[k]}&#39;</span> file.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>多文件关联处理（类似 join）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">awk <span class="s1">&#39;NR==FNR {a[$1]=$2; next} {print $1, a[$1]}&#39;</span> map.txt data.txt
+</span></span><span class="line"><span class="cl"><span class="c1"># NR==FNR: 只在第一个文件成立，加载映射表</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 第二个文件：查表输出</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="判断linux桌面环境是xorg还是wayland">判断linux桌面环境是xorg还是wayland
